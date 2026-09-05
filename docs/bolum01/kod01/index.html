@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>b01-modern-backend-web-mimarisi_code_001 — b01-modern-backend-web-mimarisi_code_001.ts</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+</head>
+<body>
+<h1>b01-modern-backend-web-mimarisi_code_001 — b01-modern-backend-web-mimarisi_code_001.ts</h1>
+<p><a href="https://github.com/bmdersleri/modernSunucuTabanliKodlar/blob/main/kodlar/bolum01/kod01/b01-modern-backend-web-mimarisi_code_001.ts">GitHub'da görüntüle</a></p>
+<pre><code class="language-typescript">// File: IstemciSunucuAkisi.ts
+// Bu örnek basit bir istemci-sunucu iletişimini taklit eder.
+// Gerçek ağ bağlantısı yerine sınıflar kullanılır.
+// Çıktı, isteğin hangi aşamalardan geçtiğini gösterir.
+
+type Istek = {
+  ogrenciNumarasi: string;
+};
+
+type Yanit = {
+  basarili: boolean;
+  mesaj: string;
+};
+
+class OgrenciSunucusu {
+  bilgiGetir(istek: Istek): Yanit {
+    if (istek.ogrenciNumarasi === "2026001") {
+      return { basarili: true, mesaj: "Ayşe Yılmaz bulundu." };
+    }
+
+    return { basarili: false, mesaj: "Öğrenci kaydı bulunamadı." };
+  }
+}
+
+class TarayiciIstemcisi {
+  constructor(private sunucu: OgrenciSunucusu) {}
+
+  ogrenciBilgisiIste(ogrenciNumarasi: string): void {
+    const istek: Istek = { ogrenciNumarasi };
+    const yanit = this.sunucu.bilgiGetir(istek);
+
+    if (yanit.basarili) {
+      console.log(`Başarılı yanıt: ${yanit.mesaj}`);
+    } else {
+      console.log(`Hata yanıtı: ${yanit.mesaj}`);
+    }
+  }
+}
+
+const sunucu = new OgrenciSunucusu();
+const istemci = new TarayiciIstemcisi(sunucu);
+
+istemci.ogrenciBilgisiIste("2026001");
+istemci.ogrenciBilgisiIste("2026999");
+
+// Çıktı: Başarılı yanıt: Ayşe Yılmaz bulundu.
+// Çıktı: Hata yanıtı: Öğrenci kaydı bulunamadı.
+</code></pre>
+</body>
+</html>

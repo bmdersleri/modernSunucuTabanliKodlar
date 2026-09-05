@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>b01-modern-backend-web-mimarisi_code_015 — b01-modern-backend-web-mimarisi_code_015.ts</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+</head>
+<body>
+<h1>b01-modern-backend-web-mimarisi_code_015 — b01-modern-backend-web-mimarisi_code_015.ts</h1>
+<p><a href="https://github.com/bmdersleri/modernSunucuTabanliKodlar/blob/main/kodlar/bolum01/kod05/b01-modern-backend-web-mimarisi_code_015.ts">GitHub'da görüntüle</a></p>
+<pre><code class="language-typescript">// File: ChapterMiniApp.typescript
+// Bu mini uygulama öğrenci notu sorgulama isteğini uçtan uca modeller.
+// İstemci, proxy, API ve backend ayrı sorumluluklar taşır.
+// Çıktı, başarılı ve yetkisiz istek sonuçlarını gösterir.
+
+type UygulamaIstegi = {
+  yol: string;
+  kullaniciAdi: string;
+  yetkiliMi: boolean;
+};
+
+type UygulamaYaniti = {
+  durumKodu: number;
+  mesaj: string;
+};
+
+class NotBackendServisi {
+  private notlar: Record<string, number> = {
+    "2026001": 88
+  };
+
+  notGetir(ogrenciNumarasi: string): UygulamaYaniti {
+    const notDegeri = this.notlar[ogrenciNumarasi];
+
+    if (notDegeri === undefined) {
+      return { durumKodu: 404, mesaj: "Öğrenci kaydı bulunamadı." };
+    }
+
+    return {
+      durumKodu: 200,
+      mesaj: `${ogrenciNumarasi} numaralı öğrencinin notu: ${notDegeri}`
+    };
+  }
+}
+
+class NotApi {
+  constructor(private backendServisi: NotBackendServisi) {}
+
+  istekIsle(istek: UygulamaIstegi): UygulamaYaniti {
+    const yolParcalari = istek.yol.split("/");
+    const ogrenciNumarasi = yolParcalari[3];
+
+    if (!ogrenciNumarasi) {
+      return { durumKodu: 400, mesaj: "Öğrenci numarası eksik." };
+    }
+
+    return this.backendServisi.notGetir(ogrenciNumarasi);
+  }
+}
+
+class TersVekil {
+  constructor(private notApi: NotApi) {}
+
+  yonlendir(istek: UygulamaIstegi): UygulamaYaniti {
+    if (!istek.yetkiliMi) {
+      return { durumKodu: 401, mesaj: "Kimlik doğrulaması gerekli." };
+    }
+
+    if (!istek.yol.startsWith("/api/notlar/")) {
+      return { durumKodu: 404, mesaj: "Proxy için uygun yol bulunamadı." };
+    }
+
+    return this.notApi.istekIsle(istek);
+  }
+}
+
+class TarayiciIstemcisi {
+  constructor(private tersVekil: TersVekil) {}
+
+  notSorgula(ogrenciNumarasi: string, yetkiliMi: boolean): void {
+    const istek: UygulamaIstegi = {
+      yol: `/api/notlar/${ogrenciNumarasi}`,
+      kullaniciAdi: "ayse",
+      yetkiliMi,
+    };
+
+    const yanit = this.tersVekil.yonlendir(istek);
+    console.log(`[${yanit.durumKodu}] ${yanit.mesaj}`);
+  }
+}
+
+const backendServisi = new NotBackendServisi();
+const notApi = new NotApi(backendServisi);
+const tersVekil = new TersVekil(notApi);
+const istemci = new TarayiciIstemcisi(tersVekil);
+
+istemci.notSorgula("2026001", true);
+istemci.notSorgula("2026001", false);
+istemci.notSorgula("2026999", true);
+
+// Çıktı: [200] 2026001 numaralı öğrencinin notu: 88
+// Çıktı: [401] Kimlik doğrulaması gerekli.
+// Çıktı: [404] Öğrenci kaydı bulunamadı.
+</code></pre>
+</body>
+</html>
