@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>b10-authentication-authorization_code_007 — b10-authentication-authorization_code_007.ts</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+</head>
+<body>
+<h1>b10-authentication-authorization_code_007 — b10-authentication-authorization_code_007.ts</h1>
+<p><a href="https://github.com/bmdersleri/modernSunucuTabanliKodlar/blob/main/kodlar/bolum10/kod04/b10-authentication-authorization_code_007.ts">GitHub'da görüntüle</a></p>
+<pre><code class="language-typescript">// Dosya: AuthMiddleware.typescript
+// Bu örnek Express benzeri bir middleware imzası kullanır.
+// req, res ve next parametreleri gerçek projede Express tiplerinden gelir.
+// Middleware yalnızca kimliği doğrular; iş kuralı içermez.
+
+interface KimlikliIstek {
+  headers: { authorization?: string };
+  kullanici?: { kullaniciAdi: string; rol: "ogrenci" | "kutuphaneci" };
+}
+
+interface BasitYanit {
+  durumKodu: number;
+  gonderilenMesaj?: string;
+  durum(kod: number): BasitYanit;
+  json(veri: unknown): void;
+}
+
+function authMiddleware(
+  istek: KimlikliIstek,
+  yanit: BasitYanit,
+  next: () => void
+): void {
+  const baslik = istek.headers.authorization;
+
+  if (!baslik || !baslik.startsWith("Bearer ")) {
+    yanit.durum(401).json({ mesaj: "Token bulunamadı." });
+    return;
+  }
+
+  const token = baslik.replace("Bearer ", "");
+
+  try {
+    istek.kullanici = tokenDogrulaVeKullaniciDondur(token);
+    next();
+  } catch {
+    yanit.durum(401).json({ mesaj: "Token geçersiz veya süresi dolmuş." });
+  }
+}
+
+function tokenDogrulaVeKullaniciDondur(
+  token: string
+): { kullaniciAdi: string; rol: "ogrenci" | "kutuphaneci" } {
+  if (token !== "gecerli-token") {
+    throw new Error("Geçersiz token.");
+  }
+  return { kullaniciAdi: "elif", rol: "ogrenci" };
+}
+</code></pre>
+</body>
+</html>

@@ -1,0 +1,116 @@
+// File: ChapterMiniAppSecurity.typescript
+// Bu uygulama bir login isteğini CORS, rate limiting, validation ve hata yönetimiyle uçtan uca işler.
+// Authentication (b10) ile bu bölümün denetimleri burada birlikte çalışır.
+// Gerçek projede secret process.env üzerinden okunur; burada sadeleştirme amacıyla sabittir.
+
+class AppError extends Error {
+  constructor(public readonly durumKodu: number, message: string) {
+    super(message);
+  }
+}
+
+// --- Secrets ---
+function secretYukle(ortam: Record<string, string | undefined>): { jwtSecret: string } {
+  if (!ortam.JWT_SECRET) {
+    throw new AppError(500, "Sunucu yapılandırma hatası: JWT_SECRET eksik.");
+  }
+  return { jwtSecret: ortam.JWT_SECRET };
+}
+
+// --- CORS ---
+const izinVerilenKokenler = ["https://kutuphane.mehmetakif.edu.tr"];
+
+function corsKontrolEt(kaynakKoken: string): void {
+  if (!izinVerilenKokenler.includes(kaynakKoken)) {
+    throw new AppError(403, "Bu köken için CORS izni yoktur.");
+  }
+}
+
+// --- Rate limiting ---
+class SabitPencereRateLimiter {
+  private kayitlar = new Map<string, { sayac: number; pencereBaslangici: number }>();
+
+  constructor(private readonly maksimumIstek: number, private readonly pencereMs: number) {}
+
+  istegeIzinVer(anahtar: string, simdi: number = Date.now()): boolean {
+    const kayit = this.kayitlar.get(anahtar);
+    if (!kayit || simdi - kayit.pencereBaslangici >= this.pencereMs) {
+      this.kayitlar.set(anahtar, { sayac: 1, pencereBaslangici: simdi });
+      return true;
+    }
+    if (kayit.sayac >= this.maksimumIstek) return false;
+    kayit.sayac += 1;
+    return true;
+  }
+}
+
+const loginLimiter = new SabitPencereRateLimiter(3, 60_000);
+
+// --- Validation ---
+interface LoginIstegi {
+  kullaniciAdi: string;
+  parola: string;
+}
+
+function loginIstegiDogrula(veri: unknown): LoginIstegi {
+  if (typeof veri !== "object" || veri === null) {
+    throw new AppError(400, "İstek gövdesi bir nesne olmalıdır.");
+  }
+  const kayit = veri as Record<string, unknown>;
+  if (typeof kayit.kullaniciAdi !== "string" || kayit.kullaniciAdi.trim() === "") {
+    throw new AppError(400, "kullaniciAdi zorunludur.");
+  }
+  if (typeof kayit.parola !== "string" || kayit.parola === "") {
+    throw new AppError(400, "parola zorunludur.");
+  }
+  return { kullaniciAdi: kayit.kullaniciAdi, parola: kayit.parola };
+}
+
+// --- Controller ---
+function loginIsteginiIsle(
+  kaynakKoken: string,
+  istemciIp: string,
+  gövde: unknown,
+  ortam: Record<string, string | undefined>
+): { durumKodu: number; mesaj: string } {
+  try {
+    corsKontrolEt(kaynakKoken);
+
+    if (!loginLimiter.istegeIzinVer(istemciIp)) {
+      throw new AppError(429, "Çok fazla giriş denemesi yapıldı. Lütfen daha sonra tekrar deneyin.");
+    }
+
+    const istek = loginIstegiDogrula(gövde);
+    secretYukle(ortam);
+
+    if (istek.kullaniciAdi === "elif" && istek.parola === "ogrenci-Parola1") {
+      return { durumKodu: 200, mesaj: "Giriş başarılı." };
+    }
+
+    throw new AppError(401, "Kullanıcı adı veya parola hatalı.");
+  } catch (hata) {
+    if (hata instanceof AppError) {
+      return { durumKodu: hata.durumKodu, mesaj: hata.message };
+    }
+    console.error("Beklenmeyen hata:", hata);
+    return { durumKodu: 500, mesaj: "Sunucuda beklenmeyen bir hata oluştu." };
+  }
+}
+
+const ortam = { JWT_SECRET: "kutuphane-sunucu-sirri" };
+
+console.log(loginIsteginiIsle(
+  "https://kutuphane.mehmetakif.edu.tr",
+  "203.0.113.20",
+  { kullaniciAdi: "elif", parola: "ogrenci-Parola1" },
+  ortam
+));
+
+console.log(loginIsteginiIsle(
+  "https://kotu-niyetli-site.com",
+  "203.0.113.20",
+  { kullaniciAdi: "elif", parola: "ogrenci-Parola1" },
+  ortam
+));
+// Çıktı: { durumKodu: 200, mesaj: 'Giriş başarılı.' }
+// Çıktı: { durumKodu: 403, mesaj: 'Bu köken için CORS izni yoktur.' }

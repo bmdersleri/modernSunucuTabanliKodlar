@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>b18-capstone-lab-management_code_005 — b18-capstone-lab-management_code_005.yml</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+</head>
+<body>
+<h1>b18-capstone-lab-management_code_005 — b18-capstone-lab-management_code_005.yml</h1>
+<p><a href="https://github.com/bmdersleri/modernSunucuTabanliKodlar/blob/main/kodlar/bolum18/kod03/b18-capstone-lab-management_code_005.yml">GitHub'da görüntüle</a></p>
+<pre><code class="language-plaintext"># docker-compose.yml — Laboratuvar Yönetim Sistemi (bkz. b14 Docker Compose ilkeleri)
+services:
+  laboratuvar-api:
+    build: .
+    ports:
+      - "127.0.0.1:3000:3000"
+    environment:
+      DATABASE_URL: postgresql://postgres:parola@laboratuvar-db:5432/laboratuvar
+      JWT_GIZLI_ANAHTAR: ${JWT_GIZLI_ANAHTAR}
+    depends_on:
+      - laboratuvar-db
+
+  laboratuvar-db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_PASSWORD: parola
+      POSTGRES_DB: laboratuvar
+    volumes:
+      - laboratuvar-db-verisi:/var/lib/postgresql/data
+
+volumes:
+  laboratuvar-db-verisi:
+</code></pre>
+</body>
+</html>

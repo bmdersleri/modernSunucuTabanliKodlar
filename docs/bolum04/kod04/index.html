@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>b04-nodejs-runtime_code_006 — b04-nodejs-runtime_code_006.ts</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+</head>
+<body>
+<h1>b04-nodejs-runtime_code_006 — b04-nodejs-runtime_code_006.ts</h1>
+<p><a href="https://github.com/bmdersleri/modernSunucuTabanliKodlar/blob/main/kodlar/bolum04/kod04/b04-nodejs-runtime_code_006.ts">GitHub'da görüntüle</a></p>
+<pre><code class="language-typescript">// File: eventLoopSirasi.typescript
+// Önce senkron satırlar çalışır.
+// setTimeout callback'i daha sonra kuyruğa gelir.
+// Çıktı: Başlangıç, Bitiş, ardından Zamanlayıcı tamamlandı.
+
+console.log("1. Sipariş alınmaya başlandı.");
+
+setTimeout(() => {
+  console.log("3. Zamanlayıcı tamamlandı.");
+}, 1000);
+
+console.log("2. Başka sipariş işleniyor.");
+</code></pre>
+</body>
+</html>

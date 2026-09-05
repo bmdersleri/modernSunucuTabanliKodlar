@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>b05-express-web-server_code_003 — b05-express-web-server_code_003.ts</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+</head>
+<body>
+<h1>b05-express-web-server_code_003 — b05-express-web-server_code_003.ts</h1>
+<p><a href="https://github.com/bmdersleri/modernSunucuTabanliKodlar/blob/main/kodlar/bolum05/kod03/b05-express-web-server_code_003.ts">GitHub'da görüntüle</a></p>
+<pre><code class="language-typescript">import express, { Request, Response } from "express";
+
+// Uygulama nesnesi API isteklerini karşılar.
+// JSON yanıtı istemcilerin veriyi kolay işlemesini sağlar.
+// Port sabiti uygulamanın giriş noktasını belirler.
+const uygulama = express();
+const portNumarasi = 3000;
+
+uygulama.get("/durum", (istek: Request, yanit: Response) => {
+  // json metodu otomatik olarak JSON biçimi üretir.
+  // HTTP durum kodu varsayılan olarak 200 olur.
+  // Nesne içindeki alanlar API sözleşmesinin parçasıdır.
+  yanit.json({
+    mesaj: "Kitap API hazır.",
+    sunucuDurumu: "çalışıyor"
+  });
+});
+
+uygulama.listen(portNumarasi, () => {
+  // Sunucunun hangi adreste çalıştığını gösterir.
+  // Geliştirme ortamında port çakışması kontrol edilmelidir.
+  // Tarayıcı veya API istemcisi bu adrese istek gönderebilir.
+  console.log(`Sunucu http://localhost:${portNumarasi} adresinde çalışıyor.`);
+});
+
+// Çıktı: GET /durum -> {"mesaj":"Kitap API hazır.","sunucuDurumu":"çalışıyor"}
+</code></pre>
+</body>
+</html>

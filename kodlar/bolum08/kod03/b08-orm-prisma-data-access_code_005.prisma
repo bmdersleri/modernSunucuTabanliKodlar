@@ -1,0 +1,12 @@
+// File: schema.prisma
+// `telefonNumarasi` alanı yeni şema gereksinimini temsil eder.
+// Soru işareti alanın boş bırakılabileceğini belirtir.
+// Şema değişikliğinden sonra migration oluşturulmalıdır.
+
+model User {
+  id              Int      @id @default(autoincrement())
+  adSoyad         String
+  epostaAdresi    String   @unique
+  telefonNumarasi String?
+  olusturmaTarihi DateTime @default(now())
+}

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>b10-authentication-authorization_code_001 — b10-authentication-authorization_code_001.ts</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+</head>
+<body>
+<h1>b10-authentication-authorization_code_001 — b10-authentication-authorization_code_001.ts</h1>
+<p><a href="https://github.com/bmdersleri/modernSunucuTabanliKodlar/blob/main/kodlar/bolum10/kod01/b10-authentication-authorization_code_001.ts">GitHub'da görüntüle</a></p>
+<pre><code class="language-typescript">// Dosya: AuthAkisiGiris.typescript
+// Bu örnek authentication ve authorization adımlarının sırasını gösterir.
+// Gerçek projede bu adımlar middleware fonksiyonlarına ayrılmalıdır.
+// Çıktı, kimliği doğrulanmış ama yetkisiz bir isteğin reddedildiğini gösterir.
+
+interface Kullanici {
+  kullaniciAdi: string;
+  rol: "ogrenci" | "kutuphaneci";
+}
+
+function kimlikDogrula(tokenGecerliMi: boolean, kullanici: Kullanici | null): Kullanici {
+  if (!tokenGecerliMi || !kullanici) {
+    throw new Error("401: Kimlik doğrulanamadı.");
+  }
+  return kullanici;
+}
+
+function yetkilendir(kullanici: Kullanici, gerekliRol: Kullanici["rol"]): void {
+  if (kullanici.rol !== gerekliRol) {
+    throw new Error("403: Bu işlem için yetkiniz yok.");
+  }
+}
+
+const ogrenci: Kullanici = { kullaniciAdi: "elif", rol: "ogrenci" };
+
+try {
+  const dogrulanmisKullanici = kimlikDogrula(true, ogrenci);
+  yetkilendir(dogrulanmisKullanici, "kutuphaneci");
+  console.log("İşlem gerçekleştirildi.");
+} catch (hata) {
+  console.log((hata as Error).message);
+}
+// Çıktı: 403: Bu işlem için yetkiniz yok.
+</code></pre>
+</body>
+</html>

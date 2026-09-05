@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>b03-typescript-backend_code_005 — b03-typescript-backend_code_005.ts</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+</head>
+<body>
+<h1>b03-typescript-backend_code_005 — b03-typescript-backend_code_005.ts</h1>
+<p><a href="https://github.com/bmdersleri/modernSunucuTabanliKodlar/blob/main/kodlar/bolum03/kod03/b03-typescript-backend_code_005.ts">GitHub'da görüntüle</a></p>
+<pre><code class="language-typescript">// File: TipCikarimi.typescript
+// TypeScript değerlerden otomatik tip çıkarır.
+// Fonksiyon dönüş türü de çoğu zaman çıkarılabilir.
+// Kritik parametre türleri açıkça yazılmıştır.
+
+function kitapFiyatiniHesapla(birimFiyat: number, adet: number) {
+  const araToplam = birimFiyat * adet;
+  const kargoUcretsizMi = araToplam >= 500;
+
+  return { araToplam, kargoUcretsizMi };
+}
+
+const siparisOzeti = kitapFiyatiniHesapla(125, 4);
+console.log(siparisOzeti.araToplam);
+// Çıktı: 500
+</code></pre>
+</body>
+</html>

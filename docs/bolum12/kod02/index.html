@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>b12-files-email-external-api_code_003 — b12-files-email-external-api_code_003.ts</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+</head>
+<body>
+<h1>b12-files-email-external-api_code_003 — b12-files-email-external-api_code_003.ts</h1>
+<p><a href="https://github.com/bmdersleri/modernSunucuTabanliKodlar/blob/main/kodlar/bolum12/kod02/b12-files-email-external-api_code_003.ts">GitHub'da görüntüle</a></p>
+<pre><code class="language-typescript">// Dosya: MultipartDosyaOkuma.typescript
+// YuklenenDosya, multer gibi bir middleware'in ürettiği yapılandırılmış dosya nesnesini temsil eder.
+// Gerçek projede bu nesne req.file üzerinden gelir; burada elle oluşturulmuştur.
+// Çıktı, dosya meta verisinin okunduğunu gösterir.
+
+interface YuklenenDosya {
+  orijinalAd: string;
+  mimeTuru: string;
+  boyutBayt: number;
+  icerik: Buffer;
+}
+
+interface KitapKapagiYuklemeIstegi {
+  kitapKodu: string;
+  dosya: YuklenenDosya;
+}
+
+function dosyaMetaVerisiOku(istek: KitapKapagiYuklemeIstegi): string {
+  const { dosya } = istek;
+  return `Dosya: ${dosya.orijinalAd}, tür: ${dosya.mimeTuru}, boyut: ${dosya.boyutBayt} bayt`;
+}
+
+const ornekIstek: KitapKapagiYuklemeIstegi = {
+  kitapKodu: "JAVA-101",
+  dosya: {
+    orijinalAd: "kapak.jpg",
+    mimeTuru: "image/jpeg",
+    boyutBayt: 204_800,
+    icerik: Buffer.from("sahte-goruntu-verisi")
+  }
+};
+
+console.log(dosyaMetaVerisiOku(ornekIstek));
+// Çıktı: Dosya: kapak.jpg, tür: image/jpeg, boyut: 204800 bayt
+</code></pre>
+</body>
+</html>

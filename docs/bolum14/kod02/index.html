@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>b14-docker-compose_code_003 — b14-docker-compose_code_003.dockerfile</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+</head>
+<body>
+<h1>b14-docker-compose_code_003 — b14-docker-compose_code_003.dockerfile</h1>
+<p><a href="https://github.com/bmdersleri/modernSunucuTabanliKodlar/blob/main/kodlar/bolum14/kod02/b14-docker-compose_code_003.dockerfile">GitHub'da görüntüle</a></p>
+<pre><code class="language-plaintext"># --- Aşama 1: build ---
+FROM node:20-alpine AS build
+WORKDIR /uygulama
+COPY package.json package-lock.json ./
+RUN npm install
+COPY . .
+RUN npm run build
+
+# --- Aşama 2: production ---
+FROM node:20-alpine AS production
+WORKDIR /uygulama
+ENV NODE_ENV=production
+COPY package.json package-lock.json ./
+RUN npm install --omit=dev
+COPY --from=build /uygulama/dist ./dist
+
+EXPOSE 3000
+CMD ["node", "dist/index.js"]
+</code></pre>
+</body>
+</html>

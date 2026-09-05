@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>b15-linux-deployment_code_001 — b15-linux-deployment_code_001.sh</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+</head>
+<body>
+<h1>b15-linux-deployment_code_001 — b15-linux-deployment_code_001.sh</h1>
+<p><a href="https://github.com/bmdersleri/modernSunucuTabanliKodlar/blob/main/kodlar/bolum15/kod01/b15-linux-deployment_code_001.sh">GitHub'da görüntüle</a></p>
+<pre><code class="language-bash"># 1. SSH ile Linux sunucuya bağlan.
+ssh dagitim@kutuphane-sunucu.mehmetakif.edu.tr
+
+# 2. Sunucuda proje deposunu klonla veya güncelle.
+git clone https://github.com/bmdersleri/kutuphane-api.git
+cd kutuphane-api
+
+# 3. Docker Compose ile servisleri üretim modunda ayağa kaldır.
+docker compose -f docker-compose.yml -f docker-compose.prod.yml up --build -d
+
+# 4. Servislerin çalıştığını doğrula.
+docker compose ps
+curl http://localhost:3000/saglik
+# Çıktı: {"durum":"ayakta"}
+</code></pre>
+</body>
+</html>

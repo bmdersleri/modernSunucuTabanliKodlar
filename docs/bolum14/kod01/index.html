@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>b14-docker-compose_code_001 — b14-docker-compose_code_001.sh</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+</head>
+<body>
+<h1>b14-docker-compose_code_001 — b14-docker-compose_code_001.sh</h1>
+<p><a href="https://github.com/bmdersleri/modernSunucuTabanliKodlar/blob/main/kodlar/bolum14/kod01/b14-docker-compose_code_001.sh">GitHub'da görüntüle</a></p>
+<pre><code class="language-bash"># 1. Dockerfile'dan bir image inşa et (build).
+docker build -t kutuphane-api:1.0 .
+
+# 2. Bu image'dan bir container çalıştır (run).
+docker run --name kutuphane-api-container -p 3000:3000 kutuphane-api:1.0
+
+# 3. Çalışan container'ları listele.
+docker ps
+# Çıktı: CONTAINER ID   IMAGE               ...   NAMES
+# Çıktı: 3f2a9c1d8e0b   kutuphane-api:1.0   ...   kutuphane-api-container
+
+# 4. Container'ı durdur ve kaldır.
+docker stop kutuphane-api-container
+docker rm kutuphane-api-container
+</code></pre>
+</body>
+</html>

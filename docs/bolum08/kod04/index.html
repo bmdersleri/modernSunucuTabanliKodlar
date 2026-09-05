@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>b08-orm-prisma-data-access_code_006 — b08-orm-prisma-data-access_code_006.sh</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+</head>
+<body>
+<h1>b08-orm-prisma-data-access_code_006 — b08-orm-prisma-data-access_code_006.sh</h1>
+<p><a href="https://github.com/bmdersleri/modernSunucuTabanliKodlar/blob/main/kodlar/bolum08/kod04/b08-orm-prisma-data-access_code_006.sh">GitHub'da görüntüle</a></p>
+<pre><code class="language-bash"># File: terminal-komutlari.sh
+# Komut şema farkını inceleyerek yeni migration üretir.
+// Migration daha sonra geliştirme veritabanına uygulanır.
+// Prisma Client yeni alanları tanıyacak biçimde güncellenir.
+
+npx prisma migrate dev --name kullanici_telefon_alani
+npx prisma generate
+# Çıktı: Applied migration ... kullanici_telefon_alani
+</code></pre>
+</body>
+</html>

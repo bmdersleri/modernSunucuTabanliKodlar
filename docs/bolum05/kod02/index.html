@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>b05-express-web-server_code_002 — b05-express-web-server_code_002.ts</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+</head>
+<body>
+<h1>b05-express-web-server_code_002 — b05-express-web-server_code_002.ts</h1>
+<p><a href="https://github.com/bmdersleri/modernSunucuTabanliKodlar/blob/main/kodlar/bolum05/kod02/b05-express-web-server_code_002.ts">GitHub'da görüntüle</a></p>
+<pre><code class="language-typescript">import express, { Request, Response } from "express";
+
+// Express uygulamasını oluşturur.
+// Sunucunun dinleyeceği port numarasını tanımlar.
+// Bu örnek tarayıcıdan gelen temel isteği karşılar.
+const uygulama = express();
+const portNumarasi = 3000;
+
+uygulama.get("/", (istek: Request, yanit: Response) => {
+  // Ana sayfaya gelen GET isteğini karşılar.
+  // send metodu düz metin yanıtı gönderir.
+  // Tarayıcı bu metni doğrudan görüntüler.
+  yanit.send("Kitap API sunucusu çalışıyor.");
+});
+
+uygulama.listen(portNumarasi, () => {
+  // Sunucu dinlemeye başladığında konsola bilgi verir.
+  // localhost yalnızca yerel bilgisayarı ifade eder.
+  // Tarayıcıdan http://localhost:3000 adresi açılabilir.
+  console.log(`Sunucu http://localhost:${portNumarasi} adresinde çalışıyor.`);
+});
+
+// Çıktı: Sunucu http://localhost:3000 adresinde çalışıyor.
+</code></pre>
+</body>
+</html>

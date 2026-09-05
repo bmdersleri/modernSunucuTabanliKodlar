@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>b02-modern-javascript-backend_code_003 — b02-modern-javascript-backend_code_003.ts</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+</head>
+<body>
+<h1>b02-modern-javascript-backend_code_003 — b02-modern-javascript-backend_code_003.ts</h1>
+<p><a href="https://github.com/bmdersleri/modernSunucuTabanliKodlar/blob/main/kodlar/bolum02/kod02/b02-modern-javascript-backend_code_003.ts">GitHub'da görüntüle</a></p>
+<pre><code class="language-typescript">// Dosya: kullanici-verisi.ts
+// Bu modül yalnızca veri modeli ve veri erişiminden sorumludur.
+// readonly alanlar kayıtların istemeden değiştirilmesini önler.
+// Örnek veri, gerçek projedeki veri tabanı sorgusunu temsil eder.
+
+export interface Kullanici {
+  readonly kimlik: number;
+  readonly ad: string;
+  readonly eposta: string;
+  readonly aktifMi: boolean;
+}
+
+const kullaniciKayitlari: readonly Kullanici[] = [
+  { kimlik: 1, ad: "Ece", eposta: "ece@ornek.com", aktifMi: true },
+  { kimlik: 2, ad: "Can", eposta: "can@ornek.com", aktifMi: false }
+];
+
+export function kullaniciBul(kimlik: number): Kullanici | undefined {
+  return kullaniciKayitlari.find((kullanici) => kullanici.kimlik === kimlik);
+}
+</code></pre>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>b03-typescript-backend_code_006 — b03-typescript-backend_code_006.ts</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+</head>
+<body>
+<h1>b03-typescript-backend_code_006 — b03-typescript-backend_code_006.ts</h1>
+<p><a href="https://github.com/bmdersleri/modernSunucuTabanliKodlar/blob/main/kodlar/bolum03/kod04/b03-typescript-backend_code_006.ts">GitHub'da görüntüle</a></p>
+<pre><code class="language-typescript">// File: BelirsizTip.typescript
+// Boş dizi başlangıçta yeterli bilgi sağlamaz.
+// Açık tip, dizinin veri sözleşmesini kurar.
+// Kullanıcı listesi yalnızca Kullanici nesneleri taşımalıdır.
+
+interface Kullanici {
+  kimlik: number;
+  ad: string;
+}
+
+const kullaniciListesi: Kullanici[] = [];
+kullaniciListesi.push({ kimlik: 1, ad: "Mert" });
+
+console.log(kullaniciListesi[0].ad);
+// Çıktı: Mert
+</code></pre>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>b15-linux-deployment_code_006 — b15-linux-deployment_code_006.conf</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+</head>
+<body>
+<h1>b15-linux-deployment_code_006 — b15-linux-deployment_code_006.conf</h1>
+<p><a href="https://github.com/bmdersleri/modernSunucuTabanliKodlar/blob/main/kodlar/bolum15/kod04/b15-linux-deployment_code_006.conf">GitHub'da görüntüle</a></p>
+<pre><code class="language-plaintext">server {
+    listen 80;
+    server_name kutuphane.mehmetakif.edu.tr;
+    return 301 https://$host$request_uri;
+}
+
+server {
+    listen 443 ssl;
+    server_name kutuphane.mehmetakif.edu.tr;
+
+    ssl_certificate /etc/letsencrypt/live/kutuphane.mehmetakif.edu.tr/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/kutuphane.mehmetakif.edu.tr/privkey.pem;
+
+    location / {
+        proxy_pass http://127.0.0.1:3000;
+        proxy_set_header X-Forwarded-Proto https;
+    }
+}
+</code></pre>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>b06-http-rest-api_code_003 — b06-http-rest-api_code_003.ts</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+</head>
+<body>
+<h1>b06-http-rest-api_code_003 — b06-http-rest-api_code_003.ts</h1>
+<p><a href="https://github.com/bmdersleri/modernSunucuTabanliKodlar/blob/main/kodlar/bolum06/kod02/b06-http-rest-api_code_003.ts">GitHub'da görüntüle</a></p>
+<pre><code class="language-typescript">// File: CrudIslemleri.typescript
+// Bu örnek bellek içindeki ekipman listesini yönetir.
+// Her fonksiyon farklı bir CRUD işlemini temsil eder.
+// Örnek, gerçek HTTP sunucusundan bağımsız çalışır.
+
+interface Ekipman {
+  kimlik: number;
+  ad: string;
+  durum: "musait" | "rezerve";
+}
+
+let ekipmanListesi: Ekipman[] = [
+  { kimlik: 1, ad: "Mikroskop", durum: "musait" }
+];
+
+function ekipmanOlustur(ad: string): Ekipman {
+  const yeniEkipman = { kimlik: 2, ad, durum: "musait" as const };
+  ekipmanListesi.push(yeniEkipman);
+  return yeniEkipman;
+}
+
+function ekipmanGetir(kimlik: number): Ekipman | undefined {
+  return ekipmanListesi.find((ekipman) => ekipman.kimlik === kimlik);
+}
+
+function ekipmanGuncelle(kimlik: number, yeniDurum: Ekipman["durum"]): Ekipman | undefined {
+  const ekipman = ekipmanGetir(kimlik);
+  if (ekipman) ekipman.durum = yeniDurum;
+  return ekipman;
+}
+
+function ekipmanSil(kimlik: number): boolean {
+  const oncekiUzunluk = ekipmanListesi.length;
+  ekipmanListesi = ekipmanListesi.filter((ekipman) => ekipman.kimlik !== kimlik);
+  return ekipmanListesi.length < oncekiUzunluk;
+}
+
+console.log(ekipmanOlustur("Spektrometre"));
+console.log(ekipmanGuncelle(1, "rezerve"));
+console.log(ekipmanSil(2));
+// Çıktı: { kimlik: 2, ad: 'Spektrometre', durum: 'musait' }
+// Çıktı: { kimlik: 1, ad: 'Mikroskop', durum: 'rezerve' }
+// Çıktı: true
+</code></pre>
+</body>
+</html>

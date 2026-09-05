@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>b06-http-rest-api_code_005 — b06-http-rest-api_code_005.ts</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+</head>
+<body>
+<h1>b06-http-rest-api_code_005 — b06-http-rest-api_code_005.ts</h1>
+<p><a href="https://github.com/bmdersleri/modernSunucuTabanliKodlar/blob/main/kodlar/bolum06/kod03/b06-http-rest-api_code_005.ts">GitHub'da görüntüle</a></p>
+<pre><code class="language-typescript">// File: JsonSozlesmesi.typescript
+// Başarı ve hata yanıtları tek bir sözleşme kullanır.
+// Union type, iki olası yanıt biçimini temsil eder.
+// TypeScript daraltması basarili alanıyla yapılır.
+
+type BasariliYanit<T> = {
+  basarili: true;
+  veri: T;
+  mesaj: string;
+};
+
+type HataliYanit = {
+  basarili: false;
+  hataKodu: string;
+  mesaj: string;
+};
+
+type ApiYaniti<T> = BasariliYanit<T> | HataliYanit;
+
+function ekipmanYanitiOlustur(kimlik: number): ApiYaniti<{ kimlik: number; ad: string }> {
+  if (kimlik !== 1) {
+    return {
+      basarili: false,
+      hataKodu: "EKIPMAN_BULUNAMADI",
+      mesaj: "İstenen ekipman bulunamadı."
+    };
+  }
+
+  return {
+    basarili: true,
+    veri: { kimlik: 1, ad: "Mikroskop" },
+    mesaj: "Ekipman başarıyla bulundu."
+  };
+}
+
+const apiYaniti = ekipmanYanitiOlustur(1);
+
+if (apiYaniti.basarili) {
+  console.log(apiYaniti.veri.ad);
+} else {
+  console.log(apiYaniti.hataKodu);
+}
+// Çıktı: Mikroskop
+</code></pre>
+</body>
+</html>

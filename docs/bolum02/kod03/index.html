@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>b02-modern-javascript-backend_code_004 — b02-modern-javascript-backend_code_004.ts</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+</head>
+<body>
+<h1>b02-modern-javascript-backend_code_004 — b02-modern-javascript-backend_code_004.ts</h1>
+<p><a href="https://github.com/bmdersleri/modernSunucuTabanliKodlar/blob/main/kodlar/bolum02/kod03/b02-modern-javascript-backend_code_004.ts">GitHub'da görüntüle</a></p>
+<pre><code class="language-typescript">// Dosya: kullanici-servisi.ts
+// Bu modül iş kuralını veri erişiminden ayırır.
+// Kullanıcının aktifliği servis katmanında denetlenir.
+// Named import yalnızca gerekli değerleri alır.
+
+import { Kullanici, kullaniciBul } from "./kullanici-verisi.js";
+
+export function aktifKullaniciGetir(kimlik: number): Kullanici {
+  const kullanici = kullaniciBul(kimlik);
+
+  if (!kullanici) {
+    throw new Error("Kullanıcı bulunamadı.");
+  }
+
+  if (!kullanici.aktifMi) {
+    throw new Error("Kullanıcı aktif değildir.");
+  }
+
+  return kullanici;
+}
+</code></pre>
+</body>
+</html>

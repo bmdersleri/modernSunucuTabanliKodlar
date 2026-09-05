@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>b08-orm-prisma-data-access_code_002 — b08-orm-prisma-data-access_code_002.ts</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+</head>
+<body>
+<h1>b08-orm-prisma-data-access_code_002 — b08-orm-prisma-data-access_code_002.ts</h1>
+<p><a href="https://github.com/bmdersleri/modernSunucuTabanliKodlar/blob/main/kodlar/bolum08/kod02/b08-orm-prisma-data-access_code_002.ts">GitHub'da görüntüle</a></p>
+<pre><code class="language-typescript">// File: PrismaBaslangic.typescript
+// Bu örnek Prisma Client ile kullanıcı kaydı oluşturur.
+// Ardından tüm kullanıcıları veritabanından okur.
+// Program tamamlandığında bağlantı güvenli biçimde kapatılır.
+
+import { PrismaClient } from "@prisma/client";
+
+const prisma = new PrismaClient();
+
+async function anaProgram(): Promise<void> {
+  const yeniKullanici = await prisma.user.create({
+    data: {
+      adSoyad: "Ayşe Demir",
+      epostaAdresi: "ayse.demir@example.com",
+    },
+  });
+
+  const kullaniciListesi = await prisma.user.findMany({
+    orderBy: { id: "asc" },
+  });
+
+  console.log("Eklenen kullanıcı:", yeniKullanici.adSoyad);
+  console.log("Kullanıcı sayısı:", kullaniciListesi.length);
+  // Çıktı: Eklenen kullanıcı: Ayşe Demir
+  // Çıktı: Kullanıcı sayısı: 1
+}
+
+anaProgram()
+  .catch(console.error)
+  .finally(() => prisma.$disconnect());
+</code></pre>
+</body>
+</html>

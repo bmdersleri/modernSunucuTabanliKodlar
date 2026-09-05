@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>b05-express-web-server_code_021 — b05-express-web-server_code_021.ts</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+</head>
+<body>
+<h1>b05-express-web-server_code_021 — b05-express-web-server_code_021.ts</h1>
+<p><a href="https://github.com/bmdersleri/modernSunucuTabanliKodlar/blob/main/kodlar/bolum05/kod05/b05-express-web-server_code_021.ts">GitHub'da görüntüle</a></p>
+<pre><code class="language-typescript">// File: ChapterMiniApp.typescript
+import express, { NextFunction, Request, Response } from "express";
+
+// Kitap modeli uygulamanın sakladığı veri yapısını tanımlar.
+// Uygulama, bellek içi liste ile basit bir API örneği sunar.
+// Gerçek uygulamalarda bu liste yerine veritabanı kullanılabilir.
+interface Kitap {
+  kimlik: number;
+  ad: string;
+  yazar: string;
+  kategori: string;
+}
+
+class KitapApiUygulamasi {
+  private uygulama = express();
+  private readonly portNumarasi = 3000;
+
+  private kitapListesi: Kitap[] = [
+    {
+      kimlik: 1,
+      ad: "TypeScript ile Programlama",
+      yazar: "Deniz Yılmaz",
+      kategori: "Programlama"
+    },
+    {
+      kimlik: 2,
+      ad: "Bilim Tarihi",
+      yazar: "Selin Aras",
+      kategori: "Bilim"
+    }
+  ];
+
+  public baslat(): void {
+    // Middleware'ler route'lardan önce eklenir.
+    // Route tanımları kaynak odaklı URL'ler kullanır.
+    // listen çağrısı uygulamanın HTTP isteği kabul etmesini sağlar.
+    this.uygulama.use(express.json());
+    this.uygulama.use(this.istekGunlugu);
+
+    this.uygulama.get("/kitaplar", this.kitaplariListele);
+    this.uygulama.get("/kitaplar/:kitapKimligi", this.kitapGetir);
+    this.uygulama.post("/kitaplar", this.kitapEkle);
+    this.uygulama.get("/durum", this.durumBilgisi);
+
+    this.uygulama.listen(this.portNumarasi, () => {
+      // Port bilgisi terminalde görünür.
+      // Uygulama Postman veya tarayıcıyla test edilebilir.
+      // Her endpoint aynı sunucuda çalışır.
+      console.log(`Kitap API http://localhost:${this.portNumarasi} adresinde hazır.`);
+    });
+  }
+
+  private istekGunlugu(
+    istek: Request,
+    yanit: Response,
+    sonrakiAdim: NextFunction
+  ): void {
+    // Her isteğin temel bilgisi kayda alınır.
+    // Middleware response üretmediği için next çağrılır.
+    // Bu yapı hata ayıklama sırasında yararlıdır.
+    console.log(`[İstek] ${istek.method} ${istek.path}`);
+    sonrakiAdim();
+  }
+
+  private kitaplariListele = (istek: Request, yanit: Response): void => {
+    // Query içindeki kategori değeri isteğe bağlıdır.
+    // Filtre verilmemişse tüm kitaplar döndürülür.
+    // Sonuç sayısı istemciye ek bilgi sağlar.
+    const kategori = typeof istek.query.kategori === "string"
+      ? istek.query.kategori
+      : undefined;
+
+    const filtrelenmisKitaplar = kategori
+      ? this.kitapListesi.filter((kitap) => kitap.kategori === kategori)
+      : this.kitapListesi;
+
+    yanit.status(200).json({
+      toplamKayit: filtrelenmisKitaplar.length,
+      kitaplar: filtrelenmisKitaplar
+    });
+  };
+
+  private kitapGetir = (istek: Request, yanit: Response): void => {
+    // Route parametresi sayıya dönüştürülür.
+    // Geçersiz kimlik ile bulunamayan kimlik farklı ele alınır.
+    // Başarısız durumlarda işlem return ile sonlandırılır.
+    const kitapKimligi = Number(istek.params.kitapKimligi);
+
+    if (Number.isNaN(kitapKimligi)) {
+      yanit.status(400).json({ mesaj: "Kitap kimliği sayısal olmalıdır." });
+      return;
+    }
+
+    const bulunanKitap = this.kitapListesi.find(
+      (kitap) => kitap.kimlik === kitapKimligi
+    );
+
+    if (!bulunanKitap) {
+      yanit.status(404).json({ mesaj: "Kitap bulunamadı." });
+      return;
+    }
+
+    yanit.status(200).json({ veri: bulunanKitap });
+  };
+
+  private kitapEkle = (istek: Request, yanit: Response): void => {
+    // Body alanları çalışma zamanında doğrulanır.
+    // Yalnızca beklenen alanlardan yeni nesne oluşturulur.
+    // Başarılı oluşturma işlemi 201 ile bildirilir.
+    const { ad, yazar, kategori } = istek.body;
+
+    if (
+      typeof ad !== "string" ||
+      typeof yazar !== "string" ||
+      typeof kategori !== "string" ||
+      ad.trim() === "" ||
+      yazar.trim() === "" ||
+      kategori.trim() === ""
+    ) {
+      yanit.status(400).json({
+        mesaj: "ad, yazar ve kategori alanları dolu metinler olmalıdır."
+      });
+      return;
+    }
+
+    const yeniKitap: Kitap = {
+      kimlik: this.kitapListesi.length + 1,
+      ad: ad.trim(),
+      yazar: yazar.trim(),
+      kategori: kategori.trim()
+    };
+
+    this.kitapListesi.push(yeniKitap);
+    yanit.status(201).json({
+      mesaj: "Kitap başarıyla eklendi.",
+      veri: yeniKitap
+    });
+  };
+
+  private durumBilgisi = (istek: Request, yanit: Response): void => {
+    // Basit sağlık kontrolü endpoint'i sunulur.
+    // API'nin çalıştığını hızlıca denetlemek için kullanılır.
+    // JSON yanıtı tutarlı API biçimini korur.
+    yanit.status(200).json({
+      mesaj: "Kitap API çalışıyor.",
+      kitapSayisi: this.kitapListesi.length
+    });
+  };
+}
+
+const kitapApiUygulamasi = new KitapApiUygulamasi();
+kitapApiUygulamasi.baslat();
+
+// Çıktı: Kitap API http://localhost:3000 adresinde hazır.
+// Çıktı: GET /kitaplar?kategori=Programlama -> filtrelenmiş kitaplar
+// Çıktı: POST /kitaplar -> 201 ve yeni kitap verisi
+</code></pre>
+</body>
+</html>

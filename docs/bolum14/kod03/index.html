@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>b14-docker-compose_code_005 — b14-docker-compose_code_005.sh</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+</head>
+<body>
+<h1>b14-docker-compose_code_005 — b14-docker-compose_code_005.sh</h1>
+<p><a href="https://github.com/bmdersleri/modernSunucuTabanliKodlar/blob/main/kodlar/bolum14/kod03/b14-docker-compose_code_005.sh">GitHub'da görüntüle</a></p>
+<pre><code class="language-bash"># Aynı image'dan iki farklı container, iki farklı port ile çalıştırılıyor.
+docker run -d --name kutuphane-api-1 -p 3000:3000 kutuphane-api:1.0
+docker run -d --name kutuphane-api-2 -p 3001:3000 kutuphane-api:1.0
+
+docker ps --format "{{.Names}}\t{{.Ports}}"
+# Çıktı: kutuphane-api-1   0.0.0.0:3000->3000/tcp
+# Çıktı: kutuphane-api-2   0.0.0.0:3001->3000/tcp
+
+# Bir container'ın loglarını izle.
+docker logs -f kutuphane-api-1
+
+# Container'ı durdur (imaj ve veriler silinmez), sonra tamamen kaldır.
+docker stop kutuphane-api-1
+docker rm kutuphane-api-1
+
+# İmajı da silmek istenirse (tüm container'lar kaldırıldıktan sonra):
+docker rmi kutuphane-api:1.0
+</code></pre>
+</body>
+</html>

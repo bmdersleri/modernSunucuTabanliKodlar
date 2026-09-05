@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>b07-postgresql-sql_code_006 — b07-postgresql-sql_code_006.ts</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+</head>
+<body>
+<h1>b07-postgresql-sql_code_006 — b07-postgresql-sql_code_006.ts</h1>
+<p><a href="https://github.com/bmdersleri/modernSunucuTabanliKodlar/blob/main/kodlar/bolum07/kod04/b07-postgresql-sql_code_006.ts">GitHub'da görüntüle</a></p>
+<pre><code class="language-typescript">// File: KitapCrud.typescript
+import { Pool } from "pg";
+
+// Parametreler SQL enjeksiyonunu önlemeye yardım eder.
+// $1 ve $2 değerleri sorgu metninden ayrı gönderilir.
+// Aynı örnek önceki kitaplık tablosunu kullanır.
+
+const baglantiHavuzu = new Pool({
+  connectionString: process.env.VERITABANI_BAGLANTI_METNI,
+});
+
+async function kitapEkleVeListele(): Promise<void> {
+  await baglantiHavuzu.query(
+    `INSERT INTO kitaplar (kitap_adi, yazar_adi, yayin_yili)
+     VALUES ($1, $2, $3);`,
+    ["Kürk Mantolu Madonna", "Sabahattin Ali", 1943]
+  );
+
+  const sonuc = await baglantiHavuzu.query(
+    `SELECT kitap_adi, yazar_adi
+     FROM kitaplar
+     WHERE yayin_yili >= $1;`,
+    [1900]
+  );
+
+  console.table(sonuc.rows);
+  // Çıktı: kitap_adi ve yazar_adi sütunlarını içeren tablo
+}
+
+kitapEkleVeListele().finally(() => baglantiHavuzu.end());
+</code></pre>
+</body>
+</html>

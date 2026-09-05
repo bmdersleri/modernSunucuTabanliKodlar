@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>b17-ai-ml-service-integration_code_001 — b17-ai-ml-service-integration_code_001.ts</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+</head>
+<body>
+<h1>b17-ai-ml-service-integration_code_001 — b17-ai-ml-service-integration_code_001.ts</h1>
+<p><a href="https://github.com/bmdersleri/modernSunucuTabanliKodlar/blob/main/kodlar/bolum17/kod01/b17-ai-ml-service-integration_code_001.ts">GitHub'da görüntüle</a></p>
+<pre><code class="language-typescript">interface OzetIstegi {
+  kitapAciklamasi: string;
+}
+
+interface OzetYaniti {
+  ozet: string;
+}
+
+async function kitapOzetiIste(kitapAciklamasi: string, servisTabanUrl: string): Promise<OzetYaniti> {
+  const yanit = await fetch(`${servisTabanUrl}/ozetle`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ kitapAciklamasi } satisfies OzetIstegi)
+  });
+  if (!yanit.ok) {
+    throw new Error(`AI servisi hata döndürdü: ${yanit.status}`);
+  }
+  return (await yanit.json()) as OzetYaniti;
+}
+
+const ozet = await kitapOzetiIste(
+  "Bu kitap veri yapıları ve algoritmaları örneklerle anlatır.",
+  "http://ai-servis:8000"
+);
+console.log(ozet.ozet);
+// Çıktı: Kısa bir veri yapıları ve algoritmalar özeti.
+</code></pre>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>b17-ai-ml-service-integration_code_007 — b17-ai-ml-service-integration_code_007.ts</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+</head>
+<body>
+<h1>b17-ai-ml-service-integration_code_007 — b17-ai-ml-service-integration_code_007.ts</h1>
+<p><a href="https://github.com/bmdersleri/modernSunucuTabanliKodlar/blob/main/kodlar/bolum17/kod04/b17-ai-ml-service-integration_code_007.ts">GitHub'da görüntüle</a></p>
+<pre><code class="language-typescript">interface OneriYaniti {
+  onerilenKitapKodlari: string[];
+  guvenSkoru: number;
+}
+
+interface OneriKarari {
+  gosterilsinMi: boolean;
+  neden: string;
+}
+
+const MINIMUM_GUVEN_SKORU = 0.5;
+
+function oneriKarariVer(yanit: OneriYaniti): OneriKarari {
+  if (yanit.onerilenKitapKodlari.length === 0) {
+    return { gosterilsinMi: false, neden: "Boş öneri listesi." };
+  }
+  if (yanit.guvenSkoru < MINIMUM_GUVEN_SKORU) {
+    return { gosterilsinMi: false, neden: `Düşük güven skoru: ${yanit.guvenSkoru}` };
+  }
+  return { gosterilsinMi: true, neden: "Kabul edilebilir güven skoru." };
+}
+
+function oneriKarariniLogla(ogrenciId: number, karar: OneriKarari, guvenSkoru: number): void {
+  console.log(`[oneri] ogrenci=${ogrenciId} gosterildi=${karar.gosterilsinMi} guvenSkoru=${guvenSkoru}`);
+}
+
+const yuksekGuvenYanit: OneriYaniti = { onerilenKitapKodlari: ["JAVA-101"], guvenSkoru: 0.82 };
+const dusukGuvenYanit: OneriYaniti = { onerilenKitapKodlari: ["JAVA-101"], guvenSkoru: 0.31 };
+
+const karar1 = oneriKarariVer(yuksekGuvenYanit);
+oneriKarariniLogla(1, karar1, yuksekGuvenYanit.guvenSkoru);
+console.log(karar1.gosterilsinMi);
+
+const karar2 = oneriKarariVer(dusukGuvenYanit);
+oneriKarariniLogla(1, karar2, dusukGuvenYanit.guvenSkoru);
+console.log(karar2.gosterilsinMi);
+// Çıktı: [oneri] ogrenci=1 gosterildi=true guvenSkoru=0.82
+// Çıktı: true
+// Çıktı: [oneri] ogrenci=1 gosterildi=false guvenSkoru=0.31
+// Çıktı: false
+</code></pre>
+</body>
+</html>

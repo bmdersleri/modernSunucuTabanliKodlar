@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>b02-modern-javascript-backend_code_005 — b02-modern-javascript-backend_code_005.ts</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+</head>
+<body>
+<h1>b02-modern-javascript-backend_code_005 — b02-modern-javascript-backend_code_005.ts</h1>
+<p><a href="https://github.com/bmdersleri/modernSunucuTabanliKodlar/blob/main/kodlar/bolum02/kod04/b02-modern-javascript-backend_code_005.ts">GitHub'da görüntüle</a></p>
+<pre><code class="language-typescript">// Dosya: uygulama.ts
+// Bu dosya uygulamanın giriş noktasıdır.
+// Servis katmanı üzerinden kullanıcıya ulaşır.
+// Veri deposunun iç ayrıntılarını doğrudan kullanmaz.
+
+import { aktifKullaniciGetir } from "./kullanici-servisi.js";
+
+try {
+  const kullanici = aktifKullaniciGetir(1);
+  console.log(`${kullanici.ad} için işlem başlatıldı.`);
+} catch (hata) {
+  console.error("İşlem tamamlanamadı:", hata);
+}
+
+// Çıktı: Ece için işlem başlatıldı.
+</code></pre>
+</body>
+</html>

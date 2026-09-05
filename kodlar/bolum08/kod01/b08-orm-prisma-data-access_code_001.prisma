@@ -1,0 +1,20 @@
+// File: schema.prisma
+// Bu dosya veri kaynağını ve uygulama modellerini tanımlar.
+// Her model veritabanında bir tabloya karşılık gelecek şekilde tasarlanır.
+// `id` alanı her kullanıcı için benzersiz bir anahtar üretir.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource veriKaynagi {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           Int      @id @default(autoincrement())
+  adSoyad      String
+  epostaAdresi String   @unique
+  olusturmaTarihi DateTime @default(now())
+}

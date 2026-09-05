@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>b08-orm-prisma-data-access_code_025 — b08-orm-prisma-data-access_code_025.ts</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+</head>
+<body>
+<h1>b08-orm-prisma-data-access_code_025 — b08-orm-prisma-data-access_code_025.ts</h1>
+<p><a href="https://github.com/bmdersleri/modernSunucuTabanliKodlar/blob/main/kodlar/bolum08/kod05/b08-orm-prisma-data-access_code_025.ts">GitHub'da görüntüle</a></p>
+<pre><code class="language-typescript">// File: ChapterMiniApp.typescript
+// Bu mini uygulama kullanıcı ve ilişkili gönderi oluşturur.
+// Repository üzerinden yayınlanmış gönderi başlıklarını getirir.
+// Çalışması için schema.prisma içindeki User ve Post modelleri gerekir.
+
+import { PrismaClient } from "@prisma/client";
+
+class KullaniciRepository {
+  constructor(private readonly prisma: PrismaClient) {}
+
+  async kullaniciVeGonderiOlustur(
+    adSoyad: string,
+    epostaAdresi: string,
+    baslik: string,
+  ) {
+    return this.prisma.user.create({
+      data: {
+        adSoyad,
+        epostaAdresi,
+        gonderiler: {
+          create: {
+            baslik,
+            icerik: "Mini uygulama kapsamında oluşturuldu.",
+            yayindaMi: true,
+          },
+        },
+      },
+    });
+  }
+
+  async yayinlanmisBasliklariGetir(epostaAdresi: string): Promise<string[]> {
+    const kullanici = await this.prisma.user.findUnique({
+      where: { epostaAdresi },
+      select: {
+        adSoyad: true,
+        gonderiler: {
+          where: { yayindaMi: true },
+          select: { baslik: true },
+        },
+      },
+    });
+
+    if (kullanici === null) {
+      return [];
+    }
+
+    return kullanici.gonderiler.map((gonderi) => gonderi.baslik);
+  }
+}
+
+async function anaProgram(): Promise<void> {
+  const prisma = new PrismaClient();
+  const kullaniciRepository = new KullaniciRepository(prisma);
+
+  try {
+    await kullaniciRepository.kullaniciVeGonderiOlustur(
+      "Deniz Çelik",
+      "deniz.celik@example.com",
+      "Veri Erişim Katmanı",
+    );
+
+    const baslikListesi =
+      await kullaniciRepository.yayinlanmisBasliklariGetir(
+        "deniz.celik@example.com",
+      );
+
+    console.log("Yayınlanmış gönderiler:");
+    for (const baslik of baslikListesi) {
+      console.log(`- ${baslik}`);
+    }
+
+    // Çıktı: Yayınlanmış gönderiler:
+    // Çıktı: - Veri Erişim Katmanı
+  } finally {
+    await prisma.$disconnect();
+  }
+}
+
+anaProgram().catch(console.error);
+</code></pre>
+</body>
+</html>

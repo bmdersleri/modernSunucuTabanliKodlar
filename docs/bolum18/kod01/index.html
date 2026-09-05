@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>b18-capstone-lab-management_code_001 — b18-capstone-lab-management_code_001.ts</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+</head>
+<body>
+<h1>b18-capstone-lab-management_code_001 — b18-capstone-lab-management_code_001.ts</h1>
+<p><a href="https://github.com/bmdersleri/modernSunucuTabanliKodlar/blob/main/kodlar/bolum18/kod01/b18-capstone-lab-management_code_001.ts">GitHub'da görüntüle</a></p>
+<pre><code class="language-typescript">// Gereksinim: "Öğrenciler bir ekipmanı belirli bir tarih aralığında rezerve edebilmeli."
+// Bu cümleden çıkarılan veri modeli ve endpoint'ler:
+
+interface Ekipman {
+  id: number;
+  ad: string;
+  laboratuvarKodu: string;
+  bakimdaMi: boolean;
+}
+
+interface Rezervasyon {
+  id: number;
+  ekipmanId: number;
+  ogrenciId: number;
+  baslangic: string; // ISO 8601 tarih
+  bitis: string; // ISO 8601 tarih
+  durum: "aktif" | "iptal" | "tamamlandi";
+}
+
+// Gereksinimden çıkarılan endpoint'ler:
+const rezervasyonEndpointleri = [
+  "POST /ekipmanlar/:ekipmanId/rezervasyonlar", // yeni rezervasyon oluştur
+  "GET /ekipmanlar/:ekipmanId/rezervasyonlar", // bir ekipmanın rezervasyonlarını listele
+  "DELETE /rezervasyonlar/:rezervasyonId" // rezervasyonu iptal et
+];
+
+console.log(rezervasyonEndpointleri.length);
+// Çıktı: 3
+</code></pre>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>b14-docker-compose_code_013 — b14-docker-compose_code_013.ts</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+</head>
+<body>
+<h1>b14-docker-compose_code_013 — b14-docker-compose_code_013.ts</h1>
+<p><a href="https://github.com/bmdersleri/modernSunucuTabanliKodlar/blob/main/kodlar/bolum14/kod05/b14-docker-compose_code_013.ts">GitHub'da görüntüle</a></p>
+<pre><code class="language-typescript">// File: ChapterMiniAppDockerCompose.typescript
+// Bu dosya, konteynerleştirilmiş bir uygulamanın başlangıçta veritabanına
+// güvenli biçimde bağlanma mantığını gösterir; Dockerfile ve docker-compose.yml
+// bu bölümde ayrı kod örnekleri (code_003, code_009) olarak sunulmuştur.
+
+interface BaglantiSecenekleri {
+  host: string;
+  port: number;
+  veritabaniAdi: string;
+}
+
+class VeritabaniBaglantiHatasi extends Error {}
+
+async function saglikliBaglantiKur(
+  secenekler: BaglantiSecenekleri,
+  gercekBaglanFn: (secenekler: BaglantiSecenekleri) => Promise<void>,
+  maksimumDeneme: number = 5,
+  bekleMs: number = 500
+): Promise<void> {
+  for (let deneme = 1; deneme <= maksimumDeneme; deneme++) {
+    try {
+      await gercekBaglanFn(secenekler);
+      console.log(`[${secenekler.host}] Bağlantı ${deneme}. denemede kuruldu.`);
+      return;
+    } catch {
+      if (deneme === maksimumDeneme) {
+        throw new VeritabaniBaglantiHatasi(
+          `${maksimumDeneme} denemede veritabanına bağlanılamadı: ${secenekler.host}`
+        );
+      }
+      await new Promise((cozBekle) => setTimeout(cozBekle, bekleMs));
+    }
+  }
+}
+
+// Docker Compose ortamında bu değerler, servis adı ve environment değişkenlerinden gelir.
+const composeOrtamSecenekleri: BaglantiSecenekleri = {
+  host: "kutuphane-db",
+  port: 5432,
+  veritabaniAdi: "kutuphane"
+};
+
+// Test amaçlı sahte bağlanma fonksiyonu: ilk iki denemede başarısız, üçüncüde başarılı olur.
+let denemeSayaci = 0;
+async function sahteBaglanFn(): Promise<void> {
+  denemeSayaci++;
+  if (denemeSayaci < 3) {
+    throw new Error("Veritabanı henüz hazır değil.");
+  }
+}
+
+await saglikliBaglantiKur(composeOrtamSecenekleri, sahteBaglanFn);
+// Çıktı: [kutuphane-db] Bağlantı 3. denemede kuruldu.
+</code></pre>
+</body>
+</html>

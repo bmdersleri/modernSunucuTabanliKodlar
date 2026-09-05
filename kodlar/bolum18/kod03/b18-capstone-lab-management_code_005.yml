@@ -1,0 +1,22 @@
+# docker-compose.yml — Laboratuvar Yönetim Sistemi (bkz. b14 Docker Compose ilkeleri)
+services:
+  laboratuvar-api:
+    build: .
+    ports:
+      - "127.0.0.1:3000:3000"
+    environment:
+      DATABASE_URL: postgresql://postgres:parola@laboratuvar-db:5432/laboratuvar
+      JWT_GIZLI_ANAHTAR: ${JWT_GIZLI_ANAHTAR}
+    depends_on:
+      - laboratuvar-db
+
+  laboratuvar-db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_PASSWORD: parola
+      POSTGRES_DB: laboratuvar
+    volumes:
+      - laboratuvar-db-verisi:/var/lib/postgresql/data
+
+volumes:
+  laboratuvar-db-verisi:

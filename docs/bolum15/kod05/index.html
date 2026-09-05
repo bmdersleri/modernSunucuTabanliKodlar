@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>b15-linux-deployment_code_011 — b15-linux-deployment_code_011.ts</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+</head>
+<body>
+<h1>b15-linux-deployment_code_011 — b15-linux-deployment_code_011.ts</h1>
+<p><a href="https://github.com/bmdersleri/modernSunucuTabanliKodlar/blob/main/kodlar/bolum15/kod05/b15-linux-deployment_code_011.ts">GitHub'da görüntüle</a></p>
+<pre><code class="language-typescript">// File: ChapterMiniAppLinuxDeployment.typescript
+// Bu dosya, production'a hazır bir başlangıç akışını tek yerde gösterir;
+// Nginx ve HTTPS yapılandırması bu bölümde ayrı kod örnekleri (code_003, code_006) olarak sunulmuştur.
+
+interface ProductionAyarlari {
+  databaseUrl: string;
+  jwtGizliAnahtar: string;
+}
+
+function ortamiDogrula(ortam: Record<string, string | undefined>): ProductionAyarlari {
+  const eksikler = ["DATABASE_URL", "JWT_GIZLI_ANAHTAR"].filter((anahtar) => !ortam[anahtar]);
+  if (eksikler.length > 0) {
+    throw new Error(`Eksik ortam değişkenleri: ${eksikler.join(", ")}`);
+  }
+  return {
+    databaseUrl: ortam.DATABASE_URL!,
+    jwtGizliAnahtar: ortam.JWT_GIZLI_ANAHTAR!
+  };
+}
+
+function guvenliLoglaHata(baglam: string, hata: unknown, hassasAlanlar: string[]): void {
+  const mesaj = hata instanceof Error ? hata.message : String(hata);
+  console.error(`[${baglam}] Hata: ${mesaj}`);
+  if (hassasAlanlar.length > 0) {
+    console.error(`[${baglam}] Not: ${hassasAlanlar.join(", ")} alanları loglanmadı.`);
+  }
+}
+
+interface SaglikRaporu {
+  durum: "ayakta" | "sorunlu";
+  veritabani: boolean;
+}
+
+async function tamSaglikKontrolu(veritabaniPingFn: () => Promise<boolean>): Promise<SaglikRaporu> {
+  try {
+    const veritabani = await veritabaniPingFn();
+    return { durum: veritabani ? "ayakta" : "sorunlu", veritabani };
+  } catch (hata) {
+    guvenliLoglaHata("saglikKontrolu", hata, ["baglantiDetayi"]);
+    return { durum: "sorunlu", veritabani: false };
+  }
+}
+
+const ayarlar = ortamiDogrula({
+  DATABASE_URL: "postgresql://postgres:parola@kutuphane-db:5432/kutuphane",
+  JWT_GIZLI_ANAHTAR: "gizli-anahtar-degeri"
+});
+console.log(Boolean(ayarlar.databaseUrl));
+
+const raporBasarili = await tamSaglikKontrolu(async () => true);
+console.log(raporBasarili.durum);
+
+const raporBasarisiz = await tamSaglikKontrolu(async () => {
+  throw new Error("Bağlantı zaman aşımına uğradı.");
+});
+console.log(raporBasarisiz.durum);
+// Çıktı: true
+// Çıktı: ayakta
+// Çıktı: sorunlu
+</code></pre>
+</body>
+</html>
