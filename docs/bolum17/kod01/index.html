@@ -18,7 +18,8 @@ interface OzetYaniti {
   ozet: string;
 }
 
-async function kitapOzetiIste(kitapAciklamasi: string, servisTabanUrl: string): Promise<OzetYaniti> {
+async function kitapOzetiIste(kitapAciklamasi: string,
+  servisTabanUrl: string): Promise<OzetYaniti> {
   const yanit = await fetch(`${servisTabanUrl}/ozetle`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -35,7 +36,6 @@ const ozet = await kitapOzetiIste(
   "http://ai-servis:8000"
 );
 console.log(ozet.ozet);
-// Çıktı: Kısa bir veri yapıları ve algoritmalar özeti.
-</code></pre>
+// Çıktı: Kısa bir veri yapıları ve algoritmalar özeti.</code></pre>
 </body>
 </html>

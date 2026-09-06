@@ -3,11 +3,13 @@
 // Gerçek projede bu liste ortam değişkeninden okunmalıdır.
 // Çıktı, izinli ve izinsiz kökenler için farklı kararların üretildiğini gösterir.
 
-const izinVerilenKokenler = ["https://kutuphane.mehmetakif.edu.tr", "http://localhost:5173"];
+const izinVerilenKokenler = ["https://kutuphane.mehmetakif.edu.tr",
+  "http://localhost:5173"];
 
 interface CorsKarari {
   izinliMi: boolean;
-  baslik?: { "Access-Control-Allow-Origin": string; "Access-Control-Allow-Credentials": string };
+  baslik?: {
+    "Access-Control-Allow-Origin": string; "Access-Control-Allow-Credentials": string };
 }
 
 function corsKarariVer(istekKokeni: string | undefined): CorsKarari {
@@ -26,5 +28,6 @@ function corsKarariVer(istekKokeni: string | undefined): CorsKarari {
 
 console.log(corsKarariVer("https://kutuphane.mehmetakif.edu.tr"));
 console.log(corsKarariVer("https://kotu-niyetli-site.com"));
-// Çıktı: { izinliMi: true, baslik: { 'Access-Control-Allow-Origin': 'https://kutuphane.mehmetakif.edu.tr', 'Access-Control-Allow-Credentials': 'true' } }
+// Çıktı: { izinliMi: true, baslik: { 'Access-Control-Allow-Origin':
+// 'https://kutuphane.mehmetakif.edu.tr', 'Access-Control-Allow-Credentials': 'true' } }
 // Çıktı: { izinliMi: false }

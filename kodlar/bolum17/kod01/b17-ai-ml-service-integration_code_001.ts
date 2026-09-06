@@ -6,7 +6,8 @@ interface OzetYaniti {
   ozet: string;
 }
 
-async function kitapOzetiIste(kitapAciklamasi: string, servisTabanUrl: string): Promise<OzetYaniti> {
+async function kitapOzetiIste(kitapAciklamasi: string,
+  servisTabanUrl: string): Promise<OzetYaniti> {
   const yanit = await fetch(`${servisTabanUrl}/ozetle`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },

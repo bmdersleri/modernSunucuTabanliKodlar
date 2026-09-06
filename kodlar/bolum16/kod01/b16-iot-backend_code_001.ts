@@ -1,5 +1,6 @@
 // Cihazdan gelen örnek JSON gövdesi:
-// { "cihazId": "esp32-okuma-salonu-01", "sicaklik": 21.5, "nem": 45.2, "zamanDamgasi": "2026-09-05T10:00:00Z" }
+// { "cihazId": "esp32-okuma-salonu-01", "sicaklik": 21.5, "nem": 45.2, "zamanDamgasi":
+// "2026-09-05T10:00:00Z" }
 
 interface TelemetriIstegi {
   cihazId: string;

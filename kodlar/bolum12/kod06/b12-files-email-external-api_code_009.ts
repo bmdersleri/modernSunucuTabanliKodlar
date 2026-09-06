@@ -28,7 +28,8 @@ async function yenidenDeneyerekCalistir<T>(
       }
 
       const beklemeSuresi = baslangicBeklemeMs * 2 ** (deneme - 1);
-      console.log(`Deneme ${deneme} başarısız, ${beklemeSuresi} ms sonra tekrar denenecek.`);
+      console.log(
+        `Deneme ${deneme} başarısız, ${beklemeSuresi} ms sonra tekrar denenecek.`);
       await bekle(beklemeSuresi);
     }
   }

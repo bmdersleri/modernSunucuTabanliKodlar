@@ -34,14 +34,17 @@ class KaydediciMockEmailService implements EmailService {
   }
 }
 
-async function sonTeslimHatirlatmasiGonder(emailService: EmailService, ogrenciEposta: string, kitapAdi: string): Promise<void> {
-  await emailService.gonder(ogrenciEposta, `Son teslim tarihi yaklaşıyor: ${kitapAdi}`, "Detaylar için sisteme giriş yapınız.");
+async function sonTeslimHatirlatmasiGonder(emailService: EmailService,
+  ogrenciEposta: string, kitapAdi: string): Promise<void> {
+  await emailService.gonder(ogrenciEposta, `Son teslim tarihi yaklaşıyor: ${kitapAdi}`,
+    "Detaylar için sisteme giriş yapınız.");
 }
 
 async function calistir(): Promise<void> {
   const mockEmailService = new KaydediciMockEmailService();
 
-  await sonTeslimHatirlatmasiGonder(mockEmailService, "elif@ogrenci.mehmetakif.edu.tr", "Java ile Programlama");
+  await sonTeslimHatirlatmasiGonder(mockEmailService, "elif@ogrenci.mehmetakif.edu.tr",
+    "Java ile Programlama");
 
   console.log(mockEmailService.cagrilar.length === 1);
   console.log(mockEmailService.cagrilar[0].aliciEposta);

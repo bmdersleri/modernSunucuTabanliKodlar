@@ -15,7 +15,8 @@
   kontrolFn: () => boolean;
 }
 
-function rubrikDegerlendir(maddeler: RubrikMaddesi[]): { basliklar: string[]; toplamPuan: number } {
+function rubrikDegerlendir(maddeler: RubrikMaddesi[]): {
+  basliklar: string[]; toplamPuan: number } {
   const basarililar = maddeler.filter((madde) => madde.kontrolFn());
   return {
     basliklar: basarililar.map((madde) => madde.baslik),
@@ -33,7 +34,6 @@ const rubrik: RubrikMaddesi[] = [
 
 const sonuc = rubrikDegerlendir(rubrik);
 console.log(sonuc.toplamPuan, "/", rubrik.length);
-// Çıktı: 5 / 5
-</code></pre>
+// Çıktı: 5 / 5</code></pre>
 </body>
 </html>

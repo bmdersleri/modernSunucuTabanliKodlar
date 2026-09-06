@@ -1,6 +1,7 @@
 // Dosya: RbacGuard.typescript
 // requireRole, izin verilen rollerin listesini alır ve bir kontrol fonksiyonu döndürür.
-// Bu desen, aynı guard'ın farklı endpoint'lerde farklı rollerle yeniden kullanılmasını sağlar.
+// Bu desen, aynı guard'ın farklı endpoint'lerde farklı rollerle yeniden kullanılmasını
+// sağlar.
 // Çıktı, kütüphaneciye izin verilirken öğrencinin reddedildiğini gösterir.
 
 type Rol = "ogrenci" | "kutuphaneci";

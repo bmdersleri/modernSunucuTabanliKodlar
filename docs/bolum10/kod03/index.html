@@ -13,7 +13,8 @@
 <pre><code class="language-typescript">// Dosya: BasitJWT.typescript
 // Bu örnek JWT'nin header.payload.imza yapısını basitleştirilmiş biçimde uygular.
 // Gerçek projede jsonwebtoken gibi denetlenmiş bir kütüphane kullanılmalıdır.
-// Çıktı, üretilen token'ın doğrulandığını ve süresi dolmuş token'ın reddedildiğini gösterir.
+// Çıktı, üretilen token'ın doğrulandığını ve süresi dolmuş token'ın reddedildiğini
+// gösterir.
 
 import { createHmac } from "node:crypto";
 
@@ -71,7 +72,6 @@ try {
   console.log((hata as Error).message);
 }
 // Çıktı: { kullaniciAdi: 'elif', rol: 'ogrenci', sonGecerlilik: ... }
-// Çıktı: 401: Token imzası geçersiz.
-</code></pre>
+// Çıktı: 401: Token imzası geçersiz.</code></pre>
 </body>
 </html>

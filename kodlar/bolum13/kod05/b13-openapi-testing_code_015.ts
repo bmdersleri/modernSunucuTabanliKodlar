@@ -1,5 +1,6 @@
 // File: ChapterMiniAppOpenApiTesting.typescript
-// Bu dosya, gerçek bir projede birden fazla dosyaya (openapi.ts, service.ts, *.test.ts) yayılacak
+// Bu dosya, gerçek bir projede birden fazla dosyaya (openapi.ts, service.ts, *.test.ts)
+// yayılacak
 // parçaları tek bir yerde, akışı göstermek amacıyla bir araya getirir.
 
 // --- 1. OpenAPI sözleşmesi (openapi.ts) ---
@@ -44,7 +45,8 @@ async function oduncAl(
     throw new AppError(400, "Öğrenci limitine ulaştı.");
   }
 
-  await emailService.gonder(ogrenciEposta, "Ödünç alma onaylandı", "Kitabınız başarıyla ödünç alındı.");
+  await emailService.gonder(ogrenciEposta, "Ödünç alma onaylandı",
+    "Kitabınız başarıyla ödünç alındı.");
   return { mesaj: "Kitap başarıyla ödünç alındı." };
 }
 
@@ -77,11 +79,15 @@ void unitTestOrnegiCalistir();
 // Çıktı: 1
 // Çıktı: 400 Kitap uygun değildir.
 
-// --- 4. Integration test iskeleti (service.integration.test.ts) — gerçek projede ayrı dosyada ---
+// --- 4. Integration test iskeleti (service.integration.test.ts) — gerçek projede ayrı
+// dosyada ---
 // describe("POST /kitaplar/:kitapKodu/odunc-al (integration)", () => {
-//   beforeEach(async () => { await testVeritabaniniSifirla(); await testKitapVeOgrenciEkle(); });
+// beforeEach(async () => { await testVeritabaniniSifirla(); await
+// testKitapVeOgrenciEkle(); });
 //   it("uygun kitap için 201 döner", async () => {
-//     const yanit = await request(app).post("/kitaplar/JAVA-101/odunc-al").set("Authorization", `Bearer ${token}`);
+// const yanit = await
+// request(app).post("/kitaplar/JAVA-101/odunc-al").set("Authorization", `Bearer
+// ${token}`);
 //     expect(yanit.status).toBe(201);
 //   });
 // });

@@ -12,7 +12,8 @@ interface KullaniciKaydi {
 }
 
 const kullaniciListesi: KullaniciKaydi[] = [
-  { kimlik: 1, ad: "Zeliha", eposta: "zeliha@ornek.com", aktifMi: true, adres: { sehir: "Ankara" } },
+  { kimlik: 1, ad: "Zeliha", eposta: "zeliha@ornek.com", aktifMi: true,
+    adres: { sehir: "Ankara" } },
   { kimlik: 2, ad: "İsmail", eposta: "ismail@ornek.com", aktifMi: false },
   { kimlik: 3, ad: "Bahar", eposta: "bahar@ornek.com", aktifMi: true }
 ];

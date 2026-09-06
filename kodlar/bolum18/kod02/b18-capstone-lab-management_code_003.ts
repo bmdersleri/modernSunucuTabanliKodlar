@@ -18,7 +18,8 @@ interface RezervasyonRepository {
   kaydet(rezervasyon: Omit<Rezervasyon, "id">): Promise<Rezervasyon>;
 }
 
-function tarihAraliklariCakisiyorMu(baslangic1: string, bitis1: string, baslangic2: string, bitis2: string): boolean {
+function tarihAraliklariCakisiyorMu(baslangic1: string, bitis1: string,
+  baslangic2: string, bitis2: string): boolean {
   return baslangic1 < bitis2 && baslangic2 < bitis1;
 }
 
@@ -49,7 +50,8 @@ class BellekIciRezervasyonRepository implements RezervasyonRepository {
   private sonrakiId = 1;
 
   async ekipmaninAktifRezervasyonlariniBul(ekipmanId: number): Promise<Rezervasyon[]> {
-    return this.rezervasyonlar.filter((r) => r.ekipmanId === ekipmanId && r.durum === "aktif");
+    return this.rezervasyonlar.filter((r) => r.ekipmanId === ekipmanId
+      && r.durum === "aktif");
   }
 
   async kaydet(rezervasyon: Omit<Rezervasyon, "id">): Promise<Rezervasyon> {
@@ -61,7 +63,8 @@ class BellekIciRezervasyonRepository implements RezervasyonRepository {
 
 async function rezervasyonOrneklerini(): Promise<void> {
   const repository = new BellekIciRezervasyonRepository();
-  const ilkRezervasyon = await rezervasyonOlustur(1, 10, "2026-09-10", "2026-09-12", repository);
+  const ilkRezervasyon = await rezervasyonOlustur(1, 10, "2026-09-10", "2026-09-12",
+    repository);
   console.log(ilkRezervasyon.durum);
 
   try {

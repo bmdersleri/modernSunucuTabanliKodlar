@@ -4,7 +4,8 @@ interface CihazKaydi {
   aktif: boolean;
 }
 
-// Gerçek projede bu kayıtlar veritabanında tutulur; burada örnek amaçlı bellek içi liste kullanılır.
+// Gerçek projede bu kayıtlar veritabanında tutulur; burada örnek amaçlı bellek içi
+// liste kullanılır.
 const kayitliCihazlar: CihazKaydi[] = [
   { cihazId: "esp32-okuma-salonu-01", apiAnahtari: "anahtar-abc-123", aktif: true },
   { cihazId: "esp32-okuma-salonu-02", apiAnahtari: "anahtar-def-456", aktif: false }
@@ -34,13 +35,15 @@ try {
   const cihaz = cihaziDogrula("esp32-okuma-salonu-01", "anahtar-abc-123");
   console.log(`Doğrulandı: ${cihaz.cihazId}`);
 } catch (hata) {
-  console.log((hata as CihazDogrulamaHatasi).durumKodu, (hata as CihazDogrulamaHatasi).message);
+  console.log((hata as CihazDogrulamaHatasi).durumKodu,
+    (hata as CihazDogrulamaHatasi).message);
 }
 
 try {
   cihaziDogrula("esp32-okuma-salonu-02", "anahtar-def-456");
 } catch (hata) {
-  console.log((hata as CihazDogrulamaHatasi).durumKodu, (hata as CihazDogrulamaHatasi).message);
+  console.log((hata as CihazDogrulamaHatasi).durumKodu,
+    (hata as CihazDogrulamaHatasi).message);
 }
 // Çıktı: Doğrulandı: esp32-okuma-salonu-01
 // Çıktı: 403 Cihaz devre dışı bırakılmış.

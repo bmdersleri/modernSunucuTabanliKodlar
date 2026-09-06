@@ -28,7 +28,8 @@ class KutuphaneService {
     if (!kitap) throw new Error("Kitap bulunamadı.");
     if (!ogrenci) throw new Error("Öğrenci bulunamadı.");
     if (!kitap.uygunMu) throw new Error("Kitap şu anda uygun değildir.");
-    if (ogrenci.mevcutOduncSayisi >= 3) throw new Error("Öğrenci ödünç alma sınırına ulaştı.");
+    if (ogrenci.mevcutOduncSayisi >= 3) throw new Error(
+      "Öğrenci ödünç alma sınırına ulaştı.");
 
     this.oduncAlmaRepository.oduncKaydet(ogrenci.numara, kitap.kod);
     return `${kitap.ad} adlı kitap ödünç verildi.`;

@@ -11,7 +11,8 @@
 <h1>b16-iot-backend_code_001 — b16-iot-backend_code_001.ts</h1>
 <p><a href="https://github.com/bmdersleri/modernSunucuTabanliKodlar/blob/main/kodlar/bolum16/kod01/b16-iot-backend_code_001.ts">GitHub'da görüntüle</a></p>
 <pre><code class="language-typescript">// Cihazdan gelen örnek JSON gövdesi:
-// { "cihazId": "esp32-okuma-salonu-01", "sicaklik": 21.5, "nem": 45.2, "zamanDamgasi": "2026-09-05T10:00:00Z" }
+// { "cihazId": "esp32-okuma-salonu-01", "sicaklik": 21.5, "nem": 45.2, "zamanDamgasi":
+// "2026-09-05T10:00:00Z" }
 
 interface TelemetriIstegi {
   cihazId: string;
@@ -34,7 +35,6 @@ const sonuc = telemetriIsteginiIsle({
 });
 console.log(sonuc.mesaj);
 // Çıktı: Cihaz: esp32-okuma-salonu-01, Sıcaklık: 21.5°C, Nem: %45.2
-// Çıktı: Telemetri alındı.
-</code></pre>
+// Çıktı: Telemetri alındı.</code></pre>
 </body>
 </html>

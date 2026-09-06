@@ -20,12 +20,16 @@ function oneriKarariVer(yanit: OneriYaniti): OneriKarari {
   return { gosterilsinMi: true, neden: "Kabul edilebilir güven skoru." };
 }
 
-function oneriKarariniLogla(ogrenciId: number, karar: OneriKarari, guvenSkoru: number): void {
-  console.log(`[oneri] ogrenci=${ogrenciId} gosterildi=${karar.gosterilsinMi} guvenSkoru=${guvenSkoru}`);
+function oneriKarariniLogla(ogrenciId: number, karar: OneriKarari,
+  guvenSkoru: number): void {
+  console.log(
+    `[oneri] ogrenci=${ogrenciId} gosterildi=${karar.gosterilsinMi} guvenSkoru=${guvenSkoru}`);
 }
 
-const yuksekGuvenYanit: OneriYaniti = { onerilenKitapKodlari: ["JAVA-101"], guvenSkoru: 0.82 };
-const dusukGuvenYanit: OneriYaniti = { onerilenKitapKodlari: ["JAVA-101"], guvenSkoru: 0.31 };
+const yuksekGuvenYanit: OneriYaniti = { onerilenKitapKodlari: ["JAVA-101"],
+  guvenSkoru: 0.82 };
+const dusukGuvenYanit: OneriYaniti = { onerilenKitapKodlari: ["JAVA-101"],
+  guvenSkoru: 0.31 };
 
 const karar1 = oneriKarariVer(yuksekGuvenYanit);
 oneriKarariniLogla(1, karar1, yuksekGuvenYanit.guvenSkoru);

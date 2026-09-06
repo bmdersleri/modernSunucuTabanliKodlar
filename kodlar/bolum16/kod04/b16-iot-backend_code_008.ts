@@ -46,7 +46,8 @@ async function telemetriIsteginiUctanUcaIsle(
   try {
     cihaziDogrula(istek.cihazId, istek.apiAnahtari);
   } catch (hata) {
-    return { durumKodu: (hata as CihazDogrulamaHatasi).durumKodu, mesaj: (hata as CihazDogrulamaHatasi).message };
+    return { durumKodu: (hata as CihazDogrulamaHatasi).durumKodu,
+      mesaj: (hata as CihazDogrulamaHatasi).message };
   }
 
   if (istek.sicaklik < -40 || istek.sicaklik > 85 || istek.nem < 0 || istek.nem > 100) {
@@ -64,13 +65,16 @@ async function telemetriIsteginiUctanUcaIsle(
 
 async function telemetriOrneklerini(): Promise<void> {
   const basariliSonuc = await telemetriIsteginiUctanUcaIsle(
-    { cihazId: "esp32-okuma-salonu-01", apiAnahtari: "anahtar-abc-123", sicaklik: 22.1, nem: 40.0 },
-    async (kayit) => console.log(`Kaydedildi: ${kayit.cihazId} @ ${kayit.sunucuZamanDamgasi}`.slice(0, 10))
+    { cihazId: "esp32-okuma-salonu-01", apiAnahtari: "anahtar-abc-123", sicaklik: 22.1,
+      nem: 40.0 },
+    async (kayit) => console.log(
+      `Kaydedildi: ${kayit.cihazId} @ ${kayit.sunucuZamanDamgasi}`.slice(0, 10))
   );
   console.log(basariliSonuc.durumKodu, basariliSonuc.mesaj);
 
   const yanlisAnahtarSonucu = await telemetriIsteginiUctanUcaIsle(
-    { cihazId: "esp32-okuma-salonu-01", apiAnahtari: "yanlis-anahtar", sicaklik: 22.1, nem: 40.0 },
+    { cihazId: "esp32-okuma-salonu-01", apiAnahtari: "yanlis-anahtar", sicaklik: 22.1,
+      nem: 40.0 },
     async () => console.log("Bu satır hiç çalışmamalı.")
   );
   console.log(yanlisAnahtarSonucu.durumKodu, yanlisAnahtarSonucu.mesaj);

@@ -25,7 +25,8 @@ async function ozetiGuvenliBicimdeAl(
   try {
     return await aiIsteginiZamanAsimliCagir(gercekIstekFn);
   } catch (hata) {
-    console.log(`Özet alınamadı, kitap bilgisi özetsiz gösterilecek: ${(hata as Error).message}`);
+    console.log(
+      `Özet alınamadı, kitap bilgisi özetsiz gösterilecek: ${(hata as Error).message}`);
     return null; // Hata izolasyonu: özet olmadan da kitap sayfası çalışmaya devam eder.
   }
 }
@@ -38,5 +39,6 @@ const basarisizOzet = await ozetiGuvenliBicimdeAl(async () => {
 });
 console.log(basarisizOzet);
 // Çıktı: Kısa bir özet metni.
-// Çıktı: Özet alınamadı, kitap bilgisi özetsiz gösterilecek: AI servisi zaman aşımına uğradı.
+// Çıktı: Özet alınamadı, kitap bilgisi özetsiz gösterilecek: AI servisi zaman aşımına
+// uğradı.
 // Çıktı: null

@@ -11,7 +11,8 @@ function katmandanGecir(istek: { katmanlar: Katman[] }, mevcutKatman: Katman): b
 
 const gelenIstek = { katmanlar: ["cors", "rateLimit", "validation"] as Katman[] };
 
-const sira: Katman[] = ["cors", "rateLimit", "validation", "authentication", "authorization", "route"];
+const sira: Katman[] = ["cors", "rateLimit", "validation", "authentication",
+  "authorization", "route"];
 
 for (const katman of sira) {
   if (!katmandanGecir(gelenIstek, katman)) {

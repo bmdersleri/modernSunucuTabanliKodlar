@@ -3,7 +3,8 @@ interface RubrikMaddesi {
   kontrolFn: () => boolean;
 }
 
-function rubrikDegerlendir(maddeler: RubrikMaddesi[]): { basliklar: string[]; toplamPuan: number } {
+function rubrikDegerlendir(maddeler: RubrikMaddesi[]): {
+  basliklar: string[]; toplamPuan: number } {
   const basarililar = maddeler.filter((madde) => madde.kontrolFn());
   return {
     basliklar: basarililar.map((madde) => madde.baslik),

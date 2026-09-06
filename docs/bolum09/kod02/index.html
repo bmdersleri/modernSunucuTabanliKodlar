@@ -25,7 +25,8 @@ class OduncAlmaController {
 
   oduncAl(istekGovdesi: OduncAlmaIstegiDTO): HttpYanit {
     if (!istekGovdesi.ogrenciNumarasi || !istekGovdesi.kitapKodu) {
-      return { durumKodu: 400, govde: { mesaj: "Öğrenci numarası ve kitap kodu zorunludur." } };
+      return { durumKodu: 400,
+        govde: { mesaj: "Öğrenci numarası ve kitap kodu zorunludur." } };
     }
 
     try {
@@ -35,7 +36,6 @@ class OduncAlmaController {
       return { durumKodu: 400, govde: { mesaj: (hata as Error).message } };
     }
   }
-}
-</code></pre>
+}</code></pre>
 </body>
 </html>

@@ -16,7 +16,8 @@ class HariciServisHatasi extends Error {
   }
 }
 
-async function kitapBilgisiGetir(isbn: string, zamanAsimiMs = 3000): Promise<KitapBilgisiYaniti> {
+async function kitapBilgisiGetir(isbn: string,
+  zamanAsimiMs = 3000): Promise<KitapBilgisiYaniti> {
   const controller = new AbortController();
   const zamanlayici = setTimeout(() => controller.abort(), zamanAsimiMs);
 
@@ -32,7 +33,8 @@ async function kitapBilgisiGetir(isbn: string, zamanAsimiMs = 3000): Promise<Kit
     return (await yanit.json()) as KitapBilgisiYaniti;
   } catch (hata) {
     if (hata instanceof Error && hata.name === "AbortError") {
-      throw new HariciServisHatasi(`Harici servis ${zamanAsimiMs} ms içinde yanıt vermedi.`);
+      throw new HariciServisHatasi(
+        `Harici servis ${zamanAsimiMs} ms içinde yanıt vermedi.`);
     }
     throw hata;
   } finally {

@@ -1,14 +1,16 @@
 // Dosya: SecretYukleyici.typescript
 // zorunluSecretlariYukle, process.env üzerinden okur ve eksik alanları erken tespit eder.
 // Gerçek projede .env dosyası yalnızca geliştirmede kullanılır ve git deposuna eklenmez.
-// Çıktı, eksik bir secret olduğunda uygulamanın erken ve anlaşılır biçimde durduğunu gösterir.
+// Çıktı, eksik bir secret olduğunda uygulamanın erken ve anlaşılır biçimde durduğunu
+// gösterir.
 
 interface UygulamaSecretleri {
   jwtGizliAnahtari: string;
   veritabaniBaglantisi: string;
 }
 
-function zorunluSecretlariYukle(ortam: Record<string, string | undefined>): UygulamaSecretleri {
+function zorunluSecretlariYukle(ortam: Record<string,
+  string | undefined>): UygulamaSecretleri {
   const eksikler: string[] = [];
 
   if (!ortam.JWT_SECRET) eksikler.push("JWT_SECRET");
@@ -27,12 +29,15 @@ function zorunluSecretlariYukle(ortam: Record<string, string | undefined>): Uygu
 }
 
 try {
-  zorunluSecretlariYukle({ JWT_SECRET: undefined, DATABASE_URL: "postgresql://localhost/kutuphane" });
+  zorunluSecretlariYukle({ JWT_SECRET: undefined,
+    DATABASE_URL: "postgresql://localhost/kutuphane" });
 } catch (hata) {
   console.log((hata as Error).message);
 }
 
-const gecerliOrtam = { JWT_SECRET: "uretim-sirri", DATABASE_URL: "postgresql://localhost/kutuphane" };
+const gecerliOrtam = { JWT_SECRET: "uretim-sirri",
+  DATABASE_URL: "postgresql://localhost/kutuphane" };
 console.log(zorunluSecretlariYukle(gecerliOrtam));
 // Çıktı: Uygulama başlatılamadı: eksik ortam değişkenleri -> JWT_SECRET
-// Çıktı: { jwtGizliAnahtari: 'uretim-sirri', veritabaniBaglantisi: 'postgresql://localhost/kutuphane' }
+// Çıktı: { jwtGizliAnahtari: 'uretim-sirri', veritabaniBaglantisi:
+// 'postgresql://localhost/kutuphane' }

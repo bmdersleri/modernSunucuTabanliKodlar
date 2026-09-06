@@ -13,7 +13,8 @@
 <pre><code class="language-typescript">// Dosya: EpostaBildirimAkisi.typescript
 // EmailService arayüzü, gerçek SMTP entegrasyonunu servisin kullanımından soyutlar.
 // SahteEmailService, test ve örnekleme amacıyla gerçek gönderim yapmadan sonuç üretir.
-// Çıktı, e-posta gönderiminin başarısız olduğu durumda ana işlemin yine de tamamlandığını gösterir.
+// Çıktı, e-posta gönderiminin başarısız olduğu durumda ana işlemin yine de
+// tamamlandığını gösterir.
 
 interface EmailService {
   gonder(aliciEposta: string, konu: string, govde: string): Promise<boolean>;
@@ -43,14 +44,16 @@ function hatirlatmaEpostasiOlustur(kayit: OduncKaydi): { konu: string; govde: st
   };
 }
 
-async function sonTeslimHatirlatmasiGonder(emailService: EmailService, kayit: OduncKaydi): Promise<void> {
+async function sonTeslimHatirlatmasiGonder(emailService: EmailService,
+  kayit: OduncKaydi): Promise<void> {
   const { konu, govde } = hatirlatmaEpostasiOlustur(kayit);
   const gonderildiMi = await emailService.gonder(kayit.ogrenciEposta, konu, govde);
 
   if (!gonderildiMi) {
     // Not: E-posta gönderilemese bile ödünç kaydının kendisi geçerliliğini korur;
     // bu nedenle burada hata fırlatılmaz, yalnızca durum loglanır.
-    console.log(`Uyarı: ${kayit.ogrenciEposta} için hatırlatma gönderilemedi, kayıt yine de geçerlidir.`);
+    console.log(
+      `Uyarı: ${kayit.ogrenciEposta} için hatırlatma gönderilemedi, kayıt yine de geçerlidir.`);
   }
 }
 
@@ -67,8 +70,10 @@ await sonTeslimHatirlatmasiGonder(emailService, {
   kitapAdi: "TypeScript Temelleri",
   sonTeslimTarihi: "2026-09-16"
 });
-// Çıktı: E-posta gönderildi -> elif@ogrenci.mehmetakif.edu.tr | Konu: Son teslim tarihi yaklaşıyor: Java ile Programlama
+// Çıktı: E-posta gönderildi -> elif@ogrenci.mehmetakif.edu.tr | Konu: Son teslim tarihi
+// yaklaşıyor: Java ile Programlama
 // Çıktı: E-posta gönderilemedi: yasemin@gecersiz.example.com
-// Çıktı: Uyarı: yasemin@gecersiz.example.com için hatırlatma gönderilemedi, kayıt yine de geçerlidir.</code></pre>
+// Çıktı: Uyarı: yasemin@gecersiz.example.com için hatırlatma gönderilemedi, kayıt yine
+// de geçerlidir.</code></pre>
 </body>
 </html>

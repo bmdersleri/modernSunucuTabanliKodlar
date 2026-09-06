@@ -23,7 +23,8 @@ function katmandanGecir(istek: { katmanlar: Katman[] }, mevcutKatman: Katman): b
 
 const gelenIstek = { katmanlar: ["cors", "rateLimit", "validation"] as Katman[] };
 
-const sira: Katman[] = ["cors", "rateLimit", "validation", "authentication", "authorization", "route"];
+const sira: Katman[] = ["cors", "rateLimit", "validation", "authentication",
+  "authorization", "route"];
 
 for (const katman of sira) {
   if (!katmandanGecir(gelenIstek, katman)) {
@@ -35,7 +36,6 @@ for (const katman of sira) {
 // Çıktı: 'cors' katmanından geçti.
 // Çıktı: 'rateLimit' katmanından geçti.
 // Çıktı: 'validation' katmanından geçti.
-// Çıktı: İstek 'authentication' katmanında reddedildi veya bu katmana ulaşmadı.
-</code></pre>
+// Çıktı: İstek 'authentication' katmanında reddedildi veya bu katmana ulaşmadı.</code></pre>
 </body>
 </html>

@@ -54,8 +54,10 @@ function ogrenciApiIsteginiIsle(istek: HttpIstegi): ApiYaniti {
 }
 
 const istekler: HttpIstegi[] = [
-  { metod: "GET", yol: "/api/ogrenciler/2026001", basliklar: { Kabul: "application/json" } },
-  { metod: "POST", yol: "/api/ogrenciler/2026001", basliklar: { Kabul: "application/json" } }
+  { metod: "GET", yol: "/api/ogrenciler/2026001",
+    basliklar: { Kabul: "application/json" } },
+  { metod: "POST", yol: "/api/ogrenciler/2026001",
+    basliklar: { Kabul: "application/json" } }
 ];
 
 for (const istek of istekler) {
@@ -64,4 +66,5 @@ for (const istek of istekler) {
 }
 
 // Çıktı: {"basarili":true,"durumKodu":200,"veri":{...}}
-// Çıktı: {"basarili":false,"durumKodu":400,"hataMesaji":"Bu uç nokta yalnızca GET kabul eder."}
+// Çıktı: {"basarili":false,"durumKodu":400,"hataMesaji":"Bu uç nokta yalnızca GET kabul
+// eder."}

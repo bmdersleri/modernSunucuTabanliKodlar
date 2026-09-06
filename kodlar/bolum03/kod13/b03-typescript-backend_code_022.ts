@@ -8,7 +8,8 @@ interface Kullanici {
   ad: string;
 }
 
-function kullaniciBul(kullaniciListesi: Kullanici[], aranacakKimlik: number): Kullanici | undefined {
+function kullaniciBul(kullaniciListesi: Kullanici[],
+  aranacakKimlik: number): Kullanici | undefined {
   return kullaniciListesi.find((kullanici) => kullanici.kimlik === aranacakKimlik);
 }
 

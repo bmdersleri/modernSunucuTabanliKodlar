@@ -1,6 +1,7 @@
 // File: ChapterMiniAppLinuxDeployment.typescript
 // Bu dosya, production'a hazır bir başlangıç akışını tek yerde gösterir;
-// Nginx ve HTTPS yapılandırması bu bölümde ayrı kod örnekleri (code_003, code_006) olarak sunulmuştur.
+// Nginx ve HTTPS yapılandırması bu bölümde ayrı kod örnekleri (code_003, code_006)
+// olarak sunulmuştur.
 
 interface ProductionAyarlari {
   databaseUrl: string;
@@ -8,7 +9,8 @@ interface ProductionAyarlari {
 }
 
 function ortamiDogrula(ortam: Record<string, string | undefined>): ProductionAyarlari {
-  const eksikler = ["DATABASE_URL", "JWT_GIZLI_ANAHTAR"].filter((anahtar) => !ortam[anahtar]);
+  const eksikler = ["DATABASE_URL", "JWT_GIZLI_ANAHTAR"].filter(
+    (anahtar) => !ortam[anahtar]);
   if (eksikler.length > 0) {
     throw new Error(`Eksik ortam değişkenleri: ${eksikler.join(", ")}`);
   }
@@ -31,7 +33,8 @@ interface SaglikRaporu {
   veritabani: boolean;
 }
 
-async function tamSaglikKontrolu(veritabaniPingFn: () => Promise<boolean>): Promise<SaglikRaporu> {
+async function tamSaglikKontrolu(
+  veritabaniPingFn: () => Promise<boolean>): Promise<SaglikRaporu> {
   try {
     const veritabani = await veritabaniPingFn();
     return { durum: veritabani ? "ayakta" : "sorunlu", veritabani };

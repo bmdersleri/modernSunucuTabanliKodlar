@@ -10,7 +10,8 @@ import { testVeritabaniniSifirla, testKullaniciEkle } from "./test-utils";
 describe("POST /auth/login (integration)", () => {
   beforeEach(async () => {
     await testVeritabaniniSifirla();
-    await testKullaniciEkle({ kullaniciAdi: "elif", parola: "ogrenci-Parola1", rol: "ogrenci" });
+    await testKullaniciEkle({ kullaniciAdi: "elif", parola: "ogrenci-Parola1",
+      rol: "ogrenci" });
   });
 
   it("doğru bilgilerle 200 ve token döner", async () => {

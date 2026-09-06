@@ -1,6 +1,7 @@
 // File: ChapterMiniAppAuth.typescript
 // Bu uygulama kullanıcı girişini, token üretimini ve rol tabanlı erişimi uçtan uca işler.
-// Repository bellek içi veri kaynağını, service iş kurallarını, controller HTTP benzeri yanıtı temsil eder.
+// Repository bellek içi veri kaynağını, service iş kurallarını, controller HTTP benzeri
+// yanıtı temsil eder.
 // Gerçek projede parola hash'i registration sırasında üretilip veritabanına yazılır.
 
 import { createHmac, randomBytes, scryptSync, timingSafeEqual } from "node:crypto";

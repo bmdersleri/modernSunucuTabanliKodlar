@@ -38,7 +38,10 @@ function kayitIstegiDogrula(veri: unknown): DogrulamaSonucu {
   return { gecerliMi: hatalar.length === 0, hatalar };
 }
 
-console.log(kayitIstegiDogrula({ kullaniciAdi: "elif", parola: "guclu-Parola1", rol: "ogrenci" }));
+console.log(kayitIstegiDogrula({ kullaniciAdi: "elif", parola: "guclu-Parola1",
+  rol: "ogrenci" }));
 console.log(kayitIstegiDogrula({ kullaniciAdi: "ab", parola: "123", rol: "admin" }));
 // Çıktı: { gecerliMi: true, hatalar: [] }
-// Çıktı: { gecerliMi: false, hatalar: [ 'kullaniciAdi en az 3 karakter uzunluğunda bir metin olmalıdır.', 'parola en az 8 karakter uzunluğunda bir metin olmalıdır.', "rol yalnızca 'ogrenci' veya 'kutuphaneci' olabilir." ] }
+// Çıktı: { gecerliMi: false, hatalar: [ 'kullaniciAdi en az 3 karakter uzunluğunda bir
+// metin olmalıdır.', 'parola en az 8 karakter uzunluğunda bir metin olmalıdır.', "rol
+// yalnızca 'ogrenci' veya 'kutuphaneci' olabilir." ] }

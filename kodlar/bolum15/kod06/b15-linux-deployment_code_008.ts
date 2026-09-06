@@ -29,7 +29,8 @@ interface SaglikDurumu {
   zaman: string;
 }
 
-async function saglikKontroluYap(veritabaniPingFn: () => Promise<boolean>): Promise<SaglikDurumu> {
+async function saglikKontroluYap(
+  veritabaniPingFn: () => Promise<boolean>): Promise<SaglikDurumu> {
   const veritabaniBagli = await veritabaniPingFn().catch(() => false);
   return {
     durum: veritabaniBagli ? "ayakta" : "sorunlu",

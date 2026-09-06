@@ -1,7 +1,8 @@
 // Dosya: BasitJWT.typescript
 // Bu örnek JWT'nin header.payload.imza yapısını basitleştirilmiş biçimde uygular.
 // Gerçek projede jsonwebtoken gibi denetlenmiş bir kütüphane kullanılmalıdır.
-// Çıktı, üretilen token'ın doğrulandığını ve süresi dolmuş token'ın reddedildiğini gösterir.
+// Çıktı, üretilen token'ın doğrulandığını ve süresi dolmuş token'ın reddedildiğini
+// gösterir.
 
 import { createHmac } from "node:crypto";
 

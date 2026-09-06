@@ -1,7 +1,9 @@
 // File: ChapterMiniAppSecurity.typescript
-// Bu uygulama bir login isteğini CORS, rate limiting, validation ve hata yönetimiyle uçtan uca işler.
+// Bu uygulama bir login isteğini CORS, rate limiting, validation ve hata yönetimiyle
+// uçtan uca işler.
 // Authentication (b10) ile bu bölümün denetimleri burada birlikte çalışır.
-// Gerçek projede secret process.env üzerinden okunur; burada sadeleştirme amacıyla sabittir.
+// Gerçek projede secret process.env üzerinden okunur; burada sadeleştirme amacıyla
+// sabittir.
 
 class AppError extends Error {
   constructor(public readonly durumKodu: number, message: string) {
@@ -77,7 +79,8 @@ function loginIsteginiIsle(
     corsKontrolEt(kaynakKoken);
 
     if (!loginLimiter.istegeIzinVer(istemciIp)) {
-      throw new AppError(429, "Çok fazla giriş denemesi yapıldı. Lütfen daha sonra tekrar deneyin.");
+      throw new AppError(429,
+        "Çok fazla giriş denemesi yapıldı. Lütfen daha sonra tekrar deneyin.");
     }
 
     const istek = loginIstegiDogrula(gövde);

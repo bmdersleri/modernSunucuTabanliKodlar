@@ -30,7 +30,8 @@ function kitapBul(kitapKodu: string): string {
     throw new AppError(400, "Kitap kodu boş olamaz.");
   }
   if (kitapKodu === "SILINMIS") {
-    throw new TypeError("Beklenmeyen dahili hata: kayıt bulunamadı ama fonksiyon çağrıldı.");
+    throw new TypeError(
+      "Beklenmeyen dahili hata: kayıt bulunamadı ama fonksiyon çağrıldı.");
   }
   return `${kitapKodu} bulundu.`;
 }

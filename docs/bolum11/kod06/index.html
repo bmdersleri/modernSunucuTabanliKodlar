@@ -51,7 +51,8 @@ const baslangic = Date.now();
 
 for (let deneme = 1; deneme <= 5; deneme++) {
   const izinVerildi = loginLimiter.istegeIzinVer(ipAdresi, baslangic);
-  console.log(`Deneme ${deneme}: ${izinVerildi ? "kabul edildi" : "429 Too Many Requests"}`);
+  console.log(
+    `Deneme ${deneme}: ${izinVerildi ? "kabul edildi" : "429 Too Many Requests"}`);
 }
 // Çıktı: Deneme 1: kabul edildi
 // Çıktı: Deneme 2: kabul edildi

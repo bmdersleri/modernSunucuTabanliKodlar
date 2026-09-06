@@ -58,7 +58,8 @@ async function bakimKaydiOlusturVeEkipmaniGuncelle(
     throw new AppError(404, "Ekipman bulunamadı.");
   }
 
-  // İş kuralı: bakım kaydı oluşturulduğunda ekipman aynı anda bakıma alınır (tutarlı güncelleme).
+  // İş kuralı: bakım kaydı oluşturulduğunda ekipman aynı anda bakıma alınır (tutarlı
+  // güncelleme).
   ekipmanRepository.bakimDurumunuGuncelle(kayit.ekipmanId, true);
 
   return { mesaj: `${ekipman.ad} bakıma alındı: ${kayit.aciklama}` };

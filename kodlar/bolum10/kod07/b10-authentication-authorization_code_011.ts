@@ -19,7 +19,8 @@ function istegiIsle(token: string | null, kullaniciRolu: Rol | null): Yanit {
   }
 
   if (kullaniciRolu !== "kutuphaneci") {
-    return { durumKodu: 403, mesaj: "Bu işlem yalnızca kütüphaneciler tarafından yapılabilir." };
+    return { durumKodu: 403,
+      mesaj: "Bu işlem yalnızca kütüphaneciler tarafından yapılabilir." };
   }
 
   return { durumKodu: 200, mesaj: "Kitap başarıyla eklendi." };
@@ -29,5 +30,6 @@ console.log(istegiIsle(null, null));
 console.log(istegiIsle("gecerli-token", "ogrenci"));
 console.log(istegiIsle("gecerli-token", "kutuphaneci"));
 // Çıktı: { durumKodu: 401, mesaj: 'Kimlik doğrulanamadı: token eksik.' }
-// Çıktı: { durumKodu: 403, mesaj: 'Bu işlem yalnızca kütüphaneciler tarafından yapılabilir.' }
+// Çıktı: { durumKodu: 403, mesaj: 'Bu işlem yalnızca kütüphaneciler tarafından
+// yapılabilir.' }
 // Çıktı: { durumKodu: 200, mesaj: 'Kitap başarıyla eklendi.' }

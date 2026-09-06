@@ -15,7 +15,8 @@ const portNumarasi = 3000;
 
 const kitapListesi: Kitap[] = [
   { kimlik: 1, ad: "Temiz Kod", yazar: "Robert C. Martin", kategori: "Programlama" },
-  { kimlik: 2, ad: "Java ile Nesne Yönelimli Programlama", yazar: "Zeliha Demir", kategori: "Programlama" }
+  { kimlik: 2, ad: "Java ile Nesne Yönelimli Programlama", yazar: "Zeliha Demir",
+    kategori: "Programlama" }
 ];
 
 uygulama.use(express.json());

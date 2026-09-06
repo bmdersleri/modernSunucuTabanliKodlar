@@ -1,5 +1,6 @@
 // Dosya: MultipartDosyaOkuma.typescript
-// YuklenenDosya, multer gibi bir middleware'in ürettiği yapılandırılmış dosya nesnesini temsil eder.
+// YuklenenDosya, multer gibi bir middleware'in ürettiği yapılandırılmış dosya nesnesini
+// temsil eder.
 // Gerçek projede bu nesne req.file üzerinden gelir; burada elle oluşturulmuştur.
 // Çıktı, dosya meta verisinin okunduğunu gösterir.
 

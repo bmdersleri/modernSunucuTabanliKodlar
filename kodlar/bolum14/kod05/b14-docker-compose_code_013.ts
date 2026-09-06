@@ -40,7 +40,8 @@ const composeOrtamSecenekleri: BaglantiSecenekleri = {
   veritabaniAdi: "kutuphane"
 };
 
-// Test amaçlı sahte bağlanma fonksiyonu: ilk iki denemede başarısız, üçüncüde başarılı olur.
+// Test amaçlı sahte bağlanma fonksiyonu: ilk iki denemede başarısız, üçüncüde başarılı
+// olur.
 let denemeSayaci = 0;
 async function sahteBaglanFn(): Promise<void> {
   denemeSayaci++;

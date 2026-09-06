@@ -70,7 +70,8 @@ async function bakimKaydiOlusturVeEkipmaniGuncelle(
     throw new AppError(404, "Ekipman bulunamadı.");
   }
 
-  // İş kuralı: bakım kaydı oluşturulduğunda ekipman aynı anda bakıma alınır (tutarlı güncelleme).
+  // İş kuralı: bakım kaydı oluşturulduğunda ekipman aynı anda bakıma alınır (tutarlı
+  // güncelleme).
   ekipmanRepository.bakimDurumunuGuncelle(kayit.ekipmanId, true);
 
   return { mesaj: `${ekipman.ad} bakıma alındı: ${kayit.aciklama}` };
@@ -101,7 +102,6 @@ async function bakimOrneklerini(): Promise<void> {
 void bakimOrneklerini();
 // Çıktı: Osiloskop-01 bakıma alındı: Kalibrasyon yapıldı
 // Çıktı: true
-// Çıktı: 403 Bu işlem için gereken rol: laboratuvar_gorevlisi
-</code></pre>
+// Çıktı: 403 Bu işlem için gereken rol: laboratuvar_gorevlisi</code></pre>
 </body>
 </html>

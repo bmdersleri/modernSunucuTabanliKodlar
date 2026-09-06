@@ -12,7 +12,8 @@
 <p><a href="https://github.com/bmdersleri/modernSunucuTabanliKodlar/blob/main/kodlar/bolum12/kod03/b12-files-email-external-api_code_005.ts">GitHub'da görüntüle</a></p>
 <pre><code class="language-typescript">// Dosya: DosyaGuvenligiKontrolu.typescript
 // izinVerilenTurler ve azamiBoyutBayt sabit bir politikayı temsil eder.
-// guvenliDosyaAdiUret, orijinal ad yerine rastgele bir ad üreterek path traversal riskini ortadan kaldırır.
+// guvenliDosyaAdiUret, orijinal ad yerine rastgele bir ad üreterek path traversal
+// riskini ortadan kaldırır.
 // Çıktı, geçerli ve geçersiz dosyalar için farklı sonuçların üretildiğini gösterir.
 
 import { randomUUID } from "node:crypto";
@@ -50,15 +51,17 @@ function guvenliDosyaAdiUret(orijinalAd: string): string {
   return `${randomUUID()}.${uzanti}`;
 }
 
-const gecerliDosya: YuklenenDosya = { orijinalAd: "kapak.jpg", mimeTuru: "image/jpeg", boyutBayt: 204_800 };
-const zararliDosya: YuklenenDosya = { orijinalAd: "../../etc/passwd.png", mimeTuru: "image/png", boyutBayt: 3 * 1024 * 1024 };
+const gecerliDosya: YuklenenDosya = { orijinalAd: "kapak.jpg", mimeTuru: "image/jpeg",
+  boyutBayt: 204_800 };
+const zararliDosya: YuklenenDosya = { orijinalAd: "../../etc/passwd.png",
+  mimeTuru: "image/png", boyutBayt: 3 * 1024 * 1024 };
 
 console.log(dosyaGuvenlikDenetimiYap(gecerliDosya));
 console.log(dosyaGuvenlikDenetimiYap(zararliDosya));
 console.log(guvenliDosyaAdiUret(gecerliDosya.orijinalAd));
 // Çıktı: { gecerliMi: true, hatalar: [] }
-// Çıktı: { gecerliMi: false, hatalar: [ 'Dosya boyutu sınırı aşıldı: 3145728 > 2097152 bayt' ] }
-// Çıktı: (rastgele üretilmiş bir UUID).jpg
-</code></pre>
+// Çıktı: { gecerliMi: false, hatalar: [ 'Dosya boyutu sınırı aşıldı: 3145728 > 2097152
+// bayt' ] }
+// Çıktı: (rastgele üretilmiş bir UUID).jpg</code></pre>
 </body>
 </html>

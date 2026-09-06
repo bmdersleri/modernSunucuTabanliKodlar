@@ -25,7 +25,8 @@ describe("kayitIstegiDogrula", () => {
     });
 
     expect(sonuc.gecerliMi).toBe(false);
-    expect(sonuc.hatalar).toContain("parola en az 8 karakter uzunluğunda bir metin olmalıdır.");
+    expect(sonuc.hatalar).toContain(
+      "parola en az 8 karakter uzunluğunda bir metin olmalıdır.");
   });
 
   it("geçersiz rolü reddeder", () => {

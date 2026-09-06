@@ -52,7 +52,8 @@ const composeOrtamSecenekleri: BaglantiSecenekleri = {
   veritabaniAdi: "kutuphane"
 };
 
-// Test amaçlı sahte bağlanma fonksiyonu: ilk iki denemede başarısız, üçüncüde başarılı olur.
+// Test amaçlı sahte bağlanma fonksiyonu: ilk iki denemede başarısız, üçüncüde başarılı
+// olur.
 let denemeSayaci = 0;
 async function sahteBaglanFn(): Promise<void> {
   denemeSayaci++;
@@ -62,7 +63,6 @@ async function sahteBaglanFn(): Promise<void> {
 }
 
 await saglikliBaglantiKur(composeOrtamSecenekleri, sahteBaglanFn);
-// Çıktı: [kutuphane-db] Bağlantı 3. denemede kuruldu.
-</code></pre>
+// Çıktı: [kutuphane-db] Bağlantı 3. denemede kuruldu.</code></pre>
 </body>
 </html>

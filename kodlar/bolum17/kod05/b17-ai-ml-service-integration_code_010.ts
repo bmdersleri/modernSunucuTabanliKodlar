@@ -52,7 +52,8 @@ async function kitapOzetiniGuvenliGetir(
   return hamYanit.ozet;
 }
 
-const basariliOzet = await kitapOzetiniGuvenliGetir(async () => ({ ozet: "Kısa ve öz bir özet." }));
+const basariliOzet = await kitapOzetiniGuvenliGetir(
+  async () => ({ ozet: "Kısa ve öz bir özet." }));
 console.log(basariliOzet);
 
 const bosOzet = await kitapOzetiniGuvenliGetir(async () => ({ ozet: "" }));

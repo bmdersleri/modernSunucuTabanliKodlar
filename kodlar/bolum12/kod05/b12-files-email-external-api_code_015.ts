@@ -1,7 +1,9 @@
 // File: ChapterMiniAppFilesEmailApi.typescript
-// Bu uygulama kitap kapağı yüklemeyi, harici ISBN servisini ve e-posta bildirimini uçtan uca işler.
+// Bu uygulama kitap kapağı yüklemeyi, harici ISBN servisini ve e-posta bildirimini
+// uçtan uca işler.
 // Repository/service ayrımı önceki bölümlerdeki katmanlı mimariyle tutarlıdır.
-// Gerçek projede fetch çağrısı gerçek bir harici servise gider; burada sahte bir servis kullanılmıştır.
+// Gerçek projede fetch çağrısı gerçek bir harici servise gider; burada sahte bir servis
+// kullanılmıştır.
 
 import { randomUUID } from "node:crypto";
 
@@ -15,10 +17,13 @@ interface YuklenenDosya {
   boyutBayt: number;
 }
 
-function dosyaGuvenlikDenetimiYap(dosya: YuklenenDosya): { gecerliMi: boolean; hatalar: string[] } {
+function dosyaGuvenlikDenetimiYap(dosya: YuklenenDosya): {
+  gecerliMi: boolean; hatalar: string[] } {
   const hatalar: string[] = [];
-  if (!izinVerilenTurler.has(dosya.mimeTuru)) hatalar.push(`Desteklenmeyen tür: ${dosya.mimeTuru}`);
-  if (dosya.boyutBayt > azamiBoyutBayt) hatalar.push(`Boyut sınırı aşıldı: ${dosya.boyutBayt} bayt`);
+  if (!izinVerilenTurler.has(dosya.mimeTuru)) hatalar.push(
+    `Desteklenmeyen tür: ${dosya.mimeTuru}`);
+  if (dosya.boyutBayt > azamiBoyutBayt) hatalar.push(
+    `Boyut sınırı aşıldı: ${dosya.boyutBayt} bayt`);
   return { gecerliMi: hatalar.length === 0, hatalar };
 }
 
@@ -34,7 +39,8 @@ function bekle(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-async function yenidenDeneyerekCalistir<T>(islem: () => Promise<T>, azamiDeneme = 3): Promise<T> {
+async function yenidenDeneyerekCalistir<T>(islem: () => Promise<T>,
+  azamiDeneme = 3): Promise<T> {
   let sonHata: unknown;
   for (let deneme = 1; deneme <= azamiDeneme; deneme++) {
     try {
@@ -50,7 +56,8 @@ async function yenidenDeneyerekCalistir<T>(islem: () => Promise<T>, azamiDeneme 
 
 let sahteApiDenemeSayaci = 0;
 
-async function sahteIsbnServisiCagir(isbn: string): Promise<{ isbn: string; baslik: string }> {
+async function sahteIsbnServisiCagir(isbn: string): Promise<{
+  isbn: string; baslik: string }> {
   sahteApiDenemeSayaci += 1;
   if (sahteApiDenemeSayaci < 2) {
     throw new GeciciHata("Geçici ağ hatası.");
@@ -92,7 +99,8 @@ async function kitapKapagiYukleVeBilgilendir(
     `"${kitapBilgisi.baslik}" kitabının kapağı güncellendi.`
   );
 
-  return { durumKodu: 201, mesaj: `${guvenliAd} kaydedildi, "${kitapBilgisi.baslik}" için bilgilendirme gönderildi.` };
+  return { durumKodu: 201,
+    mesaj: `${guvenliAd} kaydedildi, "${kitapBilgisi.baslik}" için bilgilendirme gönderildi.` };
 }
 
 const sonuc = await kitapKapagiYukleVeBilgilendir(
@@ -103,5 +111,7 @@ const sonuc = await kitapKapagiYukleVeBilgilendir(
 );
 
 console.log(sonuc);
-// Çıktı: E-posta gönderildi -> yasemin@kutuphane.mehmetakif.edu.tr | Konu: Kapak görseli güncellendi
-// Çıktı: { durumKodu: 201, mesaj: '(uuid).jpg kaydedildi, "Java ile Programlama" için bilgilendirme gönderildi.' }
+// Çıktı: E-posta gönderildi -> yasemin@kutuphane.mehmetakif.edu.tr | Konu: Kapak
+// görseli güncellendi
+// Çıktı: { durumKodu: 201, mesaj: '(uuid).jpg kaydedildi, "Java ile Programlama" için
+// bilgilendirme gönderildi.' }
