@@ -1,5 +1,5 @@
 # --- Aşama 1: build ---
-FROM node:20-alpine AS build
+FROM node:24-alpine AS build
 WORKDIR /uygulama
 COPY package.json package-lock.json ./
 RUN npm install
@@ -7,7 +7,7 @@ COPY . .
 RUN npm run build
 
 # --- Aşama 2: production ---
-FROM node:20-alpine AS production
+FROM node:24-alpine AS production
 WORKDIR /uygulama
 ENV NODE_ENV=production
 COPY package.json package-lock.json ./

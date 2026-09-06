@@ -21,7 +21,7 @@ docker run -d --name kutuphane-db \
   --network kutuphane-network \
   -v kutuphane-db-verisi:/var/lib/postgresql/data \
   -e POSTGRES_PASSWORD=gelistirme_parolasi \
-  postgres:16-alpine
+  postgres:17-alpine
 
 # API container'ını aynı network'e ekle; API artık "kutuphane-db" adıyla veritabanına
 # ulaşabilir.
