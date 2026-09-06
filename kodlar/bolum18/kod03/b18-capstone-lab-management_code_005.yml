@@ -1,4 +1,4 @@
-# docker-compose.yml — Laboratuvar Yönetim Sistemi (bkz. b14 Docker Compose ilkeleri)
+# docker-compose.yml — Laboratuvar Yönetim Sistemi (bkz. Bölüm 14, Docker Compose ilkeleri)
 services:
   laboratuvar-api:
     build: .

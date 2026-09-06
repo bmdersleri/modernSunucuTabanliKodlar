@@ -13,11 +13,11 @@ function rubrikDegerlendir(maddeler: RubrikMaddesi[]): {
 }
 
 const rubrik: RubrikMaddesi[] = [
-  { baslik: "Authentication ve RBAC uygulanmış (b10)", kontrolFn: () => true },
-  { baslik: "Girdi doğrulama ve merkezi hata yönetimi (b11)", kontrolFn: () => true },
-  { baslik: "OpenAPI sözleşmesi ve unit/integration testler (b13)", kontrolFn: () => true },
-  { baslik: "Docker Compose ile çalıştırılabilir (b14)", kontrolFn: () => true },
-  { baslik: "Sırlar ortam değişkeninde, kodda değil (b15)", kontrolFn: () => true }
+  { baslik: "Authentication ve RBAC uygulanmış (Bölüm 10)", kontrolFn: () => true },
+  { baslik: "Girdi doğrulama ve merkezi hata yönetimi (Bölüm 11)", kontrolFn: () => true },
+  { baslik: "OpenAPI sözleşmesi ve unit/integration testler (Bölüm 13)", kontrolFn: () => true },
+  { baslik: "Docker Compose ile çalıştırılabilir (Bölüm 14)", kontrolFn: () => true },
+  { baslik: "Sırlar ortam değişkeninde, kodda değil (Bölüm 15)", kontrolFn: () => true }
 ];
 
 const sonuc = rubrikDegerlendir(rubrik);

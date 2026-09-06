@@ -1,5 +1,5 @@
 // Dosya: KayitValidasyonu.test.typescript
-// Bu test dosyası b11 bölümündeki kayitIstegiDogrula fonksiyonunu izole biçimde test eder.
+// Bu test dosyası Bölüm 11'deki kayitIstegiDogrula fonksiyonunu izole biçimde test eder.
 // Gerçek projede bu dosya *.test.ts uzantısıyla ilgili kaynak dosyanın yanında tutulur.
 
 import { describe, it, expect } from "vitest";

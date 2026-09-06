@@ -23,7 +23,7 @@ function tarihAraliklariCakisiyorMu(baslangic1: string, bitis1: string,
   return baslangic1 < bitis2 && baslangic2 < bitis1;
 }
 
-// --- Servis katmanı: iş kuralı burada yaşar (bkz. b09 katmanlı mimari) ---
+// --- Servis katmanı: iş kuralı burada yaşar (bkz. Bölüm 9, katmanlı mimari) ---
 async function rezervasyonOlustur(
   ekipmanId: number,
   ogrenciId: number,
@@ -44,7 +44,7 @@ async function rezervasyonOlustur(
   return repository.kaydet({ ekipmanId, ogrenciId, baslangic, bitis, durum: "aktif" });
 }
 
-// --- Bellek içi test repository'si (bkz. b13 test veritabanı ilkesi) ---
+// --- Bellek içi test repository'si (bkz. Bölüm 13, test veritabanı ilkesi) ---
 class BellekIciRezervasyonRepository implements RezervasyonRepository {
   private rezervasyonlar: Rezervasyon[] = [];
   private sonrakiId = 1;

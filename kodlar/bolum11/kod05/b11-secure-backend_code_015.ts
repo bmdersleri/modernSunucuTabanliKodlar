@@ -1,7 +1,7 @@
 // File: ChapterMiniAppSecurity.typescript
 // Bu uygulama bir login isteğini CORS, rate limiting, validation ve hata yönetimiyle
 // uçtan uca işler.
-// Authentication (b10) ile bu bölümün denetimleri burada birlikte çalışır.
+// Authentication (Bölüm 10) ile bu bölümün denetimleri burada birlikte çalışır.
 // Gerçek projede secret process.env üzerinden okunur; burada sadeleştirme amacıyla
 // sabittir.
 
