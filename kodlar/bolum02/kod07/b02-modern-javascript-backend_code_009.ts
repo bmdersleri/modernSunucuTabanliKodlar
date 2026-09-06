@@ -24,7 +24,7 @@ async function siparisGetir(): Promise<Siparis> {
 }
 
 async function musteriGetir(musteriKimlik: number): Promise<Musteri> {
-  return { kimlik: musteriKimlik, ad: "Burak" };
+  return { kimlik: musteriKimlik, ad: "İsmail" };
 }
 
 async function stokGetir(urunKodu: string): Promise<StokDurumu> {
@@ -45,5 +45,5 @@ async function siparisOzetiOlustur(): Promise<void> {
 
 siparisOzetiOlustur().catch((hata) => console.error(hata));
 
-// Çıktı: Burak için S-100 numaralı sipariş hazır.
+// Çıktı: İsmail için S-100 numaralı sipariş hazır.
 // Çıktı: Stok: 12

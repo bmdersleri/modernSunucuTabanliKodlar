@@ -12,9 +12,9 @@ interface KullaniciKaydi {
 }
 
 const kullaniciListesi: KullaniciKaydi[] = [
-  { kimlik: 1, ad: "Ayşe", eposta: "ayse@ornek.com", aktifMi: true, adres: { sehir: "Ankara" } },
-  { kimlik: 2, ad: "Mehmet", eposta: "mehmet@ornek.com", aktifMi: false },
-  { kimlik: 3, ad: "Deniz", eposta: "deniz@ornek.com", aktifMi: true }
+  { kimlik: 1, ad: "Zeliha", eposta: "zeliha@ornek.com", aktifMi: true, adres: { sehir: "Ankara" } },
+  { kimlik: 2, ad: "İsmail", eposta: "ismail@ornek.com", aktifMi: false },
+  { kimlik: 3, ad: "Bahar", eposta: "bahar@ornek.com", aktifMi: true }
 ];
 
 const aktifKullaniciOzetleri = kullaniciListesi
@@ -28,5 +28,5 @@ for (const kullaniciOzeti of aktifKullaniciOzetleri) {
   console.log(kullaniciOzeti);
 }
 
-// Çıktı: 1: Ayşe - Ankara
-// Çıktı: 3: Deniz - Şehir bilgisi yok
+// Çıktı: 1: Zeliha - Ankara
+// Çıktı: 3: Bahar - Şehir bilgisi yok

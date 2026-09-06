@@ -54,7 +54,7 @@ async function anaProgram(): Promise<void> {
 
   try {
     await kullaniciRepository.kullaniciVeGonderiOlustur(
-      "Deniz Çelik",
+      "Bahar Çelik",
       "deniz.celik@example.com",
       "Veri Erişim Katmanı",
     );

@@ -20,7 +20,7 @@ import { prisma } from "./prisma";
 async function kullaniciCrudOrnegi(): Promise<void> {
   const yeniKullanici = await prisma.user.create({
     data: {
-      adSoyad: "Zeynep Akın",
+      adSoyad: "Yasemin Akın",
       epostaAdresi: "zeynep.akin@example.com",
     },
   });
@@ -31,7 +31,7 @@ async function kullaniciCrudOrnegi(): Promise<void> {
 
   const guncellenenKullanici = await prisma.user.update({
     where: { id: yeniKullanici.id },
-    data: { adSoyad: "Zeynep Akın Yılmaz" },
+    data: { adSoyad: "Yasemin Akın Yılmaz" },
   });
 
   await prisma.user.delete({
@@ -41,7 +41,7 @@ async function kullaniciCrudOrnegi(): Promise<void> {
   console.log(kullaniciListesi.length);
   console.log(guncellenenKullanici.adSoyad);
   // Çıktı: 1
-  // Çıktı: Zeynep Akın Yılmaz
+  // Çıktı: Yasemin Akın Yılmaz
 }
 
 kullaniciCrudOrnegi().finally(() => prisma.$disconnect());</code></pre>

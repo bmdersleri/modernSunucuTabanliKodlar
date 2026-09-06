@@ -47,7 +47,7 @@ function ogrenciApiIsteginiIsle(istek: HttpIstegi): ApiYaniti {
     basarili: true,
     durumKodu: 200,
     veri: {
-      ogrenciAdi: "Ayşe Yılmaz",
+      ogrenciAdi: "Zeliha Yılmaz",
       dersler: ["Algoritmalar", "Web Programlama"]
     }
   };

@@ -27,7 +27,7 @@ type Yanit = {
 class OgrenciSunucusu {
   bilgiGetir(istek: Istek): Yanit {
     if (istek.ogrenciNumarasi === "2026001") {
-      return { basarili: true, mesaj: "Ayşe Yılmaz bulundu." };
+      return { basarili: true, mesaj: "Zeliha Yılmaz bulundu." };
     }
 
     return { basarili: false, mesaj: "Öğrenci kaydı bulunamadı." };
@@ -55,7 +55,7 @@ const istemci = new TarayiciIstemcisi(sunucu);
 istemci.ogrenciBilgisiIste("2026001");
 istemci.ogrenciBilgisiIste("2026999");
 
-// Çıktı: Başarılı yanıt: Ayşe Yılmaz bulundu.
+// Çıktı: Başarılı yanıt: Zeliha Yılmaz bulundu.
 // Çıktı: Hata yanıtı: Öğrenci kaydı bulunamadı.
 </code></pre>
 </body>

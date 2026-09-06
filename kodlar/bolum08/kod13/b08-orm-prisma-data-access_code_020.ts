@@ -18,7 +18,7 @@ async function hosGeldinMesajiUret(epostaAdresi: string): Promise<void> {
   }
 
   console.log(`Hoş geldiniz, ${kullanici.adSoyad}.`);
-  // Çıktı: Hoş geldiniz, Ayşe Demir.
+  // Çıktı: Hoş geldiniz, Zeliha Demir.
 }
 
 hosGeldinMesajiUret("ayse.demir@example.com")

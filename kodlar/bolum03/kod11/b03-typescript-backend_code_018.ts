@@ -8,9 +8,9 @@ function ilkKaydiGetir<T>(kayitListesi: T[]): T | undefined {
 }
 
 const kitapListesi = [{ kimlik: 1, ad: "Java Temelleri" }];
-const kullaniciListesi = [{ kimlik: 9, ad: "Ayşe Demir" }];
+const kullaniciListesi = [{ kimlik: 9, ad: "Zeliha Demir" }];
 
 console.log(ilkKaydiGetir(kitapListesi)?.ad);
 console.log(ilkKaydiGetir(kullaniciListesi)?.ad);
 // Çıktı: Java Temelleri
-// Çıktı: Ayşe Demir
+// Çıktı: Zeliha Demir

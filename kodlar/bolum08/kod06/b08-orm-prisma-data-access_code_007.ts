@@ -8,14 +8,14 @@ import { prisma } from "./prisma";
 async function telefonluKullaniciOlustur(): Promise<void> {
   const kullanici = await prisma.user.create({
     data: {
-      adSoyad: "Mehmet Kaya",
+      adSoyad: "İsmail Kaya",
       epostaAdresi: "mehmet.kaya@example.com",
       telefonNumarasi: "0532 000 00 00",
     },
   });
 
   console.log(`${kullanici.adSoyad}: ${kullanici.telefonNumarasi}`);
-  // Çıktı: Mehmet Kaya: 0532 000 00 00
+  // Çıktı: İsmail Kaya: 0532 000 00 00
 }
 
 telefonluKullaniciOlustur().finally(() => prisma.$disconnect());

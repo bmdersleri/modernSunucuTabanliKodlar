@@ -19,13 +19,13 @@ class KitapApiUygulamasi {
     {
       kimlik: 1,
       ad: "TypeScript ile Programlama",
-      yazar: "Deniz Yılmaz",
+      yazar: "Bahar Yılmaz",
       kategori: "Programlama"
     },
     {
       kimlik: 2,
       ad: "Bilim Tarihi",
-      yazar: "Selin Aras",
+      yazar: "Meliha Aras",
       kategori: "Bilim"
     }
   ];

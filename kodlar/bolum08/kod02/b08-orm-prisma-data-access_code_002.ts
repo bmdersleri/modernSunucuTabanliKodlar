@@ -10,7 +10,7 @@ const prisma = new PrismaClient();
 async function anaProgram(): Promise<void> {
   const yeniKullanici = await prisma.user.create({
     data: {
-      adSoyad: "Ayşe Demir",
+      adSoyad: "Zeliha Demir",
       epostaAdresi: "ayse.demir@example.com",
     },
   });
@@ -21,7 +21,7 @@ async function anaProgram(): Promise<void> {
 
   console.log("Eklenen kullanıcı:", yeniKullanici.adSoyad);
   console.log("Kullanıcı sayısı:", kullaniciListesi.length);
-  // Çıktı: Eklenen kullanıcı: Ayşe Demir
+  // Çıktı: Eklenen kullanıcı: Zeliha Demir
   // Çıktı: Kullanıcı sayısı: 1
 }
 

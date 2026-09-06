@@ -4,8 +4,8 @@
 // Çıktı satırı örnek çalışma sonucunu açıklar.
 
 const kullaniciKimligi: number = 101;
-const kullaniciAdi: string = "Deniz Yılmaz";
+const kullaniciAdi: string = "Bahar Yılmaz";
 const epostaDogrulandiMi: boolean = true;
 
 console.log(`${kullaniciKimligi} - ${kullaniciAdi} - ${epostaDogrulandiMi}`);
-// Çıktı: 101 - Deniz Yılmaz - true
+// Çıktı: 101 - Bahar Yılmaz - true

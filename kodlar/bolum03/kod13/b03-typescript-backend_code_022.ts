@@ -12,7 +12,7 @@ function kullaniciBul(kullaniciListesi: Kullanici[], aranacakKimlik: number): Ku
   return kullaniciListesi.find((kullanici) => kullanici.kimlik === aranacakKimlik);
 }
 
-const kullanicilar: Kullanici[] = [{ kimlik: 1, ad: "Buse" }];
+const kullanicilar: Kullanici[] = [{ kimlik: 1, ad: "Meliha" }];
 const bulunanKullanici = kullaniciBul(kullanicilar, 2);
 
 if (bulunanKullanici === undefined) {

@@ -16,7 +16,7 @@ function gecikmeliKullaniciGetir(kimlik: number): Promise<KullaniciSonucu> {
   return new Promise((coz, reddet) => {
     setTimeout(() => {
       if (kimlik === 1) {
-        coz({ basarili: true, kullanici: { kimlik: 1, ad: "Selin" } });
+        coz({ basarili: true, kullanici: { kimlik: 1, ad: "Meliha" } });
       } else if (kimlik < 0) {
         reddet(new Error("Kimlik değeri negatif olamaz."));
       } else {
@@ -41,5 +41,5 @@ gecikmeliKullaniciGetir(1)
     console.log("Kullanıcı sorgusu tamamlandı.");
   });
 
-// Çıktı: Kullanıcı: Selin
+// Çıktı: Kullanıcı: Meliha
 // Çıktı: Kullanıcı sorgusu tamamlandı.

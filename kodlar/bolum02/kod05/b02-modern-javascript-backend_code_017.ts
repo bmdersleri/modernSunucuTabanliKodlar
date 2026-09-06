@@ -25,7 +25,7 @@ class KaynakBulunamadiHatasi extends Error {
 
 class VeriDeposu {
   private readonly musteriListesi: readonly Musteri[] = [
-    { kimlik: 1, ad: "Zeynep", eposta: "zeynep@ornek.com", aktifMi: true },
+    { kimlik: 1, ad: "Yasemin", eposta: "yasemin@ornek.com", aktifMi: true },
     { kimlik: 2, ad: "Ozan", aktifMi: false }
   ];
 
@@ -95,5 +95,5 @@ async function main(): Promise<void> {
 
 main();
 
-// Çıktı: Zeynep (zeynep@ornek.com) için SIP-2025-01: Java Kitabı, Not Defteri
+// Çıktı: Yasemin (yasemin@ornek.com) için SIP-2025-01: Java Kitabı, Not Defteri
 // Çıktı: Sipariş isteği tamamlandı.

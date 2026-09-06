@@ -12,4 +12,4 @@ try {
   console.error("İşlem tamamlanamadı:", hata);
 }
 
-// Çıktı: Ece için işlem başlatıldı.
+// Çıktı: Elif için işlem başlatıldı.

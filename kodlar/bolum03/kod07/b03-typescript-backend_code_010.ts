@@ -15,7 +15,7 @@ interface YoneticiKullanici extends Kullanici {
 
 const yonetici: YoneticiKullanici = {
   kimlik: 7,
-  ad: "Selin Kaya",
+  ad: "Meliha Kaya",
   eposta: "selin@example.com",
   panelErisimiVarMi: true
 };
