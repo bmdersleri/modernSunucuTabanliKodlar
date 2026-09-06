@@ -1,4 +1,4 @@
-// File: KitapCrud.typescript
+// File: KitapCrud.ts
 import { Pool } from "pg";
 
 // Parametreler SQL enjeksiyonunu önlemeye yardım eder.

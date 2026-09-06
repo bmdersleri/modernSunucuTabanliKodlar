@@ -1,4 +1,4 @@
-// Dosya: EmailServiceMock.typescript
+// Dosya: EmailServiceMock.ts
 // KaydediciMockEmailService, gerçek gönderim yapmadan tüm çağrıları bir listede tutar.
 // Bu desen, herhangi bir test çerçevesi olmadan da uygulanabilir.
 // Çıktı, servisin doğru alıcı ve konu ile bir kez çağrıldığını gösterir.

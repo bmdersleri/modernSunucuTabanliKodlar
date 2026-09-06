@@ -1,4 +1,4 @@
-// File: KullaniciArama.typescript
+// File: KullaniciArama.ts
 // Bu örnek benzersiz e-posta alanıyla tek kullanıcı arar.
 // Sonuç bulunamadığında Prisma `null` döndürebilir.
 // Bu nedenle sonuç kullanılmadan önce kontrol edilmelidir.

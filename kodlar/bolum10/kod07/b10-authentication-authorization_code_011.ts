@@ -1,4 +1,4 @@
-// Dosya: DurumKoduAyrimi.typescript
+// Dosya: DurumKoduAyrimi.ts
 // Bu örnek 401 ve 403 durumlarının hangi koşulda üretildiğini ayırt eder.
 // Çıktı, token yokluğunda 401, yetersiz rolde 403 üretildiğini gösterir.
 

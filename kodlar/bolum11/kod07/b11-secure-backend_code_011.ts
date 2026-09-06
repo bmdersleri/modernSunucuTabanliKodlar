@@ -1,4 +1,4 @@
-// Dosya: SecretYukleyici.typescript
+// Dosya: SecretYukleyici.ts
 // zorunluSecretlariYukle, process.env üzerinden okur ve eksik alanları erken tespit eder.
 // Gerçek projede .env dosyası yalnızca geliştirmede kullanılır ve git deposuna eklenmez.
 // Çıktı, eksik bir secret olduğunda uygulamanın erken ve anlaşılır biçimde durduğunu

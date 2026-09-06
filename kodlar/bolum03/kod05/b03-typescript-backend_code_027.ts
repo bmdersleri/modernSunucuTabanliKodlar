@@ -1,4 +1,4 @@
-// File: ChapterMiniApp.typescript
+// File: ChapterMiniApp.ts
 // Bu mini uygulama güvenli kitap siparişi akışını gösterir.
 // Interface, union, generic ve strict kontrol birlikte kullanılır.
 // Gerçek projede bu sınıf bir HTTP denetleyicisi tarafından çağrılabilir.

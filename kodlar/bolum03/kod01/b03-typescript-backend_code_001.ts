@@ -1,4 +1,4 @@
-// File: KullaniciModeli.typescript
+// File: KullaniciModeli.ts
 // Bu örnek backend kullanıcı verisinin temel tiplerini gösterir.
 // TypeScript derleme aşamasında alan türlerini kontrol eder.
 // Çıktı satırı örnek çalışma sonucunu açıklar.

@@ -1,4 +1,4 @@
-// File: YoneticiKullanici.typescript
+// File: YoneticiKullanici.ts
 // Kullanici temel sözleşmedir.
 // YoneticiKullanici ek yetki alanını miras alır.
 // Interface genişletme ortak alan tekrarını önler.

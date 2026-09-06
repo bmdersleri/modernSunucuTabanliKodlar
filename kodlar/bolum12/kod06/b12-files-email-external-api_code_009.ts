@@ -1,4 +1,4 @@
-// Dosya: RetryStratejisi.typescript
+// Dosya: RetryStratejisi.ts
 // yenidenDeneyerekCalistir, yalnızca geriDenenebilirMi true dönen hatalarda tekrar dener.
 // Bekleme süresi her denemede iki katına çıkar (üstel geri çekilme).
 // Çıktı, iki başarısız denemeden sonra üçüncü denemenin başarılı olduğunu gösterir.

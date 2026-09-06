@@ -1,4 +1,4 @@
-// File: IliskiliVeriOkuma.typescript
+// File: IliskiliVeriOkuma.ts
 // Bu sorgu kullanıcıları yayımlanmış gönderileriyle birlikte getirir.
 // `where` ilişkili kayıtlar üzerinde filtre uygulayabilir.
 // `select` yalnızca ekranda ihtiyaç duyulan alanları sınırlar.

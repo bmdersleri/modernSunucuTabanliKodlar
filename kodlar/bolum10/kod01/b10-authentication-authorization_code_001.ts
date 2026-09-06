@@ -1,4 +1,4 @@
-// Dosya: AuthAkisiGiris.typescript
+// Dosya: AuthAkisiGiris.ts
 // Bu örnek authentication ve authorization adımlarının sırasını gösterir.
 // Gerçek projede bu adımlar middleware fonksiyonlarına ayrılmalıdır.
 // Çıktı, kimliği doğrulanmış ama yetkisiz bir isteğin reddedildiğini gösterir.

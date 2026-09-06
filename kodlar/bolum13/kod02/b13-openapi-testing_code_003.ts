@@ -1,4 +1,4 @@
-// Dosya: OpenApiSozlesmesi.typescript
+// Dosya: OpenApiSozlesmesi.ts
 // Bu örnek OpenAPI 3.x path tanımının TypeScript nesnesi biçiminde bir alt kümesini
 // gösterir.
 // Gerçek projede bu yapı openapi.yaml veya openapi.json dosyasında tutulur.

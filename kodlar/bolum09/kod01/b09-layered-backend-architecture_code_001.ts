@@ -1,4 +1,4 @@
-// Dosya: KatmanliYapiGiris.typescript
+// Dosya: KatmanliYapiGiris.ts
 // Bu örnek katmanların temel görev dağılımını gösterir.
 // Gerçek projede sınıflar ayrı dosyalara taşınmalıdır.
 // Çıktı, başarılı bir ödünç alma işlemini gösterir.

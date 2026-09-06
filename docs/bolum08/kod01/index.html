@@ -20,7 +20,7 @@ generator client {
 }
 
 datasource veriKaynagi {
-  provider = "sqlite"
+  provider = "sqlite" // yerel demo; üretimde "postgresql"
   url      = env("DATABASE_URL")
 }
 
@@ -29,7 +29,6 @@ model User {
   adSoyad      String
   epostaAdresi String   @unique
   olusturmaTarihi DateTime @default(now())
-}
-</code></pre>
+}</code></pre>
 </body>
 </html>

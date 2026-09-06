@@ -10,7 +10,7 @@
 <body>
 <h1>b04-nodejs-runtime_code_006 — b04-nodejs-runtime_code_006.ts</h1>
 <p><a href="https://github.com/bmdersleri/modernSunucuTabanliKodlar/blob/main/kodlar/bolum04/kod04/b04-nodejs-runtime_code_006.ts">GitHub'da görüntüle</a></p>
-<pre><code class="language-typescript">// File: eventLoopSirasi.typescript
+<pre><code class="language-typescript">// File: eventLoopSirasi.ts
 // Önce senkron satırlar çalışır.
 // setTimeout callback'i daha sonra kuyruğa gelir.
 // Çıktı: Başlangıç, Bitiş, ardından Zamanlayıcı tamamlandı.
@@ -21,7 +21,6 @@ setTimeout(() => {
   console.log("3. Zamanlayıcı tamamlandı.");
 }, 1000);
 
-console.log("2. Başka sipariş işleniyor.");
-</code></pre>
+console.log("2. Başka sipariş işleniyor.");</code></pre>
 </body>
 </html>

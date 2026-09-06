@@ -1,4 +1,4 @@
-// Dosya: EpostaBildirimAkisi.typescript
+// Dosya: EpostaBildirimAkisi.ts
 // EmailService arayüzü, gerçek SMTP entegrasyonunu servisin kullanımından soyutlar.
 // SahteEmailService, test ve örnekleme amacıyla gerçek gönderim yapmadan sonuç üretir.
 // Çıktı, e-posta gönderiminin başarısız olduğu durumda ana işlemin yine de

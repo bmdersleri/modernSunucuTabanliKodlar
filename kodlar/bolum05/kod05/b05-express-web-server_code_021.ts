@@ -1,4 +1,4 @@
-// File: ChapterMiniApp.typescript
+// File: ChapterMiniApp.ts
 import express, { NextFunction, Request, Response } from "express";
 
 // Kitap modeli uygulamanın sakladığı veri yapısını tanımlar.

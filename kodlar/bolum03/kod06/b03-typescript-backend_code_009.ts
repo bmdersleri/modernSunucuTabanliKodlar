@@ -1,4 +1,4 @@
-// File: KitapSozlesmesi.typescript
+// File: KitapSozlesmesi.ts
 // Interface kitap verisinin zorunlu alanlarını açıklar.
 // Her kitap nesnesi aynı veri sözleşmesine uymalıdır.
 // Stok durumu hizmet katmanında hesaplanabilir.

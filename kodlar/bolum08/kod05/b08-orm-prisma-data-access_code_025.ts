@@ -1,4 +1,4 @@
-// File: ChapterMiniApp.typescript
+// File: ChapterMiniApp.ts
 // Bu mini uygulama kullanıcı ve ilişkili gönderi oluşturur.
 // Repository üzerinden yayınlanmış gönderi başlıklarını getirir.
 // Çalışması için schema.prisma içindeki User ve Post modelleri gerekir.

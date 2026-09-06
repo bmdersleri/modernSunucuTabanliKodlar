@@ -1,4 +1,4 @@
-// Dosya: KayitValidasyonu.test.typescript
+// Dosya: KayitValidasyonu.test.ts
 // Bu test dosyası Bölüm 11'deki kayitIstegiDogrula fonksiyonunu izole biçimde test eder.
 // Gerçek projede bu dosya *.test.ts uzantısıyla ilgili kaynak dosyanın yanında tutulur.
 

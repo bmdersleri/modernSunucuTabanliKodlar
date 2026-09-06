@@ -1,4 +1,4 @@
-// File: OduncTransaction.typescript
+// File: OduncTransaction.ts
 import { Pool } from "pg";
 
 // Transaction için havuzdan tek bir istemci alınır.

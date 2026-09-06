@@ -1,4 +1,4 @@
-// Dosya: OduncAlmaService.typescript
+// Dosya: OduncAlmaService.ts
 // Service, ödünç alma kurallarını merkezi olarak uygular.
 // Repository yalnızca veri erişimi sağlar.
 // Çıktı, kural sağlandığında işlem sonucunu gösterir.

@@ -1,4 +1,4 @@
-// File: ChapterMiniApp.typescript
+// File: ChapterMiniApp.ts
 import { Pool } from "pg";
 
 // Bu program küçük bir kitaplık veri erişim katmanıdır.

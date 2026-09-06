@@ -1,4 +1,4 @@
-// Dosya: AuthMiddleware.typescript
+// Dosya: AuthMiddleware.ts
 // Bu örnek Express benzeri bir middleware imzası kullanır.
 // req, res ve next parametreleri gerçek projede Express tiplerinden gelir.
 // Middleware yalnızca kimliği doğrular; iş kuralı içermez.

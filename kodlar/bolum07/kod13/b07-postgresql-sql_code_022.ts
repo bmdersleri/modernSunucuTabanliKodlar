@@ -1,4 +1,4 @@
-// File: IndexliArama.typescript
+// File: IndexliArama.ts
 import { Pool } from "pg";
 
 // Sorgu filtreleme alanını kullanır.

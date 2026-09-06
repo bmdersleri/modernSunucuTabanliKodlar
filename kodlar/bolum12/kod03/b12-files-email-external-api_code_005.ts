@@ -1,4 +1,4 @@
-// Dosya: DosyaGuvenligiKontrolu.typescript
+// Dosya: DosyaGuvenligiKontrolu.ts
 // izinVerilenTurler ve azamiBoyutBayt sabit bir politikayı temsil eder.
 // guvenliDosyaAdiUret, orijinal ad yerine rastgele bir ad üreterek path traversal
 // riskini ortadan kaldırır.

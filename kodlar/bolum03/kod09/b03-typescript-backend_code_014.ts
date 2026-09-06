@@ -1,4 +1,4 @@
-// File: AyrikUnionSonuc.typescript
+// File: AyrikUnionSonuc.ts
 // Başarılı ve hatalı yanıtların alanları farklıdır.
 // basarili alanı tipi güvenle daraltmak için kullanılır.
 // Her dal yalnızca kendi alanlarına erişir.

@@ -1,4 +1,4 @@
-// File: ChapterMiniApp.typescript
+// File: ChapterMiniApp.ts
 // Bu sınıf, bölüm uygulamasının yapılandırmasını ve HTTP davranışını taşır.
 // Environment variable verileri doğrulanarak okunur.
 // Çıktı: Sunucu adresi ve arka plan bakım mesajı terminalde görünür.

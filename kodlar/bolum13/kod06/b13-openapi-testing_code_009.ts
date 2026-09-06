@@ -1,4 +1,4 @@
-// Dosya: LoginEndpoint.integration.test.typescript
+// Dosya: LoginEndpoint.integration.test.ts
 // beforeEach, her testten önce test veritabanını sıfırlar ve bilinen bir kullanıcı ekler.
 // supertest, gerçek bir HTTP sunucusunu ayağa kaldırmadan istek/yanıt döngüsünü test eder.
 

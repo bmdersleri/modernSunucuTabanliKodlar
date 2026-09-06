@@ -1,4 +1,4 @@
-// File: ChapterMiniAppDockerCompose.typescript
+// File: ChapterMiniAppDockerCompose.ts
 // Bu dosya, konteynerleştirilmiş bir uygulamanın başlangıçta veritabanına
 // güvenli biçimde bağlanma mantığını gösterir; Dockerfile ve docker-compose.yml
 // bu bölümde ayrı kod örnekleri (code_003, code_009) olarak sunulmuştur.

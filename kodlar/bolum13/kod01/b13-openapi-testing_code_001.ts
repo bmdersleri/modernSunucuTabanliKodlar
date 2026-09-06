@@ -1,4 +1,4 @@
-// Dosya: BelgeVeTestAkisiGiris.typescript
+// Dosya: BelgeVeTestAkisiGiris.ts
 // Bu örnek bir endpoint'in yaşam döngüsünde belgeleme ve testin yerini gösterir.
 // Gerçek projede bu adımlar ayrı dosyalarda (route, openapi.ts, *.test.ts) yaşar.
 

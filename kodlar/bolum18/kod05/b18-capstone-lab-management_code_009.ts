@@ -1,4 +1,4 @@
-// File: ChapterMiniAppCapstoneLabManagement.typescript
+// File: ChapterMiniAppCapstoneLabManagement.ts
 // Bu dosya, kitap boyunca öğrenilen katmanların (RBAC, iş kuralı, tutarlı durum güncelleme)
 // laboratuvar yönetim sisteminde nasıl bir araya geldiğini gösterir.
 

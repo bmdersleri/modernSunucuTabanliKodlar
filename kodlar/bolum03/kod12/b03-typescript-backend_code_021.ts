@@ -1,4 +1,4 @@
-// File: tsconfig.typescript
+// File: tsconfig.json
 // Bu yapılandırma TypeScript denetimlerini sıkılaştırır.
 // strict seçeneği birçok güvenli varsayılanı etkinleştirir.
 // Gerçek projede dosya adı tsconfig.json olmalıdır.

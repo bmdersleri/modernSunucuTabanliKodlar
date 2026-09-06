@@ -1,4 +1,4 @@
-// File: KullaniciCrud.typescript
+// File: KullaniciCrud.ts
 // Bu örnek CRUD işlemlerinin temel sırasını gösterir.
 // `select` yalnızca gerekli alanları getirerek veri yükünü azaltır.
 // Her işlem Prisma schema tarafından üretilen türlere göre denetlenir.

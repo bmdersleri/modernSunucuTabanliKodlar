@@ -1,4 +1,4 @@
-// File: yapilandirma.typescript
+// File: yapilandirma.ts
 // Environment variable değerleri her zaman metin olarak gelir.
 // Geçersiz veya eksik değer için güvenli varsayılan kullanılır.
 // Çıktı: Geçerli port veya varsayılan 3000 görüntülenir.

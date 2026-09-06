@@ -10,7 +10,7 @@
 <body>
 <h1>b07-postgresql-sql_code_006 — b07-postgresql-sql_code_006.ts</h1>
 <p><a href="https://github.com/bmdersleri/modernSunucuTabanliKodlar/blob/main/kodlar/bolum07/kod04/b07-postgresql-sql_code_006.ts">GitHub'da görüntüle</a></p>
-<pre><code class="language-typescript">// File: KitapCrud.typescript
+<pre><code class="language-typescript">// File: KitapCrud.ts
 import { Pool } from "pg";
 
 // Parametreler SQL enjeksiyonunu önlemeye yardım eder.
@@ -39,7 +39,6 @@ async function kitapEkleVeListele(): Promise<void> {
   // Çıktı: kitap_adi ve yazar_adi sütunlarını içeren tablo
 }
 
-kitapEkleVeListele().finally(() => baglantiHavuzu.end());
-</code></pre>
+kitapEkleVeListele().finally(() => baglantiHavuzu.end());</code></pre>
 </body>
 </html>

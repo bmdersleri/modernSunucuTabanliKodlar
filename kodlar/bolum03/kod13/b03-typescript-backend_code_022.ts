@@ -1,4 +1,4 @@
-// File: GuvenliKullaniciArama.typescript
+// File: GuvenliKullaniciArama.ts
 // find işlemi kayıt bulunamadığında undefined döndürür.
 // Strict mode bu olasılığın ele alınmasını ister.
 // Erken dönüş kodun okunabilirliğini artırır.

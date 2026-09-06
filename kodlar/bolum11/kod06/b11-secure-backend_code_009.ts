@@ -1,4 +1,4 @@
-// Dosya: RateLimiter.typescript
+// Dosya: RateLimiter.ts
 // Bellek içi sabit pencere (fixed window) rate limiter.
 // Gerçek projede çoklu sunucu örneği varsa paylaşımlı bir depo (Redis) kullanılmalıdır.
 // Çıktı, sınır aşıldığında isteklerin reddedildiğini gösterir.

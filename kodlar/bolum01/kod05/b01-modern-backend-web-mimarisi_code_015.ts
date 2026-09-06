@@ -1,4 +1,4 @@
-// File: ChapterMiniApp.typescript
+// File: ChapterMiniApp.ts
 // Bu mini uygulama öğrenci notu sorgulama isteğini uçtan uca modeller.
 // İstemci, proxy, API ve backend ayrı sorumluluklar taşır.
 // Çıktı, başarılı ve yetkisiz istek sonuçlarını gösterir.

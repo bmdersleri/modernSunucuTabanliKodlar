@@ -10,7 +10,7 @@
 <body>
 <h1>b10-authentication-authorization_code_003 — b10-authentication-authorization_code_003.ts</h1>
 <p><a href="https://github.com/bmdersleri/modernSunucuTabanliKodlar/blob/main/kodlar/bolum10/kod02/b10-authentication-authorization_code_003.ts">GitHub'da görüntüle</a></p>
-<pre><code class="language-typescript">// Dosya: ParolaHashleme.typescript
+<pre><code class="language-typescript">// Dosya: ParolaHashleme.ts
 // scryptSync, salt ve parolayı birlikte kullanarak yavaş bir hash üretir.
 // Salt her kullanıcı için randomBytes ile üretilir ve hash ile birlikte saklanır.
 // Çıktı, doğru ve yanlış parola denemelerinin sonucunu gösterir.
@@ -39,7 +39,6 @@ const kayitliParola = parolaHashle("guclu-Parola123");
 console.log(parolaDogrula("guclu-Parola123", kayitliParola));
 console.log(parolaDogrula("yanlis-parola", kayitliParola));
 // Çıktı: true
-// Çıktı: false
-</code></pre>
+// Çıktı: false</code></pre>
 </body>
 </html>

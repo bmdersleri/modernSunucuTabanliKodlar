@@ -10,7 +10,7 @@
 <body>
 <h1>b07-postgresql-sql_code_002 — b07-postgresql-sql_code_002.ts</h1>
 <p><a href="https://github.com/bmdersleri/modernSunucuTabanliKodlar/blob/main/kodlar/bolum07/kod02/b07-postgresql-sql_code_002.ts">GitHub'da görüntüle</a></p>
-<pre><code class="language-typescript">// File: OrtamDegiskenliBaglanti.typescript
+<pre><code class="language-typescript">// File: OrtamDegiskenliBaglanti.ts
 import { Pool } from "pg";
 
 // Pool çok sayıda istek için bağlantıları yeniden kullanır.
@@ -30,7 +30,6 @@ async function sunucuZamaniniGetir(): Promise<void> {
   // Çıktı: 2026-09-04T10:30:00.000Z
 }
 
-sunucuZamaniniGetir().finally(() => baglantiHavuzu.end());
-</code></pre>
+sunucuZamaniniGetir().finally(() => baglantiHavuzu.end());</code></pre>
 </body>
 </html>

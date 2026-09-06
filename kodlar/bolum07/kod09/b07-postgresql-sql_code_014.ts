@@ -1,4 +1,4 @@
-// File: JoinSorgulari.typescript
+// File: JoinSorgulari.ts
 import { Pool } from "pg";
 
 // INNER JOIN eşleşen kayıtları listeler.

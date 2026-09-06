@@ -1,4 +1,4 @@
-// Dosya: RbacGuard.typescript
+// Dosya: RbacGuard.ts
 // requireRole, izin verilen rollerin listesini alır ve bir kontrol fonksiyonu döndürür.
 // Bu desen, aynı guard'ın farklı endpoint'lerde farklı rollerle yeniden kullanılmasını
 // sağlar.

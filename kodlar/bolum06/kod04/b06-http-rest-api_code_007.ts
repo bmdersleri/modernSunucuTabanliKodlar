@@ -1,4 +1,4 @@
-// File: Sayfalama.typescript
+// File: Sayfalama.ts
 // Ekipmanlar filtrelenir ve istenen sayfaya ayrılır.
 // Sayfa numarası birden küçük olamaz.
 // Yanıt metadata ile birlikte döndürülür.

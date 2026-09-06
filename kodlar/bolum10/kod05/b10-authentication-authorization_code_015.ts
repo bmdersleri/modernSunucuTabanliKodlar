@@ -1,4 +1,4 @@
-// File: ChapterMiniAppAuth.typescript
+// File: ChapterMiniAppAuth.ts
 // Bu uygulama kullanıcı girişini, token üretimini ve rol tabanlı erişimi uçtan uca işler.
 // Repository bellek içi veri kaynağını, service iş kurallarını, controller HTTP benzeri
 // yanıtı temsil eder.

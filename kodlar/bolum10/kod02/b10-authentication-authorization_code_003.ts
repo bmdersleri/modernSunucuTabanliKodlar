@@ -1,4 +1,4 @@
-// Dosya: ParolaHashleme.typescript
+// Dosya: ParolaHashleme.ts
 // scryptSync, salt ve parolayı birlikte kullanarak yavaş bir hash üretir.
 // Salt her kullanıcı için randomBytes ile üretilir ve hash ile birlikte saklanır.
 // Çıktı, doğru ve yanlış parola denemelerinin sonucunu gösterir.

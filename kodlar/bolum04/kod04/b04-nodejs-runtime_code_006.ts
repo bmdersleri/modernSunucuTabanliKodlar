@@ -1,4 +1,4 @@
-// File: eventLoopSirasi.typescript
+// File: eventLoopSirasi.ts
 // Önce senkron satırlar çalışır.
 // setTimeout callback'i daha sonra kuyruğa gelir.
 // Çıktı: Başlangıç, Bitiş, ardından Zamanlayıcı tamamlandı.

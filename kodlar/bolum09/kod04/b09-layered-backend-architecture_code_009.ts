@@ -1,4 +1,4 @@
-// Dosya: Repositoryler.typescript
+// Dosya: Repositoryler.ts
 // Repository sınıfları bellek içi veriyi örnek olarak kullanır.
 // Gerçek uygulamada burada veritabanı veya ORM çağrıları bulunabilir.
 // Çıktı, bulunan kitabın bilgisini gösterir.

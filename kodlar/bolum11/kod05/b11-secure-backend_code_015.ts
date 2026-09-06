@@ -1,4 +1,4 @@
-// File: ChapterMiniAppSecurity.typescript
+// File: ChapterMiniAppSecurity.ts
 // Bu uygulama bir login isteğini CORS, rate limiting, validation ve hata yönetimiyle
 // uçtan uca işler.
 // Authentication (Bölüm 10) ile bu bölümün denetimleri burada birlikte çalışır.

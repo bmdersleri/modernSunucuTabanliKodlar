@@ -1,4 +1,4 @@
-// File: ilkProgram.typescript
+// File: ilkProgram.ts
 // Node.js runtime bilgilerini terminalden okur.
 // Türkçe değişken adları programın amacını görünür kılar.
 // Çıktı: Node.js sürümü ve çalışma klasörü terminalde görünür.

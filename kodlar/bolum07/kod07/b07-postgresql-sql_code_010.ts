@@ -1,4 +1,4 @@
-// File: IliskiliKitapEkleme.typescript
+// File: IliskiliKitapEkleme.ts
 import { Pool } from "pg";
 
 // Önce yazar kaydı oluşturulur.

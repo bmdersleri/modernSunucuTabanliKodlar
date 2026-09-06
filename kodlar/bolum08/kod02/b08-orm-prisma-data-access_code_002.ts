@@ -1,4 +1,4 @@
-// File: PrismaBaslangic.typescript
+// File: PrismaBaslangic.ts
 // Bu örnek Prisma Client ile kullanıcı kaydı oluşturur.
 // Ardından tüm kullanıcıları veritabanından okur.
 // Program tamamlandığında bağlantı güvenli biçimde kapatılır.

@@ -1,4 +1,4 @@
-// File: JsonSozlesmesi.typescript
+// File: JsonSozlesmesi.ts
 // Başarı ve hata yanıtları tek bir sözleşme kullanır.
 // Union type, iki olası yanıt biçimini temsil eder.
 // TypeScript daraltması basarili alanıyla yapılır.

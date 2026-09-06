@@ -1,4 +1,4 @@
-// File: KullaniciRepository.typescript
+// File: KullaniciRepository.ts
 // Repository, Prisma sorgularını tek sınıfta toplar.
 // Metot adları veritabanı değil uygulama niyeti üzerinden belirlenir.
 // Dönüş türleri Prisma'nın ürettiği türlerden yararlanır.

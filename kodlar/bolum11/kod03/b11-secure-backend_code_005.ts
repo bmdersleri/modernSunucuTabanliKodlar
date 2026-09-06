@@ -1,4 +1,4 @@
-// Dosya: MerkeziHataYonetimi.typescript
+// Dosya: MerkeziHataYonetimi.ts
 // AppError, service katmanının bilinçli olarak fırlattığı, HTTP durum kodu taşıyan hatadır.
 // Beklenmeyen hatalar (programlama hatası) ayrı işlenerek yığın izi istemciye sızdırılmaz.
 // Çıktı, beklenen ve beklenmeyen hatanın farklı biçimde ele alındığını gösterir.

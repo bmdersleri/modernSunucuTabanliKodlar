@@ -1,4 +1,4 @@
-// File: SiparisDurumu.typescript
+// File: SiparisDurumu.ts
 // Union yalnızca geçerli sipariş durumlarına izin verir.
 // Switch yapısı durumlara göre farklı davranış üretir.
 // Varsayılan durum beklenmeyen değerler için koruma sağlar.

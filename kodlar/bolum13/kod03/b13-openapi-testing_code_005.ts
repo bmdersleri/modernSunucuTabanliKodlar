@@ -1,4 +1,4 @@
-// Dosya: SwaggerUiSunumu.typescript
+// Dosya: SwaggerUiSunumu.ts
 // swagger-ui-express, OpenAPI belgesini /api-docs altında interaktif bir sayfa olarak
 // sunar.
 // Gerçek projede bu route yalnızca geliştirme/test ortamında veya kimlik doğrulaması

@@ -1,4 +1,4 @@
-// File: PostgreSqlBaglantisi.typescript
+// File: PostgreSqlBaglantisi.ts
 import { Client } from "pg";
 
 // Bağlantı ayarları ortam değişkenlerinden okunmalıdır.

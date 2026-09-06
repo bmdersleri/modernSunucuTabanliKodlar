@@ -10,7 +10,7 @@
 <body>
 <h1>b10-authentication-authorization_code_007 — b10-authentication-authorization_code_007.ts</h1>
 <p><a href="https://github.com/bmdersleri/modernSunucuTabanliKodlar/blob/main/kodlar/bolum10/kod04/b10-authentication-authorization_code_007.ts">GitHub'da görüntüle</a></p>
-<pre><code class="language-typescript">// Dosya: AuthMiddleware.typescript
+<pre><code class="language-typescript">// Dosya: AuthMiddleware.ts
 // Bu örnek Express benzeri bir middleware imzası kullanır.
 // req, res ve next parametreleri gerçek projede Express tiplerinden gelir.
 // Middleware yalnızca kimliği doğrular; iş kuralı içermez.
@@ -56,7 +56,6 @@ function tokenDogrulaVeKullaniciDondur(
     throw new Error("Geçersiz token.");
   }
   return { kullaniciAdi: "elif", rol: "ogrenci" };
-}
-</code></pre>
+}</code></pre>
 </body>
 </html>

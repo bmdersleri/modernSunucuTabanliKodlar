@@ -1,4 +1,4 @@
-// File: GenericListeleme.typescript
+// File: GenericListeleme.ts
 // Generic fonksiyon dizinin eleman türünü korur.
 // Fonksiyon farklı model listelerinde tekrar kullanılabilir.
 // İlk eleman bulunamazsa undefined dönebilir.

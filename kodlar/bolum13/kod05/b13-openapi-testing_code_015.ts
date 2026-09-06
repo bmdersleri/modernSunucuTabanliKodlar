@@ -1,4 +1,4 @@
-// File: ChapterMiniAppOpenApiTesting.typescript
+// File: ChapterMiniAppOpenApiTesting.ts
 // Bu dosya, gerçek bir projede birden fazla dosyaya (openapi.ts, service.ts, *.test.ts)
 // yayılacak
 // parçaları tek bir yerde, akışı göstermek amacıyla bir araya getirir.

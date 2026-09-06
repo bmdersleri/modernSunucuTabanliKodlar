@@ -1,4 +1,4 @@
-// File: portGoster.typescript
+// File: portGoster.ts
 // portOku fonksiyonu yapılandırmayı merkezi olarak doğrular.
 // Aynı kural tüm uygulamada tekrar kullanılabilir.
 // Çıktı: Uygulama portu: 3000 veya verilen port.

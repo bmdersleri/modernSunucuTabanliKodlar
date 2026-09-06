@@ -1,4 +1,4 @@
-// File: ConstraintKontrolu.typescript
+// File: ConstraintKontrolu.ts
 import { Pool } from "pg";
 
 // Veritabanı kuralı uygulamadan bağımsız çalışır.

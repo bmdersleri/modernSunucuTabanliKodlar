@@ -1,4 +1,4 @@
-// File: asenkronMesaj.typescript
+// File: asenkronMesaj.ts
 // Promise bekleyen bir işlemi temsil eder.
 // await, yalnızca bu async fonksiyonun devamını bekletir.
 // Çıktı: Hazırlık, diğer iş, sonra tamamlanma mesajı.

@@ -1,4 +1,4 @@
-// File: ChapterMiniApp.typescript
+// File: ChapterMiniApp.ts
 // Bu uygulama kütüphane ödünç alma isteğini uçtan uca işler.
 // Controller HTTP benzeri yanıt üretir, service kuralları uygular.
 // Repository bellek içi veri kaynağını temsil eder.

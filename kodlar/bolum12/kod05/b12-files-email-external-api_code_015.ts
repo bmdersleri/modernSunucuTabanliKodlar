@@ -1,4 +1,4 @@
-// File: ChapterMiniAppFilesEmailApi.typescript
+// File: ChapterMiniAppFilesEmailApi.ts
 // Bu uygulama kitap kapağı yüklemeyi, harici ISBN servisini ve e-posta bildirimini
 // uçtan uca işler.
 // Repository/service ayrımı önceki bölümlerdeki katmanlı mimariyle tutarlıdır.

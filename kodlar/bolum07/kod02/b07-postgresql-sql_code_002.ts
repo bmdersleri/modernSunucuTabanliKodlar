@@ -1,4 +1,4 @@
-// File: OrtamDegiskenliBaglanti.typescript
+// File: OrtamDegiskenliBaglanti.ts
 import { Pool } from "pg";
 
 // Pool çok sayıda istek için bağlantıları yeniden kullanır.

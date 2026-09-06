@@ -1,4 +1,4 @@
-// File: KitapTemelBilgisi.typescript
+// File: KitapTemelBilgisi.ts
 // Kitap stok bilgisi sayı ile temsil edilir.
 // Kitap adı ve yazarı metin alanlarıdır.
 // Negatif stok kontrolü işletme kuralı olarak uygulanır.

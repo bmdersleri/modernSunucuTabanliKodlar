@@ -1,4 +1,4 @@
-// File: ChapterMiniAppAiIntegration.typescript
+// File: ChapterMiniAppAiIntegration.ts
 // Bu dosya, bir kitap özeti isteğinin uçtan uca güvenli işlenişini tek bir yerde gösterir.
 
 interface OzetYaniti {

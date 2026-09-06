@@ -1,4 +1,4 @@
-// File: BelirsizTip.typescript
+// File: BelirsizTip.ts
 // Boş dizi başlangıçta yeterli bilgi sağlamaz.
 // Açık tip, dizinin veri sözleşmesini kurar.
 // Kullanıcı listesi yalnızca Kullanici nesneleri taşımalıdır.

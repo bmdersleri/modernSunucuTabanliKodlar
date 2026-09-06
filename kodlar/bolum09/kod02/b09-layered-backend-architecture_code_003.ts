@@ -1,4 +1,4 @@
-// Dosya: OduncAlmaController.typescript
+// Dosya: OduncAlmaController.ts
 // Controller, dış girdiyi DTO biçiminde alır.
 // İş kuralını service katmanına devreder.
 // HTTP çerçevesi yerine basit nesneler kullanılmıştır.

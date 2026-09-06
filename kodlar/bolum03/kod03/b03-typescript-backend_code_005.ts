@@ -1,4 +1,4 @@
-// File: TipCikarimi.typescript
+// File: TipCikarimi.ts
 // TypeScript değerlerden otomatik tip çıkarır.
 // Fonksiyon dönüş türü de çoğu zaman çıkarılabilir.
 // Kritik parametre türleri açıkça yazılmıştır.

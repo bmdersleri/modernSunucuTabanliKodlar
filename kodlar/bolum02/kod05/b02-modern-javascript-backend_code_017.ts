@@ -1,4 +1,4 @@
-// File: ChapterMiniApp.typescript
+// File: ChapterMiniApp.ts
 // Bu mini uygulama modül mantığını, interface'leri ve async hata yönetimini birleştirir.
 // Gerçek projede her sınıf ve arayüz ayrı modülde bulunmalıdır.
 // Çıktı aktif müşteri için sipariş özetini üretir.

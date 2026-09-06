@@ -10,7 +10,7 @@
 <body>
 <h1>b08-orm-prisma-data-access_code_002 — b08-orm-prisma-data-access_code_002.ts</h1>
 <p><a href="https://github.com/bmdersleri/modernSunucuTabanliKodlar/blob/main/kodlar/bolum08/kod02/b08-orm-prisma-data-access_code_002.ts">GitHub'da görüntüle</a></p>
-<pre><code class="language-typescript">// File: PrismaBaslangic.typescript
+<pre><code class="language-typescript">// File: PrismaBaslangic.ts
 // Bu örnek Prisma Client ile kullanıcı kaydı oluşturur.
 // Ardından tüm kullanıcıları veritabanından okur.
 // Program tamamlandığında bağlantı güvenli biçimde kapatılır.
@@ -39,7 +39,6 @@ async function anaProgram(): Promise<void> {
 
 anaProgram()
   .catch(console.error)
-  .finally(() => prisma.$disconnect());
-</code></pre>
+  .finally(() => prisma.$disconnect());</code></pre>
 </body>
 </html>

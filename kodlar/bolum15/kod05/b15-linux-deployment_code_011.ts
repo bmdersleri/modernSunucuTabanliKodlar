@@ -1,4 +1,4 @@
-// File: ChapterMiniAppLinuxDeployment.typescript
+// File: ChapterMiniAppLinuxDeployment.ts
 // Bu dosya, production'a hazır bir başlangıç akışını tek yerde gösterir;
 // Nginx ve HTTPS yapılandırması bu bölümde ayrı kod örnekleri (code_003, code_006)
 // olarak sunulmuştur.

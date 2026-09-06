@@ -1,4 +1,4 @@
-// Dosya: HariciApiCagrisi.typescript
+// Dosya: HariciApiCagrisi.ts
 // AbortController, belirlenen sürede yanıt gelmezse isteği iptal eder.
 // Gerçek projede taban URL ve API anahtarı ortam değişkeninden okunmalıdır.
 // Çıktı, zaman aşımına uğrayan bir isteğin anlamlı bir hatayla sonuçlandığını gösterir.

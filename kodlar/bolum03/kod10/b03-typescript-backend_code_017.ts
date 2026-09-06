@@ -1,4 +1,4 @@
-// File: GenericApiSonucu.typescript
+// File: GenericApiSonucu.ts
 // T parametresi yanıtın taşıdığı veri türünü temsil eder.
 // Aynı sonuç yapısı farklı backend modelleri için kullanılır.
 // Hata durumunda veri alanı isteğe bağlıdır.

@@ -1,4 +1,4 @@
-// File: ChapterMiniAppIotBackend.typescript
+// File: ChapterMiniAppIotBackend.ts
 // Bu dosya, bir telemetri isteğinin uçtan uca işlenişini tek bir yerde gösterir.
 
 interface CihazKaydi {

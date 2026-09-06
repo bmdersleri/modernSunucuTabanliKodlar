@@ -1,4 +1,4 @@
-// Dosya: BasitValidator.typescript
+// Dosya: BasitValidator.ts
 // Bu örnek harici bağımlılık olmadan çalışan bir şema doğrulayıcı gösterir.
 // Gerçek projede zod gibi test edilmiş bir kütüphane tercih edilebilir.
 // Çıktı, geçerli ve geçersiz kayıt isteklerinin sonucunu gösterir.

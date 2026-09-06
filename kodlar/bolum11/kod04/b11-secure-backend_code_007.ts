@@ -1,4 +1,4 @@
-// Dosya: CorsMiddleware.typescript
+// Dosya: CorsMiddleware.ts
 // izinVerilenKokenler, güvenilen frontend adreslerinin sabit bir listesidir.
 // Gerçek projede bu liste ortam değişkeninden okunmalıdır.
 // Çıktı, izinli ve izinsiz kökenler için farklı kararların üretildiğini gösterir.

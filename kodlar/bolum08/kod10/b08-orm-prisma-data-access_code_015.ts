@@ -1,4 +1,4 @@
-// File: IliskiliKayitOlusturma.typescript
+// File: IliskiliKayitOlusturma.ts
 // `create` içindeki `gonderiler` alanı iç içe kayıt üretir.
 // Prisma önce kullanıcıyı, ardından kullanıcıya bağlı gönderiyi oluşturur.
 // İlişki yabancı anahtar değeriyle otomatik biçimde kurulur.

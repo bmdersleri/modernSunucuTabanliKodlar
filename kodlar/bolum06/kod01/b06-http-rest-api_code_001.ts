@@ -1,4 +1,4 @@
-// File: RestKaynaklari.typescript
+// File: RestKaynaklari.ts
 // Laboratuvar alanındaki temel kaynakları temsil eder.
 // Her kaynak benzersiz bir kimlik taşır.
 // Çıktı, kaynak URL'lerinin nasıl kurulduğunu gösterir.

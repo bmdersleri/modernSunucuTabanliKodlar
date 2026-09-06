@@ -1,4 +1,4 @@
-// File: sunucu.typescript
+// File: sunucu.ts
 // Bu program Node.js HTTP sunucusu oluşturur.
 // Port bilgisi environment variable üzerinden okunur.
 // Çıktı: Sunucu http://localhost:3000 adresinde çalışıyor.

@@ -1,4 +1,4 @@
-// File: CrudIslemleri.typescript
+// File: CrudIslemleri.ts
 // Bu örnek bellek içindeki ekipman listesini yönetir.
 // Her fonksiyon farklı bir CRUD işlemini temsil eder.
 // Örnek, gerçek HTTP sunucusundan bağımsız çalışır.

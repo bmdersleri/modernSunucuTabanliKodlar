@@ -1,4 +1,4 @@
-// Dosya: GuvenlikKatmanlariGiris.typescript
+// Dosya: GuvenlikKatmanlariGiris.ts
 // Bu örnek bir isteğin geçtiği katman sırasını gösterir.
 // Gerçek projede her katman ayrı bir middleware fonksiyonuna karşılık gelir.
 // Çıktı, bir katmanın reddettiği isteğin sonraki katmana ulaşmadığını gösterir.

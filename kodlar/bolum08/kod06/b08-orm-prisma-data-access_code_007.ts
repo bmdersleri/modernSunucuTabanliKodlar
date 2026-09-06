@@ -1,4 +1,4 @@
-// File: MigrationSonrasi.typescript
+// File: MigrationSonrasi.ts
 // Bu örnek migration ile eklenen alanı kullanır.
 // Alan isteğe bağlı olduğu için değer gönderilmeden de kayıt yapılabilir.
 // Prisma Client yeni şemaya göre tür üretmiştir.
