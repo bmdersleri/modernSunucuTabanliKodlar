@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>b08-orm-prisma-data-access_code_007 — b08-orm-prisma-data-access_code_007.ts</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+</head>
+<body>
+<h1>b08-orm-prisma-data-access_code_007 — b08-orm-prisma-data-access_code_007.ts</h1>
+<p><a href="https://github.com/bmdersleri/modernSunucuTabanliKodlar/blob/main/kodlar/bolum08/kod06/b08-orm-prisma-data-access_code_007.ts">GitHub'da görüntüle</a></p>
+<pre><code class="language-typescript">// File: MigrationSonrasi.typescript
+// Bu örnek migration ile eklenen alanı kullanır.
+// Alan isteğe bağlı olduğu için değer gönderilmeden de kayıt yapılabilir.
+// Prisma Client yeni şemaya göre tür üretmiştir.
+
+import { prisma } from "./prisma";
+
+async function telefonluKullaniciOlustur(): Promise<void> {
+  const kullanici = await prisma.user.create({
+    data: {
+      adSoyad: "Mehmet Kaya",
+      epostaAdresi: "mehmet.kaya@example.com",
+      telefonNumarasi: "0532 000 00 00",
+    },
+  });
+
+  console.log(`${kullanici.adSoyad}: ${kullanici.telefonNumarasi}`);
+  // Çıktı: Mehmet Kaya: 0532 000 00 00
+}
+
+telefonluKullaniciOlustur().finally(() => prisma.$disconnect());</code></pre>
+</body>
+</html>

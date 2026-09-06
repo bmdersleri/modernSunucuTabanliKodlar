@@ -1,0 +1,21 @@
+// File: schema.prisma
+// Bir kullanıcı birden çok gönderiye sahip olabilir.
+// Her gönderi zorunlu olarak bir yazara bağlanır.
+// `yazarId`, veritabanındaki yabancı anahtar alanıdır.
+
+model User {
+  id           Int      @id @default(autoincrement())
+  adSoyad      String
+  epostaAdresi String   @unique
+  gonderiler   Post[]
+}
+
+model Post {
+  id             Int      @id @default(autoincrement())
+  baslik         String
+  icerik         String
+  yayindaMi      Boolean  @default(false)
+  yazarId        Int
+  yazar          User     @relation(fields: [yazarId], references: [id])
+  olusturmaTarihi DateTime @default(now())
+}

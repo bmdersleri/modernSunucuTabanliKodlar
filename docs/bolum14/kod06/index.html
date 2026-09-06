@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>b14-docker-compose_code_009 — b14-docker-compose_code_009.yml</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+</head>
+<body>
+<h1>b14-docker-compose_code_009 — b14-docker-compose_code_009.yml</h1>
+<p><a href="https://github.com/bmdersleri/modernSunucuTabanliKodlar/blob/main/kodlar/bolum14/kod06/b14-docker-compose_code_009.yml">GitHub'da görüntüle</a></p>
+<pre><code class="language-plaintext">services:
+  kutuphane-api:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      DATABASE_URL: postgresql://postgres:gelistirme_parolasi@kutuphane-db:5432/kutuphane
+    depends_on:
+      - kutuphane-db
+
+  kutuphane-db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_PASSWORD: gelistirme_parolasi
+      POSTGRES_DB: kutuphane
+    volumes:
+      - kutuphane-db-verisi:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+volumes:
+  kutuphane-db-verisi:</code></pre>
+</body>
+</html>

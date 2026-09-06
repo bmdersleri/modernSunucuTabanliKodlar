@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>b08-orm-prisma-data-access_code_016 — b08-orm-prisma-data-access_code_016.ts</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+</head>
+<body>
+<h1>b08-orm-prisma-data-access_code_016 — b08-orm-prisma-data-access_code_016.ts</h1>
+<p><a href="https://github.com/bmdersleri/modernSunucuTabanliKodlar/blob/main/kodlar/bolum08/kod11/b08-orm-prisma-data-access_code_016.ts">GitHub'da görüntüle</a></p>
+<pre><code class="language-typescript">// File: IliskiliVeriOkuma.typescript
+// Bu sorgu kullanıcıları yayımlanmış gönderileriyle birlikte getirir.
+// `where` ilişkili kayıtlar üzerinde filtre uygulayabilir.
+// `select` yalnızca ekranda ihtiyaç duyulan alanları sınırlar.
+
+import { prisma } from "./prisma";
+
+async function yazarlarVeYayinlariListele(): Promise<void> {
+  const yazarListesi = await prisma.user.findMany({
+    where: {
+      gonderiler: {
+        some: { yayindaMi: true },
+      },
+    },
+    select: {
+      adSoyad: true,
+      gonderiler: {
+        where: { yayindaMi: true },
+        select: { baslik: true },
+      },
+    },
+  });
+
+  for (const yazar of yazarListesi) {
+    console.log(`${yazar.adSoyad}: ${yazar.gonderiler.length} yayın`);
+  }
+  // Çıktı: Elif Arslan: 1 yayın
+}
+
+yazarlarVeYayinlariListele().finally(() => prisma.$disconnect());</code></pre>
+</body>
+</html>

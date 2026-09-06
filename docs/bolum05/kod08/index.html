@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>b05-express-web-server_code_013 — b05-express-web-server_code_013.ts</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+</head>
+<body>
+<h1>b05-express-web-server_code_013 — b05-express-web-server_code_013.ts</h1>
+<p><a href="https://github.com/bmdersleri/modernSunucuTabanliKodlar/blob/main/kodlar/bolum05/kod08/b05-express-web-server_code_013.ts">GitHub'da görüntüle</a></p>
+<pre><code class="language-typescript">import express, { Request, Response } from "express";
+
+// Body verisinin beklenen alanları tanımlanır.
+// Alanlar önce unknown kabul edilerek doğrulanabilir.
+// JSON middleware'i body okunmadan önce eklenir.
+interface YeniKitapIstekVerisi {
+  ad?: unknown;
+  yazar?: unknown;
+  kategori?: unknown;
+}
+
+const uygulama = express();
+const portNumarasi = 3000;
+const kitapListesi = [];
+
+uygulama.use(express.json());
+
+uygulama.post("/kitaplar", (istek: Request, yanit: Response) => {
+  // Ağdan gelen body güvenilir kabul edilmez.
+  // Her alanın metin olup olmadığı kontrol edilir.
+  // Hatalı veri için 400 durum kodu döndürülür.
+  const kitapVerisi = istek.body as YeniKitapIstekVerisi;
+
+  if (
+    typeof kitapVerisi.ad !== "string" ||
+    typeof kitapVerisi.yazar !== "string" ||
+    typeof kitapVerisi.kategori !== "string"
+  ) {
+    yanit.status(400).json({
+      mesaj: "ad, yazar ve kategori metin olarak gönderilmelidir."
+    });
+    return;
+  }
+
+  const yeniKitap = {
+    kimlik: kitapListesi.length + 1,
+    ad: kitapVerisi.ad,
+    yazar: kitapVerisi.yazar,
+    kategori: kitapVerisi.kategori
+  };
+
+  kitapListesi.push(yeniKitap);
+  yanit.status(201).json(yeniKitap);
+});
+
+uygulama.listen(portNumarasi, () => {
+  // Uygulama kitap ekleme endpoint'ini dinler.
+  // İstemci Content-Type: application/json göndermelidir.
+  // Başarılı ekleme 201 Created üretir.
+  console.log(`Sunucu http://localhost:${portNumarasi} adresinde çalışıyor.`);
+});
+
+// Çıktı: POST /kitaplar -> 201 {"kimlik":1,"ad":"Java Temelleri",...}</code></pre>
+</body>
+</html>

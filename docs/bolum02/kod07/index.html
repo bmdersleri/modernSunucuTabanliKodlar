@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>b02-modern-javascript-backend_code_009 — b02-modern-javascript-backend_code_009.ts</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+</head>
+<body>
+<h1>b02-modern-javascript-backend_code_009 — b02-modern-javascript-backend_code_009.ts</h1>
+<p><a href="https://github.com/bmdersleri/modernSunucuTabanliKodlar/blob/main/kodlar/bolum02/kod07/b02-modern-javascript-backend_code_009.ts">GitHub'da görüntüle</a></p>
+<pre><code class="language-typescript">// Dosya: asenkron-siparis.ts
+// Bu örnek sipariş, müşteri ve stok verisini asenkron biçimde getirir.
+// Bağımsız sorgular Promise.all ile aynı anda başlatılır.
+// Dönüş türleri her fonksiyonun sözleşmesini açıklar.
+
+interface Siparis {
+  siparisNo: string;
+  musteriKimlik: number;
+  urunKodu: string;
+}
+
+interface Musteri {
+  kimlik: number;
+  ad: string;
+}
+
+interface StokDurumu {
+  urunKodu: string;
+  adet: number;
+}
+
+async function siparisGetir(): Promise<Siparis> {
+  return { siparisNo: "S-100", musteriKimlik: 7, urunKodu: "K-20" };
+}
+
+async function musteriGetir(musteriKimlik: number): Promise<Musteri> {
+  return { kimlik: musteriKimlik, ad: "Burak" };
+}
+
+async function stokGetir(urunKodu: string): Promise<StokDurumu> {
+  return { urunKodu, adet: 12 };
+}
+
+async function siparisOzetiOlustur(): Promise<void> {
+  const siparis = await siparisGetir();
+
+  const [musteri, stokDurumu] = await Promise.all([
+    musteriGetir(siparis.musteriKimlik),
+    stokGetir(siparis.urunKodu)
+  ]);
+
+  console.log(`${musteri.ad} için ${siparis.siparisNo} numaralı sipariş hazır.`);
+  console.log(`Stok: ${stokDurumu.adet}`);
+}
+
+siparisOzetiOlustur().catch((hata) => console.error(hata));
+
+// Çıktı: Burak için S-100 numaralı sipariş hazır.
+// Çıktı: Stok: 12</code></pre>
+</body>
+</html>

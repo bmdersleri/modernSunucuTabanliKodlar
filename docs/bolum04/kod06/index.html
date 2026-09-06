@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>b04-nodejs-runtime_code_007 — b04-nodejs-runtime_code_007.ts</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+</head>
+<body>
+<h1>b04-nodejs-runtime_code_007 — b04-nodejs-runtime_code_007.ts</h1>
+<p><a href="https://github.com/bmdersleri/modernSunucuTabanliKodlar/blob/main/kodlar/bolum04/kod06/b04-nodejs-runtime_code_007.ts">GitHub'da görüntüle</a></p>
+<pre><code class="language-typescript">// File: asenkronMesaj.typescript
+// Promise bekleyen bir işlemi temsil eder.
+// await, yalnızca bu async fonksiyonun devamını bekletir.
+// Çıktı: Hazırlık, diğer iş, sonra tamamlanma mesajı.
+
+function siparisHazirla(): Promise<string> {
+  return new Promise((coz) => {
+    setTimeout(() => coz("Sipariş hazır."), 500);
+  });
+}
+
+async function mutfagiYonet(): Promise<void> {
+  console.log("Hazırlık başlatıldı.");
+  const sonucMesaji = await siparisHazirla();
+  console.log(sonucMesaji);
+}
+
+void mutfagiYonet();
+console.log("Mutfak başka siparişleri karşılıyor.");</code></pre>
+</body>
+</html>

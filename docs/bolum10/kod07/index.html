@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>b10-authentication-authorization_code_011 — b10-authentication-authorization_code_011.ts</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+</head>
+<body>
+<h1>b10-authentication-authorization_code_011 — b10-authentication-authorization_code_011.ts</h1>
+<p><a href="https://github.com/bmdersleri/modernSunucuTabanliKodlar/blob/main/kodlar/bolum10/kod07/b10-authentication-authorization_code_011.ts">GitHub'da görüntüle</a></p>
+<pre><code class="language-typescript">// Dosya: DurumKoduAyrimi.typescript
+// Bu örnek 401 ve 403 durumlarının hangi koşulda üretildiğini ayırt eder.
+// Çıktı, token yokluğunda 401, yetersiz rolde 403 üretildiğini gösterir.
+
+type Rol = "ogrenci" | "kutuphaneci";
+
+interface Yanit {
+  durumKodu: number;
+  mesaj: string;
+}
+
+function istegiIsle(token: string | null, kullaniciRolu: Rol | null): Yanit {
+  if (!token) {
+    return { durumKodu: 401, mesaj: "Kimlik doğrulanamadı: token eksik." };
+  }
+
+  if (!kullaniciRolu) {
+    return { durumKodu: 401, mesaj: "Kimlik doğrulanamadı: token geçersiz." };
+  }
+
+  if (kullaniciRolu !== "kutuphaneci") {
+    return { durumKodu: 403, mesaj: "Bu işlem yalnızca kütüphaneciler tarafından yapılabilir." };
+  }
+
+  return { durumKodu: 200, mesaj: "Kitap başarıyla eklendi." };
+}
+
+console.log(istegiIsle(null, null));
+console.log(istegiIsle("gecerli-token", "ogrenci"));
+console.log(istegiIsle("gecerli-token", "kutuphaneci"));
+// Çıktı: { durumKodu: 401, mesaj: 'Kimlik doğrulanamadı: token eksik.' }
+// Çıktı: { durumKodu: 403, mesaj: 'Bu işlem yalnızca kütüphaneciler tarafından yapılabilir.' }
+// Çıktı: { durumKodu: 200, mesaj: 'Kitap başarıyla eklendi.' }</code></pre>
+</body>
+</html>

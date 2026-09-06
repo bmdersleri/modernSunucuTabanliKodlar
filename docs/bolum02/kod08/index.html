@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>b02-modern-javascript-backend_code_011 — b02-modern-javascript-backend_code_011.ts</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+</head>
+<body>
+<h1>b02-modern-javascript-backend_code_011 — b02-modern-javascript-backend_code_011.ts</h1>
+<p><a href="https://github.com/bmdersleri/modernSunucuTabanliKodlar/blob/main/kodlar/bolum02/kod08/b02-modern-javascript-backend_code_011.ts">GitHub'da görüntüle</a></p>
+<pre><code class="language-typescript">// Dosya: istek-verisi-ayristirma.ts
+// Bu örnek API benzeri sipariş isteğinden gerekli alanları ayırır.
+// Alan yeniden adlandırma ve varsayılan değer kullanılır.
+// Rest operatörü kalan alanları ayrı bir nesnede toplar.
+
+interface SiparisIstegi {
+  musteriKimlik: number;
+  teslimatAdresi?: string;
+  urunKodlari: string[];
+  oncelik?: "normal" | "hizli";
+  kampanyaKodu?: string;
+}
+
+const istekVerisi: SiparisIstegi = {
+  musteriKimlik: 42,
+  urunKodlari: ["KITAP-1", "KALEM-2"],
+  kampanyaKodu: "GELENEKSEL"
+};
+
+const {
+  musteriKimlik: kimlik,
+  teslimatAdresi = "Adres daha sonra doğrulanacak",
+  urunKodlari: [ilkUrun, ...digerUrunler],
+  oncelik = "normal",
+  ...ekAlanlar
+} = istekVerisi;
+
+console.log(`Müşteri: ${kimlik}`);
+console.log(`İlk ürün: ${ilkUrun}, diğer ürün sayısı: ${digerUrunler.length}`);
+console.log(`Öncelik: ${oncelik}, kampanya: ${ekAlanlar.kampanyaKodu}`);
+
+// Çıktı: Müşteri: 42
+// Çıktı: İlk ürün: KITAP-1, diğer ürün sayısı: 1
+// Çıktı: Öncelik: normal, kampanya: GELENEKSEL</code></pre>
+</body>
+</html>

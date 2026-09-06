@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>b03-typescript-backend_code_014 — b03-typescript-backend_code_014.ts</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+</head>
+<body>
+<h1>b03-typescript-backend_code_014 — b03-typescript-backend_code_014.ts</h1>
+<p><a href="https://github.com/bmdersleri/modernSunucuTabanliKodlar/blob/main/kodlar/bolum03/kod09/b03-typescript-backend_code_014.ts">GitHub'da görüntüle</a></p>
+<pre><code class="language-typescript">// File: AyrikUnionSonuc.typescript
+// Başarılı ve hatalı yanıtların alanları farklıdır.
+// basarili alanı tipi güvenle daraltmak için kullanılır.
+// Her dal yalnızca kendi alanlarına erişir.
+
+type KayitSonucu =
+  | { basarili: true; kullaniciKimligi: number }
+  | { basarili: false; hataMesaji: string };
+
+function kayitMesajiniOlustur(sonuc: KayitSonucu): string {
+  if (sonuc.basarili) {
+    return `Kullanıcı oluşturuldu: ${sonuc.kullaniciKimligi}`;
+  }
+
+  return `Kayıt başarısız: ${sonuc.hataMesaji}`;
+}
+
+console.log(kayitMesajiniOlustur({ basarili: true, kullaniciKimligi: 42 }));
+// Çıktı: Kullanıcı oluşturuldu: 42</code></pre>
+</body>
+</html>

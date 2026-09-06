@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>b13-openapi-testing_code_009 — b13-openapi-testing_code_009.ts</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+</head>
+<body>
+<h1>b13-openapi-testing_code_009 — b13-openapi-testing_code_009.ts</h1>
+<p><a href="https://github.com/bmdersleri/modernSunucuTabanliKodlar/blob/main/kodlar/bolum13/kod06/b13-openapi-testing_code_009.ts">GitHub'da görüntüle</a></p>
+<pre><code class="language-typescript">// Dosya: LoginEndpoint.integration.test.typescript
+// beforeEach, her testten önce test veritabanını sıfırlar ve bilinen bir kullanıcı ekler.
+// supertest, gerçek bir HTTP sunucusunu ayağa kaldırmadan istek/yanıt döngüsünü test eder.
+
+import { describe, it, expect, beforeEach } from "vitest";
+import request from "supertest";
+import { app } from "./app";
+import { testVeritabaniniSifirla, testKullaniciEkle } from "./test-utils";
+
+describe("POST /auth/login (integration)", () => {
+  beforeEach(async () => {
+    await testVeritabaniniSifirla();
+    await testKullaniciEkle({ kullaniciAdi: "elif", parola: "ogrenci-Parola1", rol: "ogrenci" });
+  });
+
+  it("doğru bilgilerle 200 ve token döner", async () => {
+    const yanit = await request(app)
+      .post("/auth/login")
+      .send({ kullaniciAdi: "elif", parola: "ogrenci-Parola1" });
+
+    expect(yanit.status).toBe(200);
+    expect(yanit.body.token).toBeDefined();
+  });
+
+  it("yanlış parolayla 401 döner", async () => {
+    const yanit = await request(app)
+      .post("/auth/login")
+      .send({ kullaniciAdi: "elif", parola: "yanlis-parola" });
+
+    expect(yanit.status).toBe(401);
+  });
+});</code></pre>
+</body>
+</html>

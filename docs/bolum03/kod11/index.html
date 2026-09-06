@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>b03-typescript-backend_code_018 — b03-typescript-backend_code_018.ts</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+</head>
+<body>
+<h1>b03-typescript-backend_code_018 — b03-typescript-backend_code_018.ts</h1>
+<p><a href="https://github.com/bmdersleri/modernSunucuTabanliKodlar/blob/main/kodlar/bolum03/kod11/b03-typescript-backend_code_018.ts">GitHub'da görüntüle</a></p>
+<pre><code class="language-typescript">// File: GenericListeleme.typescript
+// Generic fonksiyon dizinin eleman türünü korur.
+// Fonksiyon farklı model listelerinde tekrar kullanılabilir.
+// İlk eleman bulunamazsa undefined dönebilir.
+
+function ilkKaydiGetir<T>(kayitListesi: T[]): T | undefined {
+  return kayitListesi[0];
+}
+
+const kitapListesi = [{ kimlik: 1, ad: "Java Temelleri" }];
+const kullaniciListesi = [{ kimlik: 9, ad: "Ayşe Demir" }];
+
+console.log(ilkKaydiGetir(kitapListesi)?.ad);
+console.log(ilkKaydiGetir(kullaniciListesi)?.ad);
+// Çıktı: Java Temelleri
+// Çıktı: Ayşe Demir</code></pre>
+</body>
+</html>

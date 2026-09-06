@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>b07-postgresql-sql_code_021 — b07-postgresql-sql_code_021.sql</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+</head>
+<body>
+<h1>b07-postgresql-sql_code_021 — b07-postgresql-sql_code_021.sql</h1>
+<p><a href="https://github.com/bmdersleri/modernSunucuTabanliKodlar/blob/main/kodlar/bolum07/kod12/b07-postgresql-sql_code_021.sql">GitHub'da görüntüle</a></p>
+<pre><code class="language-sql">-- Örnek bağımsız çalışsın diye önce temizlenir.
+DROP INDEX IF EXISTS idx_kitaplar_yayin_yili;
+
+-- Üyeler e-posta ile sık aranıyorsa index yararlıdır.
+-- EXPLAIN sorgu planını incelemek için kullanılır.
+-- PK ve UNIQUE alanları zaten index oluşturabilir.
+
+CREATE INDEX idx_kitaplar_yayin_yili
+ON kitaplar (yayin_yili);
+
+EXPLAIN ANALYZE
+SELECT kitap_adi, yazar_id
+FROM kitaplar
+WHERE yayin_yili = 1943;
+
+-- Çıktı: PostgreSQL'in sorgu planı ve çalışma süresi görüntülenir.</code></pre>
+</body>
+</html>

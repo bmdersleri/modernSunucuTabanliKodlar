@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>b07-postgresql-sql_code_022 — b07-postgresql-sql_code_022.ts</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+</head>
+<body>
+<h1>b07-postgresql-sql_code_022 — b07-postgresql-sql_code_022.ts</h1>
+<p><a href="https://github.com/bmdersleri/modernSunucuTabanliKodlar/blob/main/kodlar/bolum07/kod13/b07-postgresql-sql_code_022.ts">GitHub'da görüntüle</a></p>
+<pre><code class="language-typescript">// File: IndexliArama.typescript
+import { Pool } from "pg";
+
+// Sorgu filtreleme alanını kullanır.
+// Index gereksinimi EXPLAIN ANALYZE ile doğrulanmalıdır.
+// Küçük örnek veriyle fark görünmeyebilir.
+
+const baglantiHavuzu = new Pool({
+  connectionString: process.env.VERITABANI_BAGLANTI_METNI,
+});
+
+async function yayinYilinaGoreAra(yayinYili: number): Promise<void> {
+  const sonuc = await baglantiHavuzu.query(
+    `SELECT kitap_adi
+     FROM kitaplar
+     WHERE yayin_yili = $1;`,
+    [yayinYili]
+  );
+
+  console.table(sonuc.rows);
+  // Çıktı: Belirtilen yayın yılındaki kitaplar listelenir.
+}
+
+yayinYilinaGoreAra(1943).finally(() => baglantiHavuzu.end());</code></pre>
+</body>
+</html>

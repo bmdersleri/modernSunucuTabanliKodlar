@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>b10-authentication-authorization_code_009 — b10-authentication-authorization_code_009.ts</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+</head>
+<body>
+<h1>b10-authentication-authorization_code_009 — b10-authentication-authorization_code_009.ts</h1>
+<p><a href="https://github.com/bmdersleri/modernSunucuTabanliKodlar/blob/main/kodlar/bolum10/kod06/b10-authentication-authorization_code_009.ts">GitHub'da görüntüle</a></p>
+<pre><code class="language-typescript">// Dosya: RbacGuard.typescript
+// requireRole, izin verilen rollerin listesini alır ve bir kontrol fonksiyonu döndürür.
+// Bu desen, aynı guard'ın farklı endpoint'lerde farklı rollerle yeniden kullanılmasını sağlar.
+// Çıktı, kütüphaneciye izin verilirken öğrencinin reddedildiğini gösterir.
+
+type Rol = "ogrenci" | "kutuphaneci";
+
+interface DogrulanmisKullanici {
+  kullaniciAdi: string;
+  rol: Rol;
+}
+
+function requireRole(izinVerilenRoller: Rol[]) {
+  return function (kullanici: DogrulanmisKullanici): void {
+    if (!izinVerilenRoller.includes(kullanici.rol)) {
+      throw new Error(`403: '${kullanici.rol}' rolü bu işlem için yetkili değil.`);
+    }
+  };
+}
+
+const sadeceKutuphaneci = requireRole(["kutuphaneci"]);
+
+const kutuphaneci: DogrulanmisKullanici = { kullaniciAdi: "yasemin", rol: "kutuphaneci" };
+const ogrenci: DogrulanmisKullanici = { kullaniciAdi: "elif", rol: "ogrenci" };
+
+try {
+  sadeceKutuphaneci(kutuphaneci);
+  console.log("Kitap ekleme işlemi gerçekleştirildi.");
+} catch (hata) {
+  console.log((hata as Error).message);
+}
+
+try {
+  sadeceKutuphaneci(ogrenci);
+  console.log("Kitap ekleme işlemi gerçekleştirildi.");
+} catch (hata) {
+  console.log((hata as Error).message);
+}
+// Çıktı: Kitap ekleme işlemi gerçekleştirildi.
+// Çıktı: 403: 'ogrenci' rolü bu işlem için yetkili değil.</code></pre>
+</body>
+</html>

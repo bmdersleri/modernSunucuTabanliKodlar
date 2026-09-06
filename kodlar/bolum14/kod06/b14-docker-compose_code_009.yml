@@ -1,0 +1,22 @@
+services:
+  kutuphane-api:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      DATABASE_URL: postgresql://postgres:gelistirme_parolasi@kutuphane-db:5432/kutuphane
+    depends_on:
+      - kutuphane-db
+
+  kutuphane-db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_PASSWORD: gelistirme_parolasi
+      POSTGRES_DB: kutuphane
+    volumes:
+      - kutuphane-db-verisi:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+volumes:
+  kutuphane-db-verisi:

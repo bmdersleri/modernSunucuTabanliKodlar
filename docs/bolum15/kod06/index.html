@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>b15-linux-deployment_code_008 — b15-linux-deployment_code_008.ts</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+</head>
+<body>
+<h1>b15-linux-deployment_code_008 — b15-linux-deployment_code_008.ts</h1>
+<p><a href="https://github.com/bmdersleri/modernSunucuTabanliKodlar/blob/main/kodlar/bolum15/kod06/b15-linux-deployment_code_008.ts">GitHub'da görüntüle</a></p>
+<pre><code class="language-typescript">interface ProductionOrtamDegiskenleri {
+  DATABASE_URL: string;
+  JWT_GIZLI_ANAHTAR: string;
+  NODE_ENV: string;
+}
+
+function zorunluOrtamDegiskenleriniYukle(
+  ortam: Record<string, string | undefined>
+): ProductionOrtamDegiskenleri {
+  const zorunluAnahtarlar: (keyof ProductionOrtamDegiskenleri)[] = [
+    "DATABASE_URL",
+    "JWT_GIZLI_ANAHTAR",
+    "NODE_ENV"
+  ];
+  const eksikler = zorunluAnahtarlar.filter((anahtar) => !ortam[anahtar]);
+  if (eksikler.length > 0) {
+    throw new Error(`Eksik ortam değişkenleri: ${eksikler.join(", ")}`);
+  }
+  return {
+    DATABASE_URL: ortam.DATABASE_URL!,
+    JWT_GIZLI_ANAHTAR: ortam.JWT_GIZLI_ANAHTAR!,
+    NODE_ENV: ortam.NODE_ENV!
+  };
+}
+
+interface SaglikDurumu {
+  durum: "ayakta" | "sorunlu";
+  veritabaniBagli: boolean;
+  zaman: string;
+}
+
+async function saglikKontroluYap(veritabaniPingFn: () => Promise<boolean>): Promise<SaglikDurumu> {
+  const veritabaniBagli = await veritabaniPingFn().catch(() => false);
+  return {
+    durum: veritabaniBagli ? "ayakta" : "sorunlu",
+    veritabaniBagli,
+    zaman: new Date().toISOString()
+  };
+}
+
+const sahteOrtam = {
+  DATABASE_URL: "postgresql://postgres:parola@kutuphane-db:5432/kutuphane",
+  JWT_GIZLI_ANAHTAR: "gizli-anahtar-degeri",
+  NODE_ENV: "production"
+};
+const ayarlar = zorunluOrtamDegiskenleriniYukle(sahteOrtam);
+console.log(ayarlar.NODE_ENV);
+
+const durum = await saglikKontroluYap(async () => true);
+console.log(durum.durum);
+// Çıktı: production
+// Çıktı: ayakta</code></pre>
+</body>
+</html>

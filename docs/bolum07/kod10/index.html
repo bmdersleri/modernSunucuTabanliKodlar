@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>b07-postgresql-sql_code_017 — b07-postgresql-sql_code_017.sql</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+</head>
+<body>
+<h1>b07-postgresql-sql_code_017 — b07-postgresql-sql_code_017.sql</h1>
+<p><a href="https://github.com/bmdersleri/modernSunucuTabanliKodlar/blob/main/kodlar/bolum07/kod10/b07-postgresql-sql_code_017.sql">GitHub'da görüntüle</a></p>
+<pre><code class="language-sql">-- Örnek bağımsız çalışsın diye önce temizlenir.
+DROP TABLE IF EXISTS uyeler CASCADE;
+DROP TABLE IF EXISTS odunc_islemleri CASCADE;
+
+-- NOT NULL zorunlu alanı tanımlar.
+-- UNIQUE e-posta tekrarını engeller.
+-- CHECK yaş için kabul edilen aralığı denetler.
+
+CREATE TABLE uyeler (
+  uye_id SERIAL PRIMARY KEY,
+  ad_soyad VARCHAR(120) NOT NULL,
+  eposta VARCHAR(150) NOT NULL UNIQUE,
+  yas INTEGER CHECK (yas >= 12 AND yas <= 120)
+);
+
+CREATE TABLE odunc_islemleri (
+  odunc_id SERIAL PRIMARY KEY,
+  uye_id INTEGER NOT NULL REFERENCES uyeler(uye_id),
+  kitap_id INTEGER NOT NULL REFERENCES kitaplar(kitap_id),
+  iade_tarihi DATE,
+  CONSTRAINT chk_iade_tarihi
+    CHECK (iade_tarihi IS NULL OR iade_tarihi >= CURRENT_DATE)
+);
+
+-- Çıktı: Geçersiz e-posta tekrarı veya olmayan üye kimliği reddedilir.</code></pre>
+</body>
+</html>

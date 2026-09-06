@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>b03-typescript-backend_code_013 — b03-typescript-backend_code_013.ts</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+</head>
+<body>
+<h1>b03-typescript-backend_code_013 — b03-typescript-backend_code_013.ts</h1>
+<p><a href="https://github.com/bmdersleri/modernSunucuTabanliKodlar/blob/main/kodlar/bolum03/kod08/b03-typescript-backend_code_013.ts">GitHub'da görüntüle</a></p>
+<pre><code class="language-typescript">// File: SiparisDurumu.typescript
+// Union yalnızca geçerli sipariş durumlarına izin verir.
+// Switch yapısı durumlara göre farklı davranış üretir.
+// Varsayılan durum beklenmeyen değerler için koruma sağlar.
+
+type SiparisDurumu =
+  | "beklemede"
+  | "hazirlaniyor"
+  | "kargoda"
+  | "teslimEdildi";
+
+function durumMesajiOlustur(siparisDurumu: SiparisDurumu): string {
+  switch (siparisDurumu) {
+    case "beklemede":
+      return "Sipariş onay bekliyor.";
+    case "hazirlaniyor":
+      return "Sipariş hazırlanıyor.";
+    case "kargoda":
+      return "Sipariş kargoya verildi.";
+    case "teslimEdildi":
+      return "Sipariş teslim edildi.";
+  }
+}
+
+console.log(durumMesajiOlustur("kargoda"));
+// Çıktı: Sipariş kargoya verildi.</code></pre>
+</body>
+</html>

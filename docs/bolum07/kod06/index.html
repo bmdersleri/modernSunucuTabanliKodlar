@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>b07-postgresql-sql_code_009 — b07-postgresql-sql_code_009.sql</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+</head>
+<body>
+<h1>b07-postgresql-sql_code_009 — b07-postgresql-sql_code_009.sql</h1>
+<p><a href="https://github.com/bmdersleri/modernSunucuTabanliKodlar/blob/main/kodlar/bolum07/kod06/b07-postgresql-sql_code_009.sql">GitHub'da görüntüle</a></p>
+<pre><code class="language-sql">-- Yazar tablosu bu örnekte kurulur; kitaplar tablosu önceki örnekten gelir.
+DROP TABLE IF EXISTS yazarlar CASCADE;
+
+-- Yazar her kayıt için benzersiz bir kimlik alır.
+-- Kitap, yazar_id alanı ile yazara bağlanır.
+-- FOREIGN KEY geçersiz yazar kimliğini engeller.
+-- Önceki örnekteki kitaplar tablosu korunur ve evrilir: silinip yeniden
+-- oluşturulmaz, yeni sütun ve kısıt eklenir. Gerçek projelerde şema
+-- migration ile böyle evrilir.
+
+CREATE TABLE yazarlar (
+  yazar_id SERIAL PRIMARY KEY,
+  ad_soyad VARCHAR(120) NOT NULL UNIQUE
+);
+
+ALTER TABLE kitaplar
+  ADD COLUMN yazar_id INTEGER;
+
+ALTER TABLE kitaplar
+  ADD CONSTRAINT fk_kitap_yazar
+  FOREIGN KEY (yazar_id)
+  REFERENCES yazarlar(yazar_id);
+
+INSERT INTO yazarlar (ad_soyad)
+VALUES ('Yaşar Kemal');
+
+INSERT INTO kitaplar (kitap_adi, yazar_adi, yayin_yili, yazar_id)
+VALUES ('İnce Memed', 'Yaşar Kemal', 1973, 1);
+
+-- Çıktı: Kitap, yazar_id=1 olan Yaşar Kemal ile ilişkilendirilir.</code></pre>
+</body>
+</html>

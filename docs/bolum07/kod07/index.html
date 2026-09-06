@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>b07-postgresql-sql_code_010 — b07-postgresql-sql_code_010.ts</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+</head>
+<body>
+<h1>b07-postgresql-sql_code_010 — b07-postgresql-sql_code_010.ts</h1>
+<p><a href="https://github.com/bmdersleri/modernSunucuTabanliKodlar/blob/main/kodlar/bolum07/kod07/b07-postgresql-sql_code_010.ts">GitHub'da görüntüle</a></p>
+<pre><code class="language-typescript">// File: IliskiliKitapEkleme.typescript
+import { Pool } from "pg";
+
+// Önce yazar kaydı oluşturulur.
+// Dönen yazar_id kitap eklemede kullanılır.
+// İşlem örneği transaction bölümünde daha güvenli hâle getirilecektir.
+
+const baglantiHavuzu = new Pool({
+  connectionString: process.env.VERITABANI_BAGLANTI_METNI,
+});
+
+async function yazariVeKitabiEkle(): Promise<void> {
+  const yazarSonucu = await baglantiHavuzu.query(
+    "INSERT INTO yazarlar (ad_soyad) VALUES ($1) RETURNING yazar_id;",
+    ["Adalet Ağaoğlu"]
+  );
+
+  const yeniYazarId = yazarSonucu.rows[0].yazar_id;
+
+  await baglantiHavuzu.query(
+    "INSERT INTO kitaplar (kitap_adi, yazar_id) VALUES ($1, $2);",
+    ["Ölmeye Yatmak", yeniYazarId]
+  );
+
+  console.log("Yazar ve kitabı ilişkilendirilerek eklendi.");
+  // Çıktı: Yazar ve kitabı ilişkilendirilerek eklendi.
+}
+
+yazariVeKitabiEkle().finally(() => baglantiHavuzu.end());</code></pre>
+</body>
+</html>

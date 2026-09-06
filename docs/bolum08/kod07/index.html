@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>b08-orm-prisma-data-access_code_010 — b08-orm-prisma-data-access_code_010.ts</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+</head>
+<body>
+<h1>b08-orm-prisma-data-access_code_010 — b08-orm-prisma-data-access_code_010.ts</h1>
+<p><a href="https://github.com/bmdersleri/modernSunucuTabanliKodlar/blob/main/kodlar/bolum08/kod07/b08-orm-prisma-data-access_code_010.ts">GitHub'da görüntüle</a></p>
+<pre><code class="language-typescript">// File: KullaniciCrud.typescript
+// Bu örnek CRUD işlemlerinin temel sırasını gösterir.
+// `select` yalnızca gerekli alanları getirerek veri yükünü azaltır.
+// Her işlem Prisma schema tarafından üretilen türlere göre denetlenir.
+
+import { prisma } from "./prisma";
+
+async function kullaniciCrudOrnegi(): Promise<void> {
+  const yeniKullanici = await prisma.user.create({
+    data: {
+      adSoyad: "Zeynep Akın",
+      epostaAdresi: "zeynep.akin@example.com",
+    },
+  });
+
+  const kullaniciListesi = await prisma.user.findMany({
+    select: { id: true, adSoyad: true, epostaAdresi: true },
+  });
+
+  const guncellenenKullanici = await prisma.user.update({
+    where: { id: yeniKullanici.id },
+    data: { adSoyad: "Zeynep Akın Yılmaz" },
+  });
+
+  await prisma.user.delete({
+    where: { id: yeniKullanici.id },
+  });
+
+  console.log(kullaniciListesi.length);
+  console.log(guncellenenKullanici.adSoyad);
+  // Çıktı: 1
+  // Çıktı: Zeynep Akın Yılmaz
+}
+
+kullaniciCrudOrnegi().finally(() => prisma.$disconnect());</code></pre>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>b08-orm-prisma-data-access_code_015 — b08-orm-prisma-data-access_code_015.ts</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+</head>
+<body>
+<h1>b08-orm-prisma-data-access_code_015 — b08-orm-prisma-data-access_code_015.ts</h1>
+<p><a href="https://github.com/bmdersleri/modernSunucuTabanliKodlar/blob/main/kodlar/bolum08/kod10/b08-orm-prisma-data-access_code_015.ts">GitHub'da görüntüle</a></p>
+<pre><code class="language-typescript">// File: IliskiliKayitOlusturma.typescript
+// `create` içindeki `gonderiler` alanı iç içe kayıt üretir.
+// Prisma önce kullanıcıyı, ardından kullanıcıya bağlı gönderiyi oluşturur.
+// İlişki yabancı anahtar değeriyle otomatik biçimde kurulur.
+
+import { prisma } from "./prisma";
+
+async function yazarVeGonderiOlustur(): Promise<void> {
+  const yazar = await prisma.user.create({
+    data: {
+      adSoyad: "Elif Arslan",
+      epostaAdresi: "elif.arslan@example.com",
+      gonderiler: {
+        create: {
+          baslik: "Prisma ile İlk Gün",
+          icerik: "Tür güvenli veri erişimine giriş.",
+          yayindaMi: true,
+        },
+      },
+    },
+    include: { gonderiler: true },
+  });
+
+  console.log(`${yazar.adSoyad}: ${yazar.gonderiler[0].baslik}`);
+  // Çıktı: Elif Arslan: Prisma ile İlk Gün
+}
+
+yazarVeGonderiOlustur().finally(() => prisma.$disconnect());</code></pre>
+</body>
+</html>

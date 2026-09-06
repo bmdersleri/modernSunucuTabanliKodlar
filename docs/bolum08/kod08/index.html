@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>b08-orm-prisma-data-access_code_011 — b08-orm-prisma-data-access_code_011.ts</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+</head>
+<body>
+<h1>b08-orm-prisma-data-access_code_011 — b08-orm-prisma-data-access_code_011.ts</h1>
+<p><a href="https://github.com/bmdersleri/modernSunucuTabanliKodlar/blob/main/kodlar/bolum08/kod08/b08-orm-prisma-data-access_code_011.ts">GitHub'da görüntüle</a></p>
+<pre><code class="language-typescript">// File: KullaniciArama.typescript
+// Bu örnek benzersiz e-posta alanıyla tek kullanıcı arar.
+// Sonuç bulunamadığında Prisma `null` döndürebilir.
+// Bu nedenle sonuç kullanılmadan önce kontrol edilmelidir.
+
+import { prisma } from "./prisma";
+
+async function epostaIleKullaniciBul(): Promise<void> {
+  const bulunanKullanici = await prisma.user.findUnique({
+    where: { epostaAdresi: "ayse.demir@example.com" },
+  });
+
+  if (bulunanKullanici === null) {
+    console.log("Kullanıcı bulunamadı.");
+    return;
+  }
+
+  console.log(`Bulunan kullanıcı: ${bulunanKullanici.adSoyad}`);
+  // Çıktı: Bulunan kullanıcı: Ayşe Demir
+}
+
+epostaIleKullaniciBul().finally(() => prisma.$disconnect());</code></pre>
+</body>
+</html>

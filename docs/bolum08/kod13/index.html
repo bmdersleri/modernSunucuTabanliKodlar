@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>b08-orm-prisma-data-access_code_020 — b08-orm-prisma-data-access_code_020.ts</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+</head>
+<body>
+<h1>b08-orm-prisma-data-access_code_020 — b08-orm-prisma-data-access_code_020.ts</h1>
+<p><a href="https://github.com/bmdersleri/modernSunucuTabanliKodlar/blob/main/kodlar/bolum08/kod13/b08-orm-prisma-data-access_code_020.ts">GitHub'da görüntüle</a></p>
+<pre><code class="language-typescript">// File: KullaniciServisi.typescript
+// Servis iş kuralına odaklanır; Prisma sorgusunu doğrudan yazmaz.
+// Repository veri erişiminin nasıl yapılacağını bilir.
+// Bu ayrım test edilebilirliği ve okunabilirliği artırır.
+
+import { PrismaClient } from "@prisma/client";
+import { KullaniciRepository } from "./KullaniciRepository";
+
+const prisma = new PrismaClient();
+const kullaniciRepository = new KullaniciRepository(prisma);
+
+async function hosGeldinMesajiUret(epostaAdresi: string): Promise<void> {
+  const kullanici = await kullaniciRepository.epostaIleBul(epostaAdresi);
+
+  if (kullanici === null) {
+    console.log("Kayıtlı kullanıcı bulunamadı.");
+    return;
+  }
+
+  console.log(`Hoş geldiniz, ${kullanici.adSoyad}.`);
+  // Çıktı: Hoş geldiniz, Ayşe Demir.
+}
+
+hosGeldinMesajiUret("ayse.demir@example.com")
+  .finally(() => prisma.$disconnect());</code></pre>
+</body>
+</html>

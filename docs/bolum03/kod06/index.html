@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>b03-typescript-backend_code_009 — b03-typescript-backend_code_009.ts</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+</head>
+<body>
+<h1>b03-typescript-backend_code_009 — b03-typescript-backend_code_009.ts</h1>
+<p><a href="https://github.com/bmdersleri/modernSunucuTabanliKodlar/blob/main/kodlar/bolum03/kod06/b03-typescript-backend_code_009.ts">GitHub'da görüntüle</a></p>
+<pre><code class="language-typescript">// File: KitapSozlesmesi.typescript
+// Interface kitap verisinin zorunlu alanlarını açıklar.
+// Her kitap nesnesi aynı veri sözleşmesine uymalıdır.
+// Stok durumu hizmet katmanında hesaplanabilir.
+
+interface Kitap {
+  kimlik: number;
+  ad: string;
+  yazar: string;
+  stokAdedi: number;
+}
+
+function stoktaMi(kitap: Kitap): boolean {
+  return kitap.stokAdedi > 0;
+}
+
+const seciliKitap: Kitap = {
+  kimlik: 15,
+  ad: "Temiz Kod",
+  yazar: "Robert C. Martin",
+  stokAdedi: 6
+};
+
+console.log(stoktaMi(seciliKitap));
+// Çıktı: true</code></pre>
+</body>
+</html>

@@ -1,0 +1,14 @@
+{
+  "name": "nodejs-bolum-uygulamasi",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "gelistir": "tsx src/sunucu.typescript",
+    "kontrol": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "tsx": "^4.0.0",
+    "typescript": "^5.0.0"
+  }
+}

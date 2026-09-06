@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>b11-secure-backend_code_011 — b11-secure-backend_code_011.ts</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+</head>
+<body>
+<h1>b11-secure-backend_code_011 — b11-secure-backend_code_011.ts</h1>
+<p><a href="https://github.com/bmdersleri/modernSunucuTabanliKodlar/blob/main/kodlar/bolum11/kod07/b11-secure-backend_code_011.ts">GitHub'da görüntüle</a></p>
+<pre><code class="language-typescript">// Dosya: SecretYukleyici.typescript
+// zorunluSecretlariYukle, process.env üzerinden okur ve eksik alanları erken tespit eder.
+// Gerçek projede .env dosyası yalnızca geliştirmede kullanılır ve git deposuna eklenmez.
+// Çıktı, eksik bir secret olduğunda uygulamanın erken ve anlaşılır biçimde durduğunu gösterir.
+
+interface UygulamaSecretleri {
+  jwtGizliAnahtari: string;
+  veritabaniBaglantisi: string;
+}
+
+function zorunluSecretlariYukle(ortam: Record<string, string | undefined>): UygulamaSecretleri {
+  const eksikler: string[] = [];
+
+  if (!ortam.JWT_SECRET) eksikler.push("JWT_SECRET");
+  if (!ortam.DATABASE_URL) eksikler.push("DATABASE_URL");
+
+  if (eksikler.length > 0) {
+    throw new Error(
+      `Uygulama başlatılamadı: eksik ortam değişkenleri -> ${eksikler.join(", ")}`
+    );
+  }
+
+  return {
+    jwtGizliAnahtari: ortam.JWT_SECRET as string,
+    veritabaniBaglantisi: ortam.DATABASE_URL as string
+  };
+}
+
+try {
+  zorunluSecretlariYukle({ JWT_SECRET: undefined, DATABASE_URL: "postgresql://localhost/kutuphane" });
+} catch (hata) {
+  console.log((hata as Error).message);
+}
+
+const gecerliOrtam = { JWT_SECRET: "uretim-sirri", DATABASE_URL: "postgresql://localhost/kutuphane" };
+console.log(zorunluSecretlariYukle(gecerliOrtam));
+// Çıktı: Uygulama başlatılamadı: eksik ortam değişkenleri -> JWT_SECRET
+// Çıktı: { jwtGizliAnahtari: 'uretim-sirri', veritabaniBaglantisi: 'postgresql://localhost/kutuphane' }</code></pre>
+</body>
+</html>

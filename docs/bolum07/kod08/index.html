@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>b07-postgresql-sql_code_013 — b07-postgresql-sql_code_013.sql</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+</head>
+<body>
+<h1>b07-postgresql-sql_code_013 — b07-postgresql-sql_code_013.sql</h1>
+<p><a href="https://github.com/bmdersleri/modernSunucuTabanliKodlar/blob/main/kodlar/bolum07/kod08/b07-postgresql-sql_code_013.sql">GitHub'da görüntüle</a></p>
+<pre><code class="language-sql">-- INNER JOIN yalnızca eşleşen satırları getirir.
+-- LEFT JOIN tüm yazarları, kitap olmasa da getirir.
+-- Takma adlar sorguyu okunabilir kılar.
+
+SELECT y.ad_soyad, k.kitap_adi
+FROM yazarlar AS y
+INNER JOIN kitaplar AS k
+  ON k.yazar_id = y.yazar_id;
+
+SELECT y.ad_soyad, k.kitap_adi
+FROM yazarlar AS y
+LEFT JOIN kitaplar AS k
+  ON k.yazar_id = y.yazar_id
+ORDER BY y.ad_soyad;
+
+-- Çıktı: LEFT JOIN, kitabı olmayan yazar için kitap_adi alanında NULL döndürür.</code></pre>
+</body>
+</html>
